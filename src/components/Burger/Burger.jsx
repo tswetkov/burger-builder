@@ -5,12 +5,20 @@ import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 import classes from "./Burger.css";
 
 const Burger = ({ ingredients }) => {
-  const transformedIngredients = Object.keys(ingredients).map(igKey => {
-    return [...Array(ingredients[igKey])].map((element, index) => {
-      return <BurgerIngredient key={igKey + index} type={igKey} />;
-    });
-  });
+  let transformedIngredients = Object.keys(ingredients)
+    .map(igKey => {
+      return [...Array(ingredients[igKey])].map((element, index) => {
+        return <BurgerIngredient key={igKey + index} type={igKey} />;
+      });
+    })
+    .reduce((arr, el) => {
+      return arr.concat(el);
+    }, []);
   console.log(transformedIngredients);
+
+  if (transformedIngredients.length === 0) {
+    transformedIngredients = <p>Пожалуйста, добавьте ингридиенты</p>;
+  }
 
   return (
     <div className={classes.Burger}>

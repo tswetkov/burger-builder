@@ -1,14 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import classes from "./Layout.css";
 
-import Aux from "../../hoc/_Aux";
-
 const Layout = ({ children }) => (
-  <Aux>
+  <Fragment>
     <div>Toolbar, SideDrawer, Bagdrop</div>
     <main className={classes.Content}>{children}</main>
-  </Aux>
+  </Fragment>
 );
 
 export default Layout;
