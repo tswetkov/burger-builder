@@ -17,8 +17,15 @@
 
 .Success {
   color: #5c9210;
+  margin: 10px 0;
 }
 
 .Danger {
   color: #944317;
+  margin: 10px 0;
+}
+@media (min-width: 500px) {
+  .Button {
+    padding: 5px;
+  }
 }
