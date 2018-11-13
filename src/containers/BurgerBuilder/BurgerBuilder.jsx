@@ -21,14 +21,18 @@ export class BurgerBuilder extends Component {
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
-    loading: false
+    loading: false,
+    error: false
   };
 
   componentDidMount() {
     axios
-      .get("https://burger-builder-df9fe.firebaseio.com/ingredients")
+      .get("/ingredients.json")
       .then(response => {
         this.setState({ ingredients: response.data });
+      })
+      .catch(error => {
+        this.setState({ error: true });
       });
   }
 
@@ -122,7 +126,11 @@ export class BurgerBuilder extends Component {
     /**================================
      *            Burger
      ==================================*/
-    let burger = <Spinner />;
+    let burger = this.state.error ? (
+      <p>Не могу загрузить данные</p>
+    ) : (
+      <Spinner />
+    );
     if (this.state.ingredients) {
       burger = (
         <Fragment>
