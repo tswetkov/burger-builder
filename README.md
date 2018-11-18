@@ -1,1 +1,1 @@
-A training project that I do as part of a course on Udemy.
+Учебный проект в рамках курса на Udemy.
