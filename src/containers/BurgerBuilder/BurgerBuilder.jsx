@@ -148,7 +148,7 @@ export class BurgerBuilder extends Component {
 
       /**================================
      *            Order Summary
-     ==================================*/
+     =================================*/
       orderSummary = (
         <OrderSummary
           ingredients={this.state.ingredients}
