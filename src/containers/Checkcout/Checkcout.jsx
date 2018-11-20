@@ -10,10 +10,21 @@ export default class Checkcout extends Component {
       bacon: 1
     }
   };
+
+  handleCheckoutCancel = () => {
+    this.props.history.goBack();
+  };
+  handleCheckoutContinued = () => {
+    this.props.history.replace("/checkout/contact-data");
+  };
   render() {
     return (
       <div>
-        <CheckoutSummary ingredients={this.state.ingredients} />
+        <CheckoutSummary
+          checkoutCancel={this.handleCheckoutCancel}
+          checkoutContinued={this.handleCheckoutContinued}
+          ingredients={this.state.ingredients}
+        />
       </div>
     );
   }
