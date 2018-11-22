@@ -7,14 +7,61 @@ import Button from "../../../components/UI/Button/Button";
 
 import classes from "./ContactData.css";
 import Spinner from "../../../components/UI/Spinner/Spinner";
+import Input from "../../../components/UI/Input/Input";
 
 class ContactData extends Component {
   state = {
-    name: "",
-    email: "",
-    address: {
-      street: "",
-      postalCode: ""
+    orderForm: {
+      name: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Ваше имя"
+        },
+        value: ""
+      },
+      street: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Улица"
+        },
+        value: ""
+      },
+      index: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Индекс"
+        },
+        value: ""
+      },
+      country: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Страна"
+        },
+        value: ""
+      },
+      email: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Ваша почта"
+        },
+        value: ""
+      },
+      deleveryMethod: {
+        elementType: "select",
+        elementConfig: {
+          options: [
+            { value: "fastest", displayValue: "Быстрый" },
+            { value: "cheapest", displayValue: "Медленный" }
+          ]
+        },
+        value: ""
+      }
     },
     loading: false
   };
@@ -25,18 +72,9 @@ class ContactData extends Component {
     this.setState({ loading: true });
     const order = {
       ingredients: this.props.ingredients,
-      price: this.props.price,
-      customer: {
-        name: "Roman Tsvetkov",
-        address: {
-          street: "Tested 133",
-          index: "680042",
-          country: "Russia"
-        },
-        email: "test@test.com"
-      },
-      deleveryMethod: "fastest"
+      price: this.props.price
     };
+
     axios
       .post("/orders.json", order)
       .then(response => {
@@ -51,26 +89,21 @@ class ContactData extends Component {
   render() {
     let form = (
       <form>
-        <input
-          className={classes.Input}
-          type="text"
-          name="name"
-          placeholder="Ваше имя"
-        />
-        <input
-          className={classes.Input}
+        <Input elementType="..." elementConfig="..." value="..." />
+        <Input
+          inputType="input"
           type="email"
           name="email"
           placeholder="Email"
         />
-        <input
-          className={classes.Input}
+        <Input
+          inputType="input"
           type="text"
           name="street"
           placeholder="Улица"
         />
-        <input
-          className={classes.Input}
+        <Input
+          inputType="input"
           type="text"
           name="postal"
           placeholder="Индекс"
