@@ -1,11 +1,12 @@
 import React, { Fragment, Component } from "react";
 import Modal from "../../../components/UI/Modal/Modal";
 
-const WithErrorHandler = (WrappedComponent, axios) => {
+const withErrorHandler = (WrappedComponent, axios) => {
   return class extends Component {
     state = {
       error: null
     };
+
     componentWillMount() {
       this.requestInterceptor = axios.interceptors.request.use(req => {
         this.setState({ error: null });
@@ -44,4 +45,4 @@ const WithErrorHandler = (WrappedComponent, axios) => {
   };
 };
 
-export default WithErrorHandler;
+export default withErrorHandler;

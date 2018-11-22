@@ -7,7 +7,8 @@ import ContactData from "./ContactData/ContactData";
 export default class Checkcout extends Component {
   state = {
     ingredients: null,
-    price: 0
+    price: 0,
+    loading: false
   };
 
   componentWillMount() {
