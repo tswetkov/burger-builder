@@ -90,24 +90,6 @@ class ContactData extends Component {
     let form = (
       <form>
         <Input elementType="..." elementConfig="..." value="..." />
-        <Input
-          inputType="input"
-          type="email"
-          name="email"
-          placeholder="Email"
-        />
-        <Input
-          inputType="input"
-          type="text"
-          name="street"
-          placeholder="Улица"
-        />
-        <Input
-          inputType="input"
-          type="text"
-          name="postal"
-          placeholder="Индекс"
-        />
         <Button btnType="Success" clicked={this.handleOrder}>
           ЗАКАЗАТЬ
         </Button>
