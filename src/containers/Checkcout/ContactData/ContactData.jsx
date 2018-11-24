@@ -5,9 +5,10 @@ import axios from "../../../axios-orders";
 
 import Button from "../../../components/UI/Button/Button";
 
-import classes from "./ContactData.css";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input";
+
+import classes from "./ContactData.css";
 
 class ContactData extends Component {
   state = {
@@ -86,10 +87,40 @@ class ContactData extends Component {
       });
   };
 
+  hangleChangeInput = (event, inputIdentifier) => {
+    const updatedOrderForm = {
+      ...this.state.orderForm
+    };
+    const updatedFormElement = {
+      ...updatedOrderForm[inputIdentifier]
+    };
+    updatedFormElement.value = event.target.value;
+    updatedOrderForm[inputIdentifier] = updatedFormElement;
+    this.setState({ orderForm: updatedOrderForm });
+  };
+
   render() {
+    const formElementsArray = [];
+    for (let key in this.state.orderForm) {
+      formElementsArray.push({
+        id: key,
+        config: this.state.orderForm[key]
+      });
+    }
     let form = (
       <form>
-        <Input elementType="..." elementConfig="..." value="..." />
+        {formElementsArray.map(formElement => {
+          console.log(formElement.config);
+          return (
+            <Input
+              elementType={formElement.config.elementType}
+              elementConfig={formElement.config.elementConfig}
+              value={formElement.config.value}
+              key={formElement.id}
+              changed={event => this.hangleChangeInput(event, formElement.id)}
+            />
+          );
+        })}
         <Button btnType="Success" clicked={this.handleOrder}>
           ЗАКАЗАТЬ
         </Button>

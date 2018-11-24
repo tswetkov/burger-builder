@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Input.css";
 
-const Input = ({ label, elementType, elementConfig, value }) => {
+const Input = ({ label, elementType, elementConfig, value, changed }) => {
   let inputElement = null;
   switch (elementType) {
     case "input":
@@ -10,6 +10,7 @@ const Input = ({ label, elementType, elementConfig, value }) => {
           className={classes.InputElement}
           {...elementConfig}
           value={value}
+          onChange={changed}
         />
       );
       break;
@@ -19,7 +20,23 @@ const Input = ({ label, elementType, elementConfig, value }) => {
           className={classes.InputElement}
           {...elementConfig}
           value={value}
+          onChange={changed}
         />
+      );
+      break;
+    case "select":
+      inputElement = (
+        <select
+          className={classes.InputElement}
+          value={value}
+          onChange={changed}
+        >
+          {elementConfig.options.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.displayValue}
+            </option>
+          ))}
+        </select>
       );
       break;
     default:
@@ -28,6 +45,7 @@ const Input = ({ label, elementType, elementConfig, value }) => {
           className={classes.InputElement}
           {...elementConfig}
           value={value}
+          onChange={changed}
         />
       );
   }
