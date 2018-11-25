@@ -24,3 +24,12 @@
   outline: none;
   background-color: #ddd;
 }
+
+.Invalid {
+  border: 1px solid tomato;
+  background-color: #fda49a;
+}
+.ValidationError {
+  color: red;
+  margin: 5px 0;
+}

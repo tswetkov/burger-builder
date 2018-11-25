@@ -1,13 +1,32 @@
 import React from "react";
 import classes from "./Input.css";
 
-const Input = ({ label, elementType, elementConfig, value, changed }) => {
+const Input = ({
+  label,
+  elementType,
+  elementConfig,
+  value,
+  changed,
+  invalid,
+  shouldValidate,
+  touched
+}) => {
   let inputElement = null;
+  let validationError = "";
+  const inputClasses = [classes.InputElement];
+
+  if (invalid && shouldValidate && touched) {
+    inputClasses.push(classes.Invalid);
+    validationError = (
+      <p className={classes.ValidationError}>Какая-то ошибка</p>
+    );
+  }
+
   switch (elementType) {
     case "input":
       inputElement = (
         <input
-          className={classes.InputElement}
+          className={inputClasses.join(" ")}
           {...elementConfig}
           value={value}
           onChange={changed}
@@ -17,7 +36,7 @@ const Input = ({ label, elementType, elementConfig, value, changed }) => {
     case "textarea":
       inputElement = (
         <textarea
-          className={classes.InputElement}
+          className={inputClasses.join(" ")}
           {...elementConfig}
           value={value}
           onChange={changed}
@@ -27,7 +46,7 @@ const Input = ({ label, elementType, elementConfig, value, changed }) => {
     case "select":
       inputElement = (
         <select
-          className={classes.InputElement}
+          className={inputClasses.join(" ")}
           value={value}
           onChange={changed}
         >
@@ -42,7 +61,7 @@ const Input = ({ label, elementType, elementConfig, value, changed }) => {
     default:
       inputElement = (
         <input
-          className={classes.InputElement}
+          className={inputClasses.join(" ")}
           {...elementConfig}
           value={value}
           onChange={changed}
@@ -54,6 +73,7 @@ const Input = ({ label, elementType, elementConfig, value, changed }) => {
     <div className={classes.Input}>
       <label className={classes.Label}>{label}</label>
       {inputElement}
+      {validationError}
     </div>
   );
 };

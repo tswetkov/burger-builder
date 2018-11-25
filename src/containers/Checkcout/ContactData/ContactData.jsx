@@ -19,7 +19,12 @@ class ContactData extends Component {
           type: "text",
           placeholder: "Ваше имя"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       street: {
         elementType: "input",
@@ -27,7 +32,12 @@ class ContactData extends Component {
           type: "text",
           placeholder: "Улица"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       index: {
         elementType: "input",
@@ -35,7 +45,14 @@ class ContactData extends Component {
           type: "text",
           placeholder: "Индекс"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        minLength: 5,
+        maxLength: 5
       },
       country: {
         elementType: "input",
@@ -43,7 +60,12 @@ class ContactData extends Component {
           type: "text",
           placeholder: "Страна"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       email: {
         elementType: "input",
@@ -51,7 +73,12 @@ class ContactData extends Component {
           type: "text",
           placeholder: "Ваша почта"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       deleveryMethod: {
         elementType: "select",
@@ -61,9 +88,11 @@ class ContactData extends Component {
             { value: "cheapest", displayValue: "Медленный" }
           ]
         },
-        value: ""
+        value: "fastest",
+        valid: true
       }
     },
+    formIsValid: false,
     loading: false
   };
 
@@ -71,9 +100,16 @@ class ContactData extends Component {
     console.log(this.props);
     event.preventDefault();
     this.setState({ loading: true });
+    const formData = {};
+    for (let formElementIdentifier in this.state.orderForm) {
+      formData[formElementIdentifier] = this.state.orderForm[
+        formElementIdentifier
+      ].value;
+    }
     const order = {
       ingredients: this.props.ingredients,
-      price: this.props.price
+      price: this.props.price,
+      orderData: formData
     };
 
     axios
@@ -87,6 +123,24 @@ class ContactData extends Component {
       });
   };
 
+  checkValidity(value, rules) {
+    let isValid = true;
+    if (!rules) {
+      return true;
+    }
+
+    if (rules.validation.required) {
+      isValid = value.trim() !== "" && isValid;
+    }
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid;
+    }
+    if (rules.maxLength) {
+      isValid = value.length <= rules.maxLength && isValid;
+    }
+    return isValid;
+  }
+
   hangleChangeInput = (event, inputIdentifier) => {
     const updatedOrderForm = {
       ...this.state.orderForm
@@ -95,8 +149,17 @@ class ContactData extends Component {
       ...updatedOrderForm[inputIdentifier]
     };
     updatedFormElement.value = event.target.value;
+    updatedFormElement.valid = this.checkValidity(
+      updatedFormElement.value,
+      updatedFormElement
+    );
+    updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
-    this.setState({ orderForm: updatedOrderForm });
+    let formIsValid = true;
+    for (let inputIdentifier in updatedOrderForm) {
+      formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+    }
+    this.setState({ orderForm: updatedOrderForm, formIsValid });
   };
 
   render() {
@@ -108,20 +171,22 @@ class ContactData extends Component {
       });
     }
     let form = (
-      <form>
+      <form onSubmit={this.handleOrder}>
         {formElementsArray.map(formElement => {
-          console.log(formElement.config);
           return (
             <Input
+              key={formElement.id}
+              value={formElement.config.value}
               elementType={formElement.config.elementType}
               elementConfig={formElement.config.elementConfig}
-              value={formElement.config.value}
-              key={formElement.id}
               changed={event => this.hangleChangeInput(event, formElement.id)}
+              invalid={!formElement.config.valid}
+              touched={formElement.config.touched}
+              shouldValidate={formElement.config.validation}
             />
           );
         })}
-        <Button btnType="Success" clicked={this.handleOrder}>
+        <Button btnType="Success" disabled={!this.state.formIsValid}>
           ЗАКАЗАТЬ
         </Button>
       </form>
