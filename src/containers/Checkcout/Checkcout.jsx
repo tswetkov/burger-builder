@@ -42,6 +42,7 @@ export default class Checkcout extends Component {
           checkoutCancel={this.handleCheckoutCancel}
           checkoutContinued={this.handleCheckoutContinued}
         />
+
         <Route
           path={this.props.match.path + "/contact-data"}
           render={() => (
