@@ -1,13 +1,15 @@
 import { ADD_INGREDIENTS, REMOVE_INGREDIENTS } from "../actionTypes";
 
-export const addIngredient = () => {
+export const addIngredient = ingredientName => {
   return {
-    type: ADD_INGREDIENTS
+    type: ADD_INGREDIENTS,
+    ingredientName
   };
 };
 
-export const removeIngredient = () => {
+export const removeIngredient = ingredientName => {
   return {
-    type: REMOVE_INGREDIENTS
+    type: REMOVE_INGREDIENTS,
+    ingredientName
   };
 };

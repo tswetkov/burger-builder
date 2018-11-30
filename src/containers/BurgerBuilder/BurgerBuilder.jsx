@@ -170,8 +170,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    addIngredient: () => dispatch(addIngredient()),
-    removeIngredient: () => dispatch(removeIngredient())
+    addIngredient: ingredientName => dispatch(addIngredient(ingredientName)),
+    removeIngredient: ingredientName => dispatch(removeIngredient(ingredientName))
   };
 };
 
