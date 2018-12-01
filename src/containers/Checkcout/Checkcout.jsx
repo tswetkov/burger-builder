@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import ContactData from "./ContactData/ContactData";
 
-export default class Checkcout extends Component {
+class Checkcout extends Component {
   state = {
     ingredients: null,
     price: 0,
@@ -14,7 +14,9 @@ export default class Checkcout extends Component {
   componentWillMount() {
     console.log(this.props.location);
 
-    const query = new URLSearchParams(this.props.location.search);
+    const query = new URLSearchParams(
+      this.props.location.search
+    );
     const ingredients = {};
     let totalPrice = 0;
     for (let param of query.entries()) {
@@ -56,3 +58,4 @@ export default class Checkcout extends Component {
     );
   }
 }
+export default Checkcout;
