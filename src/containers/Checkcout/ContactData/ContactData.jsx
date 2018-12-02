@@ -79,7 +79,8 @@ class ContactData extends Component {
           required: true
         },
         valid: false,
-        touched: false
+        touched: false,
+        include: true
       },
       deleveryMethod: {
         elementType: "select",
@@ -90,7 +91,10 @@ class ContactData extends Component {
           ]
         },
         value: "fastest",
-        valid: true
+        valid: true,
+        validation: {
+          required: true
+        }
       }
     },
     formIsValid: false,
@@ -138,6 +142,13 @@ class ContactData extends Component {
     }
     if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
+    }
+    if (rules.include) {
+      if (value.includes("@")) {
+        isValid = true;
+      } else {
+        isValid = false;
+      }
     }
     return isValid;
   }
