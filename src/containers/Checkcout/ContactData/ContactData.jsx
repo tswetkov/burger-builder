@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import axios from "../../../axios-orders";
 
@@ -204,4 +205,10 @@ class ContactData extends Component {
   }
 }
 
-export default withRouter(ContactData);
+const mapState = state => {
+  return {
+    ingredients: state.ingredients.ingredients,
+    price: state.ingredients.totalPrice
+  };
+};
+export default connect(mapState)(withRouter(ContactData));
