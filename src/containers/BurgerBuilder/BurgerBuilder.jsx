@@ -11,27 +11,18 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import withErrorHandler from "../../hoc/Layout/WithErrorHandler/WithErrorHandler";
 import {
   addIngredient,
-  removeIngredient
-} from "../../redux/actions/ingredientsActions";
+  removeIngredient,
+  initIngredients
+} from "../../redux/actions/burgerBuilder";
 
 export class BurgerBuilder extends Component {
   state = {
-    ingredients: null,
-    totalPrice: 0,
-    purchasing: false,
-    loading: false,
-    error: false
+    purchasing: false
   };
 
   componentDidMount() {
-    // axios
-    //   .get("/ingredients.json")
-    //   .then(response => {
-    //     this.setState({ ingredients: response.data });
-    //   })
-    //   .catch(error => {
-    //     this.setState({ error: true });
-    //   });
+    this.props.onInitIngredients();
+    console.log(this.props);
   }
 
   updatePurchaseState = ingredients => {
@@ -74,11 +65,7 @@ export class BurgerBuilder extends Component {
     /**================================
      *            Burger
      ==================================*/
-    let burger = this.state.error ? (
-      <p>Не могу загрузить данные</p>
-    ) : (
-      <Spinner />
-    );
+    let burger = this.props.error ? <p>Не могу загрузить данные</p> : <Spinner />;
     if (this.props.ingredients) {
       burger = (
         <Fragment>
@@ -106,16 +93,10 @@ export class BurgerBuilder extends Component {
         />
       );
     }
-    if (this.state.loading) {
-      orderSummary = <Spinner />;
-    }
 
     return (
       <Fragment>
-        <Modal
-          show={this.state.purchasing}
-          modalClosed={this.handleModalCancel}
-        >
+        <Modal show={this.state.purchasing} modalClosed={this.handleModalCancel}>
           {orderSummary}
         </Modal>
         {burger}
@@ -127,15 +108,16 @@ export class BurgerBuilder extends Component {
 const mapState = state => {
   return {
     ingredients: state.ingredients.ingredients,
-    totalPrice: state.ingredients.totalPrice
+    totalPrice: state.ingredients.totalPrice,
+    error: state.ingredients.error
   };
 };
 
 const mapDispatch = dispatch => {
   return {
     addIngredient: ingredientName => dispatch(addIngredient(ingredientName)),
-    removeIngredient: ingredientName =>
-      dispatch(removeIngredient(ingredientName))
+    removeIngredient: ingredientName => dispatch(removeIngredient(ingredientName)),
+    onInitIngredients: () => dispatch(initIngredients())
   };
 };
 
