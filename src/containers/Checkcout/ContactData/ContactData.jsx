@@ -11,7 +11,7 @@ import Input from "../../../components/UI/Input/Input";
 import withErrorHandler from "../../../hoc/Layout/WithErrorHandler/WithErrorHandler";
 
 import classes from "./ContactData.css";
-import { purchaseBurgerStart } from "../../../redux/actions";
+import { purchaseBurger } from "../../../redux/actions";
 
 class ContactData extends Component {
   state = {
@@ -99,8 +99,7 @@ class ContactData extends Component {
         }
       }
     },
-    formIsValid: false,
-    loading: false
+    formIsValid: false
   };
 
   handleOrder = event => {
@@ -108,7 +107,9 @@ class ContactData extends Component {
     event.preventDefault();
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
-      formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
+      formData[formElementIdentifier] = this.state.orderForm[
+        formElementIdentifier
+      ].value;
     }
     const order = {
       ingredients: this.props.ingredients,
@@ -151,7 +152,10 @@ class ContactData extends Component {
       ...updatedOrderForm[inputIdentifier]
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement);
+    updatedFormElement.valid = this.checkValidity(
+      updatedFormElement.value,
+      updatedFormElement
+    );
     updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
     let formIsValid = true;
@@ -191,7 +195,7 @@ class ContactData extends Component {
       </form>
     );
 
-    if (this.state.loading) {
+    if (this.props.loading) {
       form = <Spinner />;
     }
     return (
@@ -206,13 +210,14 @@ class ContactData extends Component {
 const mapState = state => {
   return {
     ingredients: state.ingredients.ingredients,
-    price: state.ingredients.totalPrice
+    price: state.ingredients.totalPrice,
+    loading: state.order.loading
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    onOrderBurger: orderData => dispatch(purchaseBurgerStart(orderData))
+    onOrderBurger: orderData => dispatch(purchaseBurger(orderData))
   };
 };
 export default connect(
