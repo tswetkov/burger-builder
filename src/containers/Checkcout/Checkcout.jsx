@@ -4,8 +4,13 @@ import { connect } from "react-redux";
 
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import ContactData from "./ContactData/ContactData";
+import { purchaseInit } from "../../redux/actions";
 
 class Checkcout extends Component {
+  componentWillMount = () => {
+    this.props.onInitPurchase();
+  };
+
   handleCheckoutCancel = () => {
     this.props.history.goBack();
   };
@@ -14,9 +19,14 @@ class Checkcout extends Component {
   };
   render() {
     let summary = <Redirect to="/" />;
+
     if (this.props.ingredients) {
+      const purchasedRedirect = this.props.purchased ? (
+        <Redirect to="/" />
+      ) : null;
       summary = (
         <Fragment>
+          {purchasedRedirect}
           <CheckoutSummary
             ingredients={this.props.ingredients}
             checkoutCancel={this.handleCheckoutCancel}
@@ -34,8 +44,18 @@ class Checkcout extends Component {
 }
 const mapState = state => {
   return {
-    ingredients: state.ingredients.ingredients
+    ingredients: state.ingredients.ingredients,
+    purchased: state.order.purchased
   };
 };
 
-export default connect(mapState)(Checkcout);
+const mapDispatch = dispatch => {
+  return {
+    onInitPurchase: () => dispatch(purchaseInit())
+  };
+};
+
+export default connect(
+  mapState,
+  mapDispatch
+)(Checkcout);

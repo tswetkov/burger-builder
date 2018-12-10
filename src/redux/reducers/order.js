@@ -1,16 +1,23 @@
 import {
   PURCHASE_BURGER_SUCCESS,
   PURCHASE_BURGER_FAILURE,
-  PURCHASE_BURGER_START
+  PURCHASE_BURGER_START,
+  PURCHASE_INIT
 } from "../actionTypes";
 
 const initialState = {
   orders: [],
-  loading: false
+  loading: false,
+  purchased: false
 };
 
 export const order = (state = initialState, action) => {
-  switch (action.types) {
+  switch (action.type) {
+    case PURCHASE_INIT:
+      return {
+        ...state,
+        purchased: false
+      };
     case PURCHASE_BURGER_START:
       return {
         ...state,
@@ -19,13 +26,14 @@ export const order = (state = initialState, action) => {
     case PURCHASE_BURGER_SUCCESS:
       const newOrder = {
         ...action.orderData,
-        id: action.orderId
+        id: action.id
       };
       return {
         ...state,
         loading: false,
-        orders: state.orders.concat(newOrder) //returns new array
-      };
+        purchased: true,
+        orders: state.orders.concat(newOrder)
+      }; //returns new array
     case PURCHASE_BURGER_FAILURE:
       return {
         ...state,

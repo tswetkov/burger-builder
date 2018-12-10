@@ -19,7 +19,6 @@ const INGREDIENT_PRICES = {
 };
 
 export const ingredients = (state = initialState, action) => {
-  console.log(action.type);
   switch (action.type) {
     case ADD_INGREDIENTS:
       return {
