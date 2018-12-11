@@ -15,6 +15,8 @@ import {
   initIngredients
 } from "../../redux/actions/burgerBuilder";
 
+import { purchaseInit } from "../../redux/actions/order";
+
 export class BurgerBuilder extends Component {
   state = {
     purchasing: false
@@ -45,6 +47,7 @@ export class BurgerBuilder extends Component {
   };
 
   handleModalContinue = () => {
+    this.props.onInitPurchase();
     this.props.history.push("/checkout");
   };
 
@@ -65,7 +68,11 @@ export class BurgerBuilder extends Component {
     /**================================
      *            Burger
      ==================================*/
-    let burger = this.props.error ? <p>Не могу загрузить данные</p> : <Spinner />;
+    let burger = this.props.error ? (
+      <p>Не могу загрузить данные</p>
+    ) : (
+      <Spinner />
+    );
     if (this.props.ingredients) {
       burger = (
         <Fragment>
@@ -96,7 +103,10 @@ export class BurgerBuilder extends Component {
 
     return (
       <Fragment>
-        <Modal show={this.state.purchasing} modalClosed={this.handleModalCancel}>
+        <Modal
+          show={this.state.purchasing}
+          modalClosed={this.handleModalCancel}
+        >
           {orderSummary}
         </Modal>
         {burger}
@@ -116,8 +126,10 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     addIngredient: ingredientName => dispatch(addIngredient(ingredientName)),
-    removeIngredient: ingredientName => dispatch(removeIngredient(ingredientName)),
-    onInitIngredients: () => dispatch(initIngredients())
+    removeIngredient: ingredientName =>
+      dispatch(removeIngredient(ingredientName)),
+    onInitIngredients: () => dispatch(initIngredients()),
+    onInitPurchase: () => dispatch(purchaseInit())
   };
 };
 

@@ -7,10 +7,6 @@ import ContactData from "./ContactData/ContactData";
 import { purchaseInit } from "../../redux/actions";
 
 class Checkcout extends Component {
-  componentWillMount = () => {
-    this.props.onInitPurchase();
-  };
-
   handleCheckoutCancel = () => {
     this.props.history.goBack();
   };
