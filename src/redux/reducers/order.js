@@ -2,7 +2,10 @@ import {
   PURCHASE_BURGER_SUCCESS,
   PURCHASE_BURGER_FAILURE,
   PURCHASE_BURGER_START,
-  PURCHASE_INIT
+  PURCHASE_INIT,
+  FETCH_ORDERS_START,
+  FETCH_ORDERS_SUCCESS,
+  FETCH_ORDERS_FAILURE
 } from "../actionTypes";
 
 const initialState = {
@@ -35,6 +38,22 @@ export const order = (state = initialState, action) => {
         orders: state.orders.concat(newOrder)
       }; //returns new array
     case PURCHASE_BURGER_FAILURE:
+      return {
+        ...state,
+        loading: false
+      };
+    case FETCH_ORDERS_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case FETCH_ORDERS_SUCCESS:
+      return {
+        ...state,
+        orders: action.orders,
+        loading: false
+      };
+    case FETCH_ORDERS_FAILURE:
       return {
         ...state,
         loading: false

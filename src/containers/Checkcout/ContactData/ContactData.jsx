@@ -32,7 +32,7 @@ class ContactData extends Component {
       street: {
         elementType: "input",
         elementConfig: {
-          type: "text",
+          type: "street",
           placeholder: "Улица"
         },
         value: "",
@@ -60,7 +60,7 @@ class ContactData extends Component {
       country: {
         elementType: "input",
         elementConfig: {
-          type: "text",
+          type: "country",
           placeholder: "Страна"
         },
         value: "",
@@ -73,7 +73,7 @@ class ContactData extends Component {
       email: {
         elementType: "input",
         elementConfig: {
-          type: "text",
+          type: "email",
           placeholder: "Ваша почта"
         },
         value: "",

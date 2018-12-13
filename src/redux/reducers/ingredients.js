@@ -42,6 +42,7 @@ export const ingredients = (state = initialState, action) => {
     case SET_INGREDIENTS:
       return {
         ...state,
+        totalPrice: 0,
         ingredients: action.ingredients,
         error: false
       };
