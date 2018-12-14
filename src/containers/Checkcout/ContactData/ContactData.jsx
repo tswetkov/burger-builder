@@ -103,7 +103,6 @@ class ContactData extends Component {
   };
 
   handleOrder = event => {
-    console.log(this.props);
     event.preventDefault();
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
@@ -144,7 +143,7 @@ class ContactData extends Component {
     return isValid;
   }
 
-  hangleChangeInput = (event, inputIdentifier) => {
+  handleChangeInput = (event, inputIdentifier) => {
     const updatedOrderForm = {
       ...this.state.orderForm
     };
@@ -182,7 +181,7 @@ class ContactData extends Component {
               value={formElement.config.value}
               elementType={formElement.config.elementType}
               elementConfig={formElement.config.elementConfig}
-              changed={event => this.hangleChangeInput(event, formElement.id)}
+              changed={event => this.handleChangeInput(event, formElement.id)}
               invalid={!formElement.config.valid}
               touched={formElement.config.touched}
               shouldValidate={formElement.config.validation}

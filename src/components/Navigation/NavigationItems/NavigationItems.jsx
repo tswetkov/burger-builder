@@ -10,6 +10,7 @@ const NavigationItems = () => {
         Конструктор
       </NavigationItem>
       <NavigationItem link="/orders">Заказы</NavigationItem>
+      <NavigationItem link="/auth">Авторизация</NavigationItem>
     </ul>
   );
 };
