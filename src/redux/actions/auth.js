@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import { AUTH_FAILURE, AUTH_START, AUTH_SUCCESS } from "../actionTypes";
+import {
+  AUTH_FAILURE,
+  AUTH_START,
+  AUTH_SUCCESS,
+  AUTH_LOGOUT
+} from "../actionTypes";
 
 export const authStart = () => {
   return {
@@ -8,10 +13,11 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = data => {
+export const authSuccess = (idToken, userId) => {
   return {
     type: AUTH_SUCCESS,
-    data
+    idToken,
+    userId
   };
 };
 
@@ -20,6 +26,19 @@ export const authFailure = error => {
     type: AUTH_FAILURE,
     error
   };
+};
+
+export const logout = () => {
+  return {
+    type: AUTH_LOGOUT
+  };
+};
+
+export const checkAuthTimeout = expirationTime => {
+  return dispatch =>
+    setTimeout(() => {
+      dispatch(logout());
+    }, expirationTime) * 1000;
 };
 
 export const auth = (email, password, isSignup) => {
@@ -42,11 +61,11 @@ export const auth = (email, password, isSignup) => {
       )
       .then(response => {
         console.log(response);
-        dispatch(authSuccess(response.data));
+        dispatch(authSuccess(response.data.idToken, response.data.localId));
+        dispatch(checkAuthTimeout(response.data.expiresIn));
       })
       .catch(error => {
-        console.log(error);
-        dispatch(authFailure(error));
+        dispatch(authFailure(error.response.data.error));
       });
   };
 };

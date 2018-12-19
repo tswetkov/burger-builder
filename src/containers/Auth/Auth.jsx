@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 import { auth } from "../../redux/actions";
 
@@ -111,7 +112,7 @@ class Auth extends Component {
       });
     }
 
-    const form = formElementsArray.map(el => {
+    let form = formElementsArray.map(el => {
       return (
         <Input
           key={el.id}
@@ -126,8 +127,19 @@ class Auth extends Component {
       );
     });
 
+    if (this.props.loading) {
+      form = <Spinner />;
+    }
+
+    let errorMessage = null;
+
+    if (this.props.error) {
+      errorMessage = <p>{this.props.error.message}</p>;
+    }
+
     return (
       <div className={classes.Auth}>
+        {errorMessage}
         <form onSubmit={this.handleAuthSubmit}>
           {form}
           <Button btnType="Success">SUBMIT</Button>
@@ -140,6 +152,13 @@ class Auth extends Component {
   }
 }
 
+const mapState = state => {
+  return {
+    loading: state.auth.loading,
+    error: state.auth.error
+  };
+};
+
 const mapDispatch = dispatch => {
   return {
     handleAutch: (email, password, isSignup) =>
@@ -147,6 +166,6 @@ const mapDispatch = dispatch => {
   };
 };
 export default connect(
-  null,
+  mapState,
   mapDispatch
 )(Auth);
