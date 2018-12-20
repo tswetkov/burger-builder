@@ -104,18 +104,21 @@ class ContactData extends Component {
 
   handleOrder = event => {
     event.preventDefault();
+
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier] = this.state.orderForm[
         formElementIdentifier
       ].value;
     }
+
     const order = {
       ingredients: this.props.ingredients,
       price: this.props.price,
       orderData: formData
     };
-    this.props.onOrderBurger(order);
+
+    this.props.onOrderBurger(order, this.props.token);
   };
 
   checkValidity(value, rules) {
@@ -210,13 +213,15 @@ const mapState = state => {
   return {
     ingredients: state.ingredients.ingredients,
     price: state.ingredients.totalPrice,
-    loading: state.order.loading
+    loading: state.order.loading,
+    token: state.auth.token
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    onOrderBurger: orderData => dispatch(purchaseBurger(orderData))
+    onOrderBurger: (orderData, token) =>
+      dispatch(purchaseBurger(orderData, token))
   };
 };
 export default connect(

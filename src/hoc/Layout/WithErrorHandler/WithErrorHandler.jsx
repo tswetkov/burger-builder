@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from "react";
+
 import Modal from "../../../components/UI/Modal/Modal";
 
 const withErrorHandler = (WrappedComponent, axios) => {
@@ -22,7 +23,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
 
     componentWillUnmount() {
       axios.interceptors.request.eject(this.requestInterceptor);
-      axios.interceptors.request.eject(this.resInterceptor);
+      axios.interceptors.response.eject(this.resInterceptor);
     }
 
     handleErrorConfirmed = () => {

@@ -10,9 +10,11 @@ class Checkcout extends Component {
   handleCheckoutCancel = () => {
     this.props.history.goBack();
   };
+
   handleCheckoutContinued = () => {
     this.props.history.replace("/checkout/contact-data");
   };
+
   render() {
     let summary = <Redirect to="/" />;
 
