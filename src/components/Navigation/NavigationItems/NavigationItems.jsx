@@ -3,14 +3,20 @@ import React from "react";
 import classes from "./NavigationItems.css";
 import NavigationItem from "./NavigationItem/NavigationItem";
 
-const NavigationItems = () => {
+const NavigationItems = ({ isAuthenticated }) => {
   return (
     <ul className={classes.NavigationItems}>
       <NavigationItem link="/" exact>
         Конструктор
       </NavigationItem>
-      <NavigationItem link="/orders">Заказы</NavigationItem>
-      <NavigationItem link="/auth">Авторизация</NavigationItem>
+      {isAuthenticated ? (
+        <NavigationItem link="/orders">Заказы</NavigationItem>
+      ) : null}
+      {!isAuthenticated ? (
+        <NavigationItem link="/auth">Авторизация</NavigationItem>
+      ) : (
+        <NavigationItem link="/logout">Выйти</NavigationItem>
+      )}
     </ul>
   );
 };
