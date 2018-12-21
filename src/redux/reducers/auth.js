@@ -2,13 +2,15 @@ import {
   AUTH_START,
   AUTH_SUCCESS,
   AUTH_FAILURE,
-  AUTH_LOGOUT
+  AUTH_LOGOUT,
+  SET_AUTH_REDIRECT_PATH
 } from "../actionTypes";
 const initialState = {
   token: null,
   userId: null,
   error: null,
-  loading: false
+  loading: false,
+  authRedirectPath: "/"
 };
 
 const authStart = (state, action) => {
@@ -45,6 +47,13 @@ const authLogout = (state, action) => {
   };
 };
 
+const setAuthRedirectPath = (state, action) => {
+  return {
+    ...state,
+    authRedirectPath: action.path
+  };
+};
+
 export const auth = (state = initialState, action) => {
   switch (action.type) {
     case AUTH_START:
@@ -58,6 +67,8 @@ export const auth = (state = initialState, action) => {
 
     case AUTH_LOGOUT:
       return authLogout(state, action);
+    case SET_AUTH_REDIRECT_PATH:
+      return setAuthRedirectPath(state, action);
     default:
       return state;
   }

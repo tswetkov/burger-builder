@@ -8,7 +8,8 @@ import {
 const initialState = {
   ingredients: null,
   totalPrice: 0,
-  error: false
+  error: false,
+  building: false
 };
 
 const INGREDIENT_PRICES = {
@@ -27,7 +28,8 @@ export const ingredients = (state = initialState, action) => {
           ...state.ingredients,
           [action.ingredientName]: state.ingredients[action.ingredientName] + 1
         },
-        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
+        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
+        building: true
       };
     case REMOVE_INGREDIENTS:
       return {
@@ -36,7 +38,6 @@ export const ingredients = (state = initialState, action) => {
           ...state.ingredients,
           [action.ingredientName]: state.ingredients[action.ingredientName] - 1
         },
-
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
       };
     case SET_INGREDIENTS:
@@ -44,7 +45,8 @@ export const ingredients = (state = initialState, action) => {
         ...state,
         totalPrice: 0,
         ingredients: action.ingredients,
-        error: false
+        error: false,
+        building: false
       };
     case FETCH_INGREDIENTS_FAILED:
       return {

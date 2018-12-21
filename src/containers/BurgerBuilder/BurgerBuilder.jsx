@@ -16,6 +16,7 @@ import {
 } from "../../redux/actions/burgerBuilder";
 
 import { purchaseInit } from "../../redux/actions/order";
+import { setAuthRedirectPath } from "../../redux/actions";
 
 export class BurgerBuilder extends Component {
   state = {
@@ -41,6 +42,7 @@ export class BurgerBuilder extends Component {
     if (this.props.isAuthenticated) {
       this.setState({ purchasing: true });
     } else {
+      this.props.onSetAuthRedirectPath("/checkout");
       this.props.history.push("/auth");
     }
   };
@@ -134,7 +136,8 @@ const mapDispatch = dispatch => {
     removeIngredient: ingredientName =>
       dispatch(removeIngredient(ingredientName)),
     onInitIngredients: () => dispatch(initIngredients()),
-    onInitPurchase: () => dispatch(purchaseInit())
+    onInitPurchase: () => dispatch(purchaseInit()),
+    onSetAuthRedirectPath: path => dispatch(setAuthRedirectPath(path))
   };
 };
 

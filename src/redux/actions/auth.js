@@ -4,7 +4,8 @@ import {
   AUTH_FAILURE,
   AUTH_START,
   AUTH_SUCCESS,
-  AUTH_LOGOUT
+  AUTH_LOGOUT,
+  SET_AUTH_REDIRECT_PATH
 } from "../actionTypes";
 
 export const authStart = () => {
@@ -66,5 +67,12 @@ export const auth = (email, password, isSignup) => {
       .catch(error => {
         dispatch(authFailure(error.response.data.error));
       });
+  };
+};
+
+export const setAuthRedirectPath = path => {
+  return {
+    type: SET_AUTH_REDIRECT_PATH,
+    path
   };
 };

@@ -6,7 +6,7 @@ import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
-import { auth } from "../../redux/actions";
+import { auth, setAuthRedirectPath } from "../../redux/actions";
 
 import classes from "./Auth.css";
 
@@ -45,6 +45,12 @@ class Auth extends Component {
     },
     isSignup: true
   };
+
+  componentDidMount() {
+    if (!this.props.buildingBurger && this.props.authRedirectPath !== "/") {
+      this.props.handleAuthRedirectPath();
+    }
+  }
 
   checkValidity(value, rules) {
     let isValid = true;
@@ -141,7 +147,7 @@ class Auth extends Component {
     let authRedirect = null;
 
     if (this.props.isAuthenticated) {
-      authRedirect = <Redirect to="/" />;
+      authRedirect = <Redirect to={this.props.authRedirectPath} />;
     }
 
     return (
@@ -164,14 +170,17 @@ const mapState = state => {
   return {
     loading: state.auth.loading,
     error: state.auth.error,
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    authRedirectPath: state.auth.authRedirectPath,
+    buildingBurger: state.ingredients.building
   };
 };
 
 const mapDispatch = dispatch => {
   return {
     handleAutch: (email, password, isSignup) =>
-      dispatch(auth(email, password, isSignup))
+      dispatch(auth(email, password, isSignup)),
+    handleAuthRedirectPath: () => dispatch(setAuthRedirectPath("/"))
   };
 };
 export default connect(
