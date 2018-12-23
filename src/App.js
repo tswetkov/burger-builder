@@ -5,9 +5,9 @@ import { connect } from "react-redux";
 import Layout from "./hoc/Layout/Layout";
 import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
 import Logout from "./containers/Auth/Logout/Logout";
+import asyncComponent from "./hoc/asyncComponent/asyncComponent";
 
 import { authCheckState } from "./redux/actions";
-import asyncComponent from "./hoc/asyncComponent/asyncComponent";
 
 const asyncCheckout = asyncComponent(() => {
   return import("./containers/Checkcout/Checkcout");
