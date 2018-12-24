@@ -9,9 +9,7 @@ const NavigationItems = ({ isAuthenticated }) => {
       <NavigationItem link="/" exact>
         Конструктор
       </NavigationItem>
-      {isAuthenticated ? (
-        <NavigationItem link="/orders">Заказы</NavigationItem>
-      ) : null}
+      {isAuthenticated ? <NavigationItem link="/orders">Заказы</NavigationItem> : null}
       {!isAuthenticated ? (
         <NavigationItem link="/auth">Авторизация</NavigationItem>
       ) : (
