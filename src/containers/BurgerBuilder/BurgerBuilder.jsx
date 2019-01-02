@@ -73,11 +73,7 @@ export class BurgerBuilder extends Component {
     /**================================
      *            Burger
      ==================================*/
-    let burger = this.props.error ? (
-      <p>Не могу загрузить данные</p>
-    ) : (
-      <Spinner />
-    );
+    let burger = this.props.error ? <p>Не могу загрузить данные</p> : <Spinner />;
     if (this.props.ingredients) {
       burger = (
         <Fragment>
@@ -109,10 +105,7 @@ export class BurgerBuilder extends Component {
 
     return (
       <Fragment>
-        <Modal
-          show={this.state.purchasing}
-          modalClosed={this.handleModalCancel}
-        >
+        <Modal show={this.state.purchasing} modalClosed={this.handleModalCancel}>
           {orderSummary}
         </Modal>
         {burger}
@@ -133,8 +126,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     addIngredient: ingredientName => dispatch(addIngredient(ingredientName)),
-    removeIngredient: ingredientName =>
-      dispatch(removeIngredient(ingredientName)),
+    removeIngredient: ingredientName => dispatch(removeIngredient(ingredientName)),
     onInitIngredients: () => dispatch(initIngredients()),
     onInitPurchase: () => dispatch(purchaseInit()),
     onSetAuthRedirectPath: path => dispatch(setAuthRedirectPath(path))
