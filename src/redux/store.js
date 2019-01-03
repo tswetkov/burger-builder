@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { reducers } from "./reducers/index";
 import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
-import { watchAuth } from "./sagas";
+import { watchAuth, watchIngredients, watchOrders } from "./sagas";
 
 const componseEnhancers =
   process.env.NODE_ENV === "development"
@@ -17,3 +17,5 @@ export const store = createStore(
 );
 
 sagaMiddleware.run(watchAuth);
+sagaMiddleware.run(watchIngredients);
+sagaMiddleware.run(watchOrders);

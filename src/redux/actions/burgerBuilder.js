@@ -2,9 +2,9 @@ import {
   ADD_INGREDIENTS,
   REMOVE_INGREDIENTS,
   SET_INGREDIENTS,
-  FETCH_INGREDIENTS_FAILED
+  FETCH_INGREDIENTS_FAILED,
+  INIT_INGREDIENTS
 } from "../actionTypes";
-import axios from "../../axios-orders";
 
 export const addIngredient = ingredientName => {
   return {
@@ -34,12 +34,7 @@ export const fetchIngredientsFailed = () => {
 };
 
 export const initIngredients = () => {
-  return dispatch => {
-    axios
-      .get("/ingredients.json")
-      .then(response => {
-        return dispatch(setIngredietns(response.data));
-      })
-      .catch(error => dispatch(fetchIngredientsFailed()));
+  return {
+    type: INIT_INGREDIENTS
   };
 };
