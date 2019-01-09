@@ -1,25 +1,25 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-import Input from "../../components/UI/Input/Input";
-import Button from "../../components/UI/Button/Button";
-import Spinner from "../../components/UI/Spinner/Spinner";
+import Input from '../../components/UI/Input/Input';
+import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
-import { auth, setAuthRedirectPath } from "../../redux/actions";
+import { auth, setAuthRedirectPath } from '../../redux/actions';
 
-import classes from "./Auth.css";
+import classes from './Auth.css';
 
 class Auth extends Component {
   state = {
     controls: {
       email: {
-        elementType: "input",
+        elementType: 'input',
         elementConfig: {
-          type: "email",
-          placeholder: "Mail Address"
+          type: 'email',
+          placeholder: 'Mail Address'
         },
-        value: "",
+        value: '',
         validation: {
           required: true,
           isEmail: true
@@ -29,12 +29,12 @@ class Auth extends Component {
         include: true
       },
       password: {
-        elementType: "input",
+        elementType: 'input',
         elementConfig: {
-          type: "password",
-          placeholder: "Password"
+          type: 'password',
+          placeholder: 'Password'
         },
-        value: "",
+        value: '',
         validation: {
           required: true
         },
@@ -47,7 +47,7 @@ class Auth extends Component {
   };
 
   componentDidMount() {
-    if (!this.props.buildingBurger && this.props.authRedirectPath !== "/") {
+    if (!this.props.buildingBurger && this.props.authRedirectPath !== '/') {
       this.props.handleAuthRedirectPath();
     }
   }
@@ -59,7 +59,7 @@ class Auth extends Component {
     }
 
     if (rules.validation.required) {
-      isValid = value.trim() !== "" && isValid;
+      isValid = value.trim() !== '' && isValid;
     }
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
@@ -68,7 +68,7 @@ class Auth extends Component {
       isValid = value.length <= rules.maxLength && isValid;
     }
     if (rules.include) {
-      if (value.includes("@")) {
+      if (value.includes('@')) {
         isValid = true;
       } else {
         isValid = false;
@@ -159,7 +159,7 @@ class Auth extends Component {
           <Button btnType="Success">SUBMIT</Button>
         </form>
         <Button btnType="Danger" clicked={this.handleSwitchAuthMode}>
-          SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
+          SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}
         </Button>
       </div>
     );
@@ -180,7 +180,7 @@ const mapDispatch = dispatch => {
   return {
     handleAutch: (email, password, isSignup) =>
       dispatch(auth(email, password, isSignup)),
-    handleAuthRedirectPath: () => dispatch(setAuthRedirectPath("/"))
+    handleAuthRedirectPath: () => dispatch(setAuthRedirectPath('/'))
   };
 };
 export default connect(
