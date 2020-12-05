@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import BuildControl from "./BuildControl/BuildControl";
+import BuildControl from './BuildControl/BuildControl';
 
-import classes from "./BuildControls.module.css";
+import classes from './BuildControls.module.css';
 
 const controls = [
-  { label: "Салат", type: "salad" },
-  { label: "Бекон", type: "bacon" },
-  { label: "Сыр", type: "cheese" },
-  { label: "Мясо", type: "meat" }
+  { label: 'Салат', type: 'salad' },
+  { label: 'Бекон', type: 'bacon' },
+  { label: 'Сыр', type: 'cheese' },
+  { label: 'Мясо', type: 'meat' },
 ];
 
 const BuildControls = ({
@@ -18,14 +18,14 @@ const BuildControls = ({
   price,
   purchasable,
   ordered,
-  isAuthenticated
+  isAuthenticated,
 }) => {
   return (
     <div className={classes.BuildControls}>
       <p>
         Текущая цена: <strong>{price.toFixed(2)}</strong>
       </p>
-      {controls.map(item => (
+      {controls.map((item) => (
         <BuildControl
           key={item.label}
           label={item.label}
@@ -39,7 +39,7 @@ const BuildControls = ({
         disabled={!purchasable}
         onClick={ordered}
       >
-        {isAuthenticated ? "ЗАКАЗАТЬ" : "ВОЙТИ ДЛЯ ЗАКАЗА"}
+        {isAuthenticated ? 'ЗАКАЗАТЬ' : 'ВОЙТИ ДЛЯ ЗАКАЗА'}
       </button>
     </div>
   );

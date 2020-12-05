@@ -17,33 +17,33 @@ class Auth extends Component {
         elementType: 'input',
         elementConfig: {
           type: 'email',
-          placeholder: 'Mail Address'
+          placeholder: 'Mail Address',
         },
         value: '',
         validation: {
           required: true,
-          isEmail: true
+          isEmail: true,
         },
         valid: false,
         touched: false,
-        include: true
+        include: true,
       },
       password: {
         elementType: 'input',
         elementConfig: {
           type: 'password',
-          placeholder: 'Password'
+          placeholder: 'Password',
         },
         value: '',
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
         minLength: 6,
-        touched: false
-      }
+        touched: false,
+      },
     },
-    isSignup: true
+    isSignup: true,
   };
 
   componentDidMount() {
@@ -85,27 +85,27 @@ class Auth extends Component {
         value: event.target.value,
         valid: this.checkValidity(
           event.target.value,
-          this.state.controls[controlName]
+          this.state.controls[controlName],
         ),
-        touched: true
-      }
+        touched: true,
+      },
     };
     this.setState({ controls: updatedControls });
   };
 
-  handleAuthSubmit = e => {
+  handleAuthSubmit = (e) => {
     e.preventDefault();
     this.props.handleAutch(
       this.state.controls.email.value,
       this.state.controls.password.value,
-      this.state.isSignup
+      this.state.isSignup,
     );
   };
 
   handleSwitchAuthMode = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
-        isSignup: !prevState.isSignup
+        isSignup: !prevState.isSignup,
       };
     });
   };
@@ -115,18 +115,18 @@ class Auth extends Component {
     for (let key in this.state.controls) {
       formElementsArray.push({
         id: key,
-        config: this.state.controls[key]
+        config: this.state.controls[key],
       });
     }
 
-    let form = formElementsArray.map(el => {
+    let form = formElementsArray.map((el) => {
       return (
         <Input
           key={el.id}
           value={el.config.value}
           elementType={el.config.elementType}
           elementConfig={el.config.elementConfig}
-          changed={event => this.handleChangeInput(event, el.id)}
+          changed={(event) => this.handleChangeInput(event, el.id)}
           invalid={!el.config.valid}
           touched={el.config.touched}
           shouldValidate={el.config.validation}
@@ -166,24 +166,21 @@ class Auth extends Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
     loading: state.auth.loading,
     error: state.auth.error,
     isAuthenticated: state.auth.token !== null,
     authRedirectPath: state.auth.authRedirectPath,
-    buildingBurger: state.ingredients.building
+    buildingBurger: state.ingredients.building,
   };
 };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleAutch: (email, password, isSignup) =>
       dispatch(auth(email, password, isSignup)),
-    handleAuthRedirectPath: () => dispatch(setAuthRedirectPath('/'))
+    handleAuthRedirectPath: () => dispatch(setAuthRedirectPath('/')),
   };
 };
-export default connect(
-  mapState,
-  mapDispatch
-)(Auth);
+export default connect(mapState, mapDispatch)(Auth);

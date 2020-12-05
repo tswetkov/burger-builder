@@ -5,13 +5,13 @@ import {
   PURCHASE_INIT,
   FETCH_ORDERS_START,
   FETCH_ORDERS_SUCCESS,
-  FETCH_ORDERS_FAILURE
-} from "../actionTypes";
+  FETCH_ORDERS_FAILURE,
+} from '../actionTypes';
 
 const initialState = {
   orders: [],
   loading: false,
-  purchased: false
+  purchased: false,
 };
 
 export const order = (state = initialState, action) => {
@@ -19,44 +19,44 @@ export const order = (state = initialState, action) => {
     case PURCHASE_INIT:
       return {
         ...state,
-        purchased: false
+        purchased: false,
       };
     case PURCHASE_BURGER_START:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case PURCHASE_BURGER_SUCCESS:
       const newOrder = {
         ...action.orderData,
-        id: action.id
+        id: action.id,
       };
       return {
         ...state,
         loading: false,
         purchased: true,
-        orders: state.orders.concat(newOrder)
+        orders: state.orders.concat(newOrder),
       }; //returns new array
     case PURCHASE_BURGER_FAILURE:
       return {
         ...state,
-        loading: false
+        loading: false,
       };
     case FETCH_ORDERS_START:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case FETCH_ORDERS_SUCCESS:
       return {
         ...state,
         orders: action.orders,
-        loading: false
+        loading: false,
       };
     case FETCH_ORDERS_FAILURE:
       return {
         ...state,
-        loading: false
+        loading: false,
       };
     default:
       return state;

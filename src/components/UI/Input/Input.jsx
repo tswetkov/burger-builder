@@ -1,5 +1,5 @@
-import React from "react";
-import classes from "./Input.module.css";
+import React from 'react';
+import classes from './Input.module.css';
 
 const Input = ({
   label,
@@ -9,10 +9,10 @@ const Input = ({
   changed,
   invalid,
   shouldValidate,
-  touched
+  touched,
 }) => {
   let inputElement = null;
-  let validationError = "";
+  let validationError = '';
   const inputClasses = [classes.InputElement];
 
   if (invalid && shouldValidate && touched) {
@@ -23,34 +23,34 @@ const Input = ({
   }
 
   switch (elementType) {
-    case "input":
+    case 'input':
       inputElement = (
         <input
-          className={inputClasses.join(" ")}
+          className={inputClasses.join(' ')}
           {...elementConfig}
           value={value}
           onChange={changed}
         />
       );
       break;
-    case "textarea":
+    case 'textarea':
       inputElement = (
         <textarea
-          className={inputClasses.join(" ")}
+          className={inputClasses.join(' ')}
           {...elementConfig}
           value={value}
           onChange={changed}
         />
       );
       break;
-    case "select":
+    case 'select':
       inputElement = (
         <select
-          className={inputClasses.join(" ")}
+          className={inputClasses.join(' ')}
           value={value}
           onChange={changed}
         >
-          {elementConfig.options.map(option => (
+          {elementConfig.options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.displayValue}
             </option>
@@ -61,7 +61,7 @@ const Input = ({
     default:
       inputElement = (
         <input
-          className={inputClasses.join(" ")}
+          className={inputClasses.join(' ')}
           {...elementConfig}
           value={value}
           onChange={changed}

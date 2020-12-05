@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import classes from "./DrawerToggle.module.css";
+import classes from './DrawerToggle.module.css';
 
 const DrawerToggle = ({ clicked }) => {
   return (

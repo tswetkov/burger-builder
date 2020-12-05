@@ -1,23 +1,23 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment, Component } from 'react';
 
-import Modal from "../../../components/UI/Modal/Modal";
+import Modal from '../../../components/UI/Modal/Modal';
 
 const withErrorHandler = (WrappedComponent, axios) => {
   return class extends Component {
     state = {
-      error: null
+      error: null,
     };
 
     componentDidMount() {
-      this.requestInterceptor = axios.interceptors.request.use(req => {
+      this.requestInterceptor = axios.interceptors.request.use((req) => {
         this.setState({ error: null });
         return req;
       });
       this.resInterceptor = axios.interceptors.response.use(
-        res => res,
-        error => {
+        (res) => res,
+        (error) => {
           this.setState({ error: error });
-        }
+        },
       );
     }
 

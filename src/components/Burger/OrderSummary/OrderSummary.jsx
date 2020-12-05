@@ -1,7 +1,7 @@
 // import React, { Fragment } from "react";
-import Button from "../../UI/Button/Button";
+import Button from '../../UI/Button/Button';
 
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment } from 'react';
 
 class OrderSummary extends Component {
   render() {
@@ -9,11 +9,11 @@ class OrderSummary extends Component {
       (igKey, index) => {
         return (
           <li key={igKey + index}>
-            <span style={{ textTransform: "capitalize" }}>{igKey}</span>:{" "}
+            <span style={{ textTransform: 'capitalize' }}>{igKey}</span>:{' '}
             {this.props.ingredients[igKey]}
           </li>
         );
-      }
+      },
     );
 
     const { modalClosed, modalContinue, price } = this.props;

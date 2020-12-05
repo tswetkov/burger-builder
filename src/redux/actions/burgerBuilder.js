@@ -3,38 +3,38 @@ import {
   REMOVE_INGREDIENTS,
   SET_INGREDIENTS,
   FETCH_INGREDIENTS_FAILED,
-  INIT_INGREDIENTS
-} from "../actionTypes";
+  INIT_INGREDIENTS,
+} from '../actionTypes';
 
-export const addIngredient = ingredientName => {
+export const addIngredient = (ingredientName) => {
   return {
     type: ADD_INGREDIENTS,
-    ingredientName
+    ingredientName,
   };
 };
 
-export const removeIngredient = ingredientName => {
+export const removeIngredient = (ingredientName) => {
   return {
     type: REMOVE_INGREDIENTS,
-    ingredientName
+    ingredientName,
   };
 };
 
-export const setIngredietns = ingredients => {
+export const setIngredietns = (ingredients) => {
   return {
     type: SET_INGREDIENTS,
-    ingredients
+    ingredients,
   };
 };
 
 export const fetchIngredientsFailed = () => {
   return {
-    type: FETCH_INGREDIENTS_FAILED
+    type: FETCH_INGREDIENTS_FAILED,
   };
 };
 
 export const initIngredients = () => {
   return {
-    type: INIT_INGREDIENTS
+    type: INIT_INGREDIENTS,
   };
 };

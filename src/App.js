@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import { Route, Switch, withRouter, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import Layout from "./hoc/Layout/Layout";
-import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
-import Logout from "./containers/Auth/Logout/Logout";
-import asyncComponent from "./hoc/asyncComponent/asyncComponent";
+import Layout from './hoc/Layout/Layout';
+import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
+import Logout from './containers/Auth/Logout/Logout';
+import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
-import { authCheckState } from "./redux/actions";
+import { authCheckState } from './redux/actions';
 
 const asyncCheckout = asyncComponent(() => {
-  return import("./containers/Checkcout/Checkcout");
+  return import('./containers/Checkcout/Checkcout');
 });
 
 const asyncOrders = asyncComponent(() => {
-  return import("./containers/Orders/Orders");
+  return import('./containers/Orders/Orders');
 });
 
 const asyncAuth = asyncComponent(() => {
-  return import("./containers/Auth/Auth");
+  return import('./containers/Auth/Auth');
 });
 
 class App extends Component {
@@ -57,21 +57,16 @@ class App extends Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
-    isAuth: state.auth.token !== null
+    isAuth: state.auth.token !== null,
   };
 };
 
-const mapDispatch = dispath => {
+const mapDispatch = (dispath) => {
   return {
-    onTryAutoSignup: () => dispath(authCheckState())
+    onTryAutoSignup: () => dispath(authCheckState()),
   };
 };
 
-export default withRouter(
-  connect(
-    mapState,
-    mapDispatch
-  )(App)
-);
+export default withRouter(connect(mapState, mapDispatch)(App));

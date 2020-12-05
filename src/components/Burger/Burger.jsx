@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
+import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
-import classes from "./Burger.module.css";
+import classes from './Burger.module.css';
 
 const Burger = ({ ingredients }) => {
   let transformedIngredients = Object.keys(ingredients)
-    .map(igKey => {
+    .map((igKey) => {
       return [...Array(ingredients[igKey])].map((element, index) => {
         return <BurgerIngredient key={igKey + index} type={igKey} />;
       });

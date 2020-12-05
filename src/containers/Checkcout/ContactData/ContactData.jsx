@@ -1,108 +1,108 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import axios from "../../../axios-orders";
+import axios from '../../../axios-orders';
 
-import Button from "../../../components/UI/Button/Button";
-import Spinner from "../../../components/UI/Spinner/Spinner";
-import Input from "../../../components/UI/Input/Input";
+import Button from '../../../components/UI/Button/Button';
+import Spinner from '../../../components/UI/Spinner/Spinner';
+import Input from '../../../components/UI/Input/Input';
 
-import withErrorHandler from "../../../hoc/Layout/WithErrorHandler/WithErrorHandler";
+import withErrorHandler from '../../../hoc/Layout/WithErrorHandler/WithErrorHandler';
 
-import classes from "./ContactData.css";
-import { purchaseBurger } from "../../../redux/actions";
+import classes from './ContactData.css';
+import { purchaseBurger } from '../../../redux/actions';
 
 class ContactData extends Component {
   state = {
     orderForm: {
       name: {
-        elementType: "input",
+        elementType: 'input',
         elementConfig: {
-          type: "text",
-          placeholder: "Ваше имя"
+          type: 'text',
+          placeholder: 'Ваше имя',
         },
-        value: "",
+        value: '',
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       street: {
-        elementType: "input",
+        elementType: 'input',
         elementConfig: {
-          type: "street",
-          placeholder: "Улица"
+          type: 'street',
+          placeholder: 'Улица',
         },
-        value: "",
+        value: '',
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       index: {
-        elementType: "input",
+        elementType: 'input',
         elementConfig: {
-          type: "text",
-          placeholder: "Индекс"
+          type: 'text',
+          placeholder: 'Индекс',
         },
-        value: "",
+        value: '',
         validation: {
-          required: true
+          required: true,
         },
         valid: false,
         touched: false,
         minLength: 5,
-        maxLength: 5
+        maxLength: 5,
       },
       country: {
-        elementType: "input",
+        elementType: 'input',
         elementConfig: {
-          type: "country",
-          placeholder: "Страна"
+          type: 'country',
+          placeholder: 'Страна',
         },
-        value: "",
+        value: '',
         validation: {
-          required: true
-        },
-        valid: false,
-        touched: false
-      },
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          placeholder: "Ваша почта"
-        },
-        value: "",
-        validation: {
-          required: true
+          required: true,
         },
         valid: false,
         touched: false,
-        include: true
+      },
+      email: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'email',
+          placeholder: 'Ваша почта',
+        },
+        value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false,
+        include: true,
       },
       deleveryMethod: {
-        elementType: "select",
+        elementType: 'select',
         elementConfig: {
           options: [
-            { value: "fastest", displayValue: "Быстрый" },
-            { value: "cheapest", displayValue: "Медленный" }
-          ]
+            { value: 'fastest', displayValue: 'Быстрый' },
+            { value: 'cheapest', displayValue: 'Медленный' },
+          ],
         },
-        value: "fastest",
+        value: 'fastest',
         valid: true,
         validation: {
-          required: true
-        }
-      }
+          required: true,
+        },
+      },
     },
-    formIsValid: false
+    formIsValid: false,
   };
 
-  handleOrder = event => {
+  handleOrder = (event) => {
     event.preventDefault();
 
     const formData = {};
@@ -116,7 +116,7 @@ class ContactData extends Component {
       ingredients: this.props.ingredients,
       price: this.props.price,
       orderData: formData,
-      userId: this.props.userId
+      userId: this.props.userId,
     };
 
     this.props.onOrderBurger(order, this.props.token);
@@ -129,7 +129,7 @@ class ContactData extends Component {
     }
 
     if (rules.validation.required) {
-      isValid = value.trim() !== "" && isValid;
+      isValid = value.trim() !== '' && isValid;
     }
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
@@ -138,7 +138,7 @@ class ContactData extends Component {
       isValid = value.length <= rules.maxLength && isValid;
     }
     if (rules.include) {
-      if (value.includes("@")) {
+      if (value.includes('@')) {
         isValid = true;
       } else {
         isValid = false;
@@ -149,15 +149,15 @@ class ContactData extends Component {
 
   handleChangeInput = (event, inputIdentifier) => {
     const updatedOrderForm = {
-      ...this.state.orderForm
+      ...this.state.orderForm,
     };
     const updatedFormElement = {
-      ...updatedOrderForm[inputIdentifier]
+      ...updatedOrderForm[inputIdentifier],
     };
     updatedFormElement.value = event.target.value;
     updatedFormElement.valid = this.checkValidity(
       updatedFormElement.value,
-      updatedFormElement
+      updatedFormElement,
     );
     updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
@@ -173,19 +173,19 @@ class ContactData extends Component {
     for (let key in this.state.orderForm) {
       formElementsArray.push({
         id: key,
-        config: this.state.orderForm[key]
+        config: this.state.orderForm[key],
       });
     }
     let form = (
       <form onSubmit={this.handleOrder}>
-        {formElementsArray.map(formElement => {
+        {formElementsArray.map((formElement) => {
           return (
             <Input
               key={formElement.id}
               value={formElement.config.value}
               elementType={formElement.config.elementType}
               elementConfig={formElement.config.elementConfig}
-              changed={event => this.handleChangeInput(event, formElement.id)}
+              changed={(event) => this.handleChangeInput(event, formElement.id)}
               invalid={!formElement.config.valid}
               touched={formElement.config.touched}
               shouldValidate={formElement.config.validation}
@@ -210,23 +210,23 @@ class ContactData extends Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
     ingredients: state.ingredients.ingredients,
     price: state.ingredients.totalPrice,
     loading: state.order.loading,
     token: state.auth.token,
-    userId: state.auth.userId
+    userId: state.auth.userId,
   };
 };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     onOrderBurger: (orderData, token) =>
-      dispatch(purchaseBurger(orderData, token))
+      dispatch(purchaseBurger(orderData, token)),
   };
 };
 export default connect(
   mapState,
-  mapDispatch
+  mapDispatch,
 )(withRouter(withErrorHandler(ContactData, axios)));

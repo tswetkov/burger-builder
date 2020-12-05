@@ -2,21 +2,21 @@ import {
   ADD_INGREDIENTS,
   REMOVE_INGREDIENTS,
   FETCH_INGREDIENTS_FAILED,
-  SET_INGREDIENTS
-} from "../actionTypes";
+  SET_INGREDIENTS,
+} from '../actionTypes';
 
 const initialState = {
   ingredients: null,
   totalPrice: 0,
   error: false,
-  building: false
+  building: false,
 };
 
 const INGREDIENT_PRICES = {
   salad: 30,
   cheese: 20,
   meat: 40,
-  bacon: 25
+  bacon: 25,
 };
 
 export const ingredients = (state = initialState, action) => {
@@ -26,19 +26,19 @@ export const ingredients = (state = initialState, action) => {
         ...state,
         ingredients: {
           ...state.ingredients,
-          [action.ingredientName]: state.ingredients[action.ingredientName] + 1
+          [action.ingredientName]: state.ingredients[action.ingredientName] + 1,
         },
         totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
-        building: true
+        building: true,
       };
     case REMOVE_INGREDIENTS:
       return {
         ...state,
         ingredients: {
           ...state.ingredients,
-          [action.ingredientName]: state.ingredients[action.ingredientName] - 1
+          [action.ingredientName]: state.ingredients[action.ingredientName] - 1,
         },
-        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
+        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
       };
     case SET_INGREDIENTS:
       return {
@@ -46,12 +46,12 @@ export const ingredients = (state = initialState, action) => {
         totalPrice: 0,
         ingredients: action.ingredients,
         error: false,
-        building: false
+        building: false,
       };
     case FETCH_INGREDIENTS_FAILED:
       return {
         ...state,
-        error: true
+        error: true,
       };
 
     default:

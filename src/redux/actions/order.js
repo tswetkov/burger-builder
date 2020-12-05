@@ -7,27 +7,27 @@ import {
   FETCH_ORDERS_FAILURE,
   FETCH_ORDERS_START,
   PURCHASE_BURGER,
-  FETCH_ORDERS
-} from "../actionTypes";
+  FETCH_ORDERS,
+} from '../actionTypes';
 
 export const purchaseBurgerSuccess = (id, orderData) => {
   return {
     type: PURCHASE_BURGER_SUCCESS,
     id,
-    orderData
+    orderData,
   };
 };
 
-export const purchaseBurgerFailure = error => {
+export const purchaseBurgerFailure = (error) => {
   return {
     type: PURCHASE_BURGER_FAILURE,
-    error
+    error,
   };
 };
 
 export const purchaseBurgerStart = () => {
   return {
-    type: PURCHASE_BURGER_START
+    type: PURCHASE_BURGER_START,
   };
 };
 
@@ -35,33 +35,33 @@ export const purchaseBurger = (orderData, token) => {
   return {
     type: PURCHASE_BURGER,
     orderData,
-    token
+    token,
   };
 };
 
 export const purchaseInit = () => {
   return {
-    type: PURCHASE_INIT
+    type: PURCHASE_INIT,
   };
 };
 
-export const fetchOrdersSuccess = orders => {
+export const fetchOrdersSuccess = (orders) => {
   return {
     type: FETCH_ORDERS_SUCCESS,
-    orders
+    orders,
   };
 };
 
-export const fetchOrdersFailure = error => {
+export const fetchOrdersFailure = (error) => {
   return {
     type: FETCH_ORDERS_FAILURE,
-    error
+    error,
   };
 };
 
 export const fetchOrdersStart = () => {
   return {
-    type: FETCH_ORDERS_START
+    type: FETCH_ORDERS_START,
   };
 };
 
@@ -69,6 +69,6 @@ export const fetchOrders = (token, userId) => {
   return {
     type: FETCH_ORDERS,
     token,
-    userId
+    userId,
   };
 };

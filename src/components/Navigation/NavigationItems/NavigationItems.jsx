@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import classes from "./NavigationItems.module.css";
-import NavigationItem from "./NavigationItem/NavigationItem";
+import classes from './NavigationItems.module.css';
+import NavigationItem from './NavigationItem/NavigationItem';
 
 const NavigationItems = ({ isAuthenticated }) => {
   return (
@@ -9,7 +9,9 @@ const NavigationItems = ({ isAuthenticated }) => {
       <NavigationItem link="/" exact>
         Конструктор
       </NavigationItem>
-      {isAuthenticated ? <NavigationItem link="/orders">Заказы</NavigationItem> : null}
+      {isAuthenticated ? (
+        <NavigationItem link="/orders">Заказы</NavigationItem>
+      ) : null}
       {!isAuthenticated ? (
         <NavigationItem link="/auth">Авторизация</NavigationItem>
       ) : (

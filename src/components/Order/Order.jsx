@@ -1,5 +1,5 @@
-import React from "react";
-import classes from "./Order.module.css";
+import React from 'react';
+import classes from './Order.module.css';
 
 const Order = ({ ingredients, price }) => {
   const ingredientsArray = [];
@@ -7,20 +7,20 @@ const Order = ({ ingredients, price }) => {
   for (let ingredientName in ingredients) {
     ingredientsArray.push({
       name: ingredientName,
-      amount: ingredients[ingredientName]
+      amount: ingredients[ingredientName],
     });
   }
 
-  const ingredientOutput = ingredientsArray.map(ing => {
+  const ingredientOutput = ingredientsArray.map((ing) => {
     return (
       <span
         key={ing.name}
         style={{
-          textTransform: "capitalize",
-          display: "inline-block",
-          margin: "0 8px",
-          border: "1px solid lightgray",
-          padding: "5px"
+          textTransform: 'capitalize',
+          display: 'inline-block',
+          margin: '0 8px',
+          border: '1px solid lightgray',
+          padding: '5px',
         }}
       >
         {ing.name} ({ing.amount})

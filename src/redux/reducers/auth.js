@@ -3,21 +3,21 @@ import {
   AUTH_SUCCESS,
   AUTH_FAILURE,
   AUTH_LOGOUT,
-  SET_AUTH_REDIRECT_PATH
-} from "../actionTypes";
+  SET_AUTH_REDIRECT_PATH,
+} from '../actionTypes';
 const initialState = {
   token: null,
   userId: null,
   error: null,
   loading: false,
-  authRedirectPath: "/"
+  authRedirectPath: '/',
 };
 
 const authStart = (state, action) => {
   return {
     ...state,
     error: null,
-    loading: true
+    loading: true,
   };
 };
 
@@ -27,7 +27,7 @@ const authSuccess = (state, action) => {
     token: action.idToken,
     userId: action.userId,
     error: null,
-    loading: false
+    loading: false,
   };
 };
 
@@ -35,7 +35,7 @@ const authFailure = (state, action) => {
   return {
     ...state,
     error: action.error,
-    loading: false
+    loading: false,
   };
 };
 
@@ -43,14 +43,14 @@ const authLogout = (state, action) => {
   return {
     ...state,
     token: null,
-    userId: null
+    userId: null,
   };
 };
 
 const setAuthRedirectPath = (state, action) => {
   return {
     ...state,
-    authRedirectPath: action.path
+    authRedirectPath: action.path,
   };
 };
 

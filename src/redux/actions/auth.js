@@ -7,12 +7,12 @@ import {
   AUTH_LOGOUT,
   AUTH_CHECK_TIMEOUT,
   AUTH_USER,
-  AUTH_CHECK_STATE
-} from "../actionTypes";
+  AUTH_CHECK_STATE,
+} from '../actionTypes';
 
 export const authStart = () => {
   return {
-    type: AUTH_START
+    type: AUTH_START,
   };
 };
 
@@ -20,20 +20,20 @@ export const authSuccess = (idToken, userId) => {
   return {
     type: AUTH_SUCCESS,
     idToken,
-    userId
+    userId,
   };
 };
 
-export const authFailure = error => {
+export const authFailure = (error) => {
   return {
     type: AUTH_FAILURE,
-    error
+    error,
   };
 };
 
 export const logout = () => {
   return {
-    type: AUTH_INITIATE_LOGOUT
+    type: AUTH_INITIATE_LOGOUT,
   };
 };
 
@@ -41,7 +41,7 @@ export const logoutSucceed = () => {
   return { type: AUTH_LOGOUT };
 };
 
-export const checkAuthTimeout = expirationTime => {
+export const checkAuthTimeout = (expirationTime) => {
   return { type: AUTH_CHECK_TIMEOUT, expirationTime };
 };
 
@@ -50,19 +50,19 @@ export const auth = (email, password, isSignup) => {
     type: AUTH_USER,
     email,
     password,
-    isSignup
+    isSignup,
   };
 };
 
-export const setAuthRedirectPath = path => {
+export const setAuthRedirectPath = (path) => {
   return {
     type: SET_AUTH_REDIRECT_PATH,
-    path
+    path,
   };
 };
 
 export const authCheckState = () => {
   return {
-    type: AUTH_CHECK_STATE
+    type: AUTH_CHECK_STATE,
   };
 };

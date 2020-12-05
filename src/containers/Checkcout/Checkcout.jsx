@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from "react";
-import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component, Fragment } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
-import ContactData from "./ContactData/ContactData";
-import { purchaseInit } from "../../redux/actions";
+import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
+import ContactData from './ContactData/ContactData';
+import { purchaseInit } from '../../redux/actions';
 
 class Checkcout extends Component {
   handleCheckoutCancel = () => {
@@ -12,7 +12,7 @@ class Checkcout extends Component {
   };
 
   handleCheckoutContinued = () => {
-    this.props.history.replace("/checkout/contact-data");
+    this.props.history.replace('/checkout/contact-data');
   };
 
   render() {
@@ -31,7 +31,7 @@ class Checkcout extends Component {
             checkoutContinued={this.handleCheckoutContinued}
           />
           <Route
-            path={this.props.match.path + "/contact-data"}
+            path={this.props.match.path + '/contact-data'}
             component={ContactData}
           />
         </Fragment>
@@ -40,20 +40,17 @@ class Checkcout extends Component {
     return summary;
   }
 }
-const mapState = state => {
+const mapState = (state) => {
   return {
     ingredients: state.ingredients.ingredients,
-    purchased: state.order.purchased
+    purchased: state.order.purchased,
   };
 };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
-    onInitPurchase: () => dispatch(purchaseInit())
+    onInitPurchase: () => dispatch(purchaseInit()),
   };
 };
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Checkcout);
+export default connect(mapState, mapDispatch)(Checkcout);
