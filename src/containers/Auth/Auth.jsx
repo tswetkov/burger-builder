@@ -8,7 +8,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 
 import { auth, setAuthRedirectPath } from '../../redux/actions';
 
-import classes from './Auth.css';
+import classes from './Auth.module.css';
 
 class Auth extends Component {
   state = {

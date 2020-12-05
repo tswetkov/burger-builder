@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import { reducers } from "./reducers/index";
+import { reducers } from "./reducers";
 import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import { watchAuth, watchIngredients, watchOrders } from "./sagas";

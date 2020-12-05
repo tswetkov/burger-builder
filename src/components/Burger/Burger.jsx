@@ -2,7 +2,7 @@ import React from "react";
 
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 
-import classes from "./Burger.css";
+import classes from "./Burger.module.css";
 
 const Burger = ({ ingredients }) => {
   let transformedIngredients = Object.keys(ingredients)

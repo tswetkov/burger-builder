@@ -13,9 +13,9 @@ import {
   addIngredient,
   removeIngredient,
   initIngredients
-} from "../../redux/actions/burgerBuilder";
+} from "../../redux/actions";
 
-import { purchaseInit } from "../../redux/actions/order";
+import { purchaseInit } from "../../redux/actions";
 import { setAuthRedirectPath } from "../../redux/actions";
 
 export class BurgerBuilder extends Component {

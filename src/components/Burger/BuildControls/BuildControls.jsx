@@ -2,7 +2,7 @@ import React from "react";
 
 import BuildControl from "./BuildControl/BuildControl";
 
-import classes from "./BuildControls.css";
+import classes from "./BuildControls.module.css";
 
 const controls = [
   { label: "Салат", type: "salad" },
