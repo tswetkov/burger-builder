@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Order.module.css';
 
-const Order = ({ ingredients, price }) => {
+export const Order = ({ ingredients, price }) => {
   const ingredientsArray = [];
 
   for (let ingredientName in ingredients) {
@@ -37,5 +37,3 @@ const Order = ({ ingredients, price }) => {
     </div>
   );
 };
-
-export default Order;

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Input.module.css';
 
-const Input = ({
+export const Input = ({
   label,
   elementType,
   elementConfig,
@@ -77,5 +77,3 @@ const Input = ({
     </div>
   );
 };
-
-export default Input;

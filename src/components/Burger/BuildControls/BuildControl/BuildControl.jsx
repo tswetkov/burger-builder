@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './BuildControl.module.css';
 
-const BuildControl = ({ label, added, removed, disabled }) => {
+export const BuildControl = ({ label, added, removed, disabled }) => {
   return (
     <div className={classes.BuildControl}>
       <div className={classes.Label}>{label}</div>
@@ -14,5 +14,3 @@ const BuildControl = ({ label, added, removed, disabled }) => {
     </div>
   );
 };
-
-export default BuildControl;

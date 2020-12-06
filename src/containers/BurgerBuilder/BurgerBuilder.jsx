@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import Burger from '../../components/Burger/Burger';
-import BuildControls from '../../components/Burger/BuildControls/BuildControls';
-import Modal from '../../components/UI/Modal/Modal';
-import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import { Burger } from '../../components/Burger';
+import { BuildControls } from '../../components/Burger/BuildControls';
+import { Modal, Spinner } from '../../components/UI';
+import { OrderSummary } from '../../components/Burger/OrderSummary';
 
 import axios from '../../axios-orders';
-import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/Layout/WithErrorHandler/WithErrorHandler';
 import {
   addIngredient,
@@ -18,7 +17,7 @@ import {
 import { purchaseInit } from '../../redux/actions';
 import { setAuthRedirectPath } from '../../redux/actions';
 
-export class BurgerBuilder extends Component {
+export class BurgerBuilderComponent extends Component {
   state = {
     purchasing: false,
   };
@@ -141,7 +140,7 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(
+export const BurgerBuilder = connect(
   mapState,
   mapDispatch,
-)(withErrorHandler(BurgerBuilder, axios));
+)(withErrorHandler(BurgerBuilderComponent, axios));

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
-import Backdrop from '../../UI/Backdrop/Backdrop';
+import { Backdrop } from '../../UI';
 
 import classes from './SideDrawer.module.css';
 

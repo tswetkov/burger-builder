@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Button.module.css';
 
-const Button = ({ children, clicked, btnType, disabled }) => {
+export const Button = ({ children, clicked, btnType, disabled }) => {
   return (
     <button
       disabled={disabled}
@@ -12,5 +12,3 @@ const Button = ({ children, clicked, btnType, disabled }) => {
     </button>
   );
 };
-
-export default Button;

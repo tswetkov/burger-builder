@@ -6,7 +6,7 @@ import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSumm
 import ContactData from './ContactData/ContactData';
 import { purchaseInit } from '../../redux/actions';
 
-class Checkcout extends Component {
+class CheckoutComponent extends Component {
   handleCheckoutCancel = () => {
     this.props.history.goBack();
   };
@@ -53,4 +53,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Checkcout);
+export const Checkout = connect(mapState, mapDispatch)(CheckoutComponent);

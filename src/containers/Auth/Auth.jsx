@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
-import Spinner from '../../components/UI/Spinner/Spinner';
+import { Input, Button, Spinner } from '../../components/UI';
 
 import { auth, setAuthRedirectPath } from '../../redux/actions';
 
 import classes from './Auth.module.css';
 
-class Auth extends Component {
+class AuthComponent extends Component {
   state = {
     controls: {
       email: {
@@ -183,4 +181,5 @@ const mapDispatch = (dispatch) => {
     handleAuthRedirectPath: () => dispatch(setAuthRedirectPath('/')),
   };
 };
-export default connect(mapState, mapDispatch)(Auth);
+
+export const Auth = connect(mapState, mapDispatch)(AuthComponent);

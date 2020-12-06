@@ -5,10 +5,10 @@ import axios from '../../axios-orders';
 import { fetchOrders } from '../../redux/actions';
 import withErrorHandler from '../../hoc/Layout/WithErrorHandler/WithErrorHandler';
 
-import Order from '../../components/Order/Order';
-import Spinner from '../../components/UI/Spinner/Spinner';
+import { Order } from '../../components/Order';
+import { Spinner } from '../../components/UI';
 
-class Orders extends Component {
+class OrdersComponent extends Component {
   componentDidMount() {
     this.props.handleFetchOrder(this.props.token, this.props.userId);
   }
@@ -43,4 +43,7 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(withErrorHandler(Orders, axios));
+export const Orders = connect(
+  mapState,
+  mapDispatch,
+)(withErrorHandler(OrdersComponent, axios));

@@ -1,72 +1,50 @@
-import React, { Component } from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useEffect, useCallback } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Layout from './hoc/Layout/Layout';
-import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
-import Logout from './containers/Auth/Logout/Logout';
-import asyncComponent from './hoc/asyncComponent/asyncComponent';
+import { Layout } from './hoc/Layout/Layout';
+import { Logout } from './containers/Auth/Logout';
+import { Auth } from './containers/Auth/Auth';
+import { Checkout } from './containers/Checkout';
+import { BurgerBuilder } from './containers/BurgerBuilder';
+import { Orders } from './containers/Orders';
 
 import { authCheckState } from './redux/actions';
 
-const asyncCheckout = asyncComponent(() => {
-  return import('./containers/Checkcout/Checkcout');
-});
+export const App = () => {
+  const isAuthenticated = useSelector((state) => state.auth.token !== null);
+  const dispatch = useDispatch();
 
-const asyncOrders = asyncComponent(() => {
-  return import('./containers/Orders/Orders');
-});
+  const onTryAutoSignup = useCallback(() => {
+    dispatch(authCheckState());
+  }, [dispatch]);
 
-const asyncAuth = asyncComponent(() => {
-  return import('./containers/Auth/Auth');
-});
+  useEffect(() => {
+    onTryAutoSignup();
+  }, [onTryAutoSignup]);
 
-class App extends Component {
-  componentDidMount() {
-    this.props.onTryAutoSignup();
-  }
-  render() {
-    let routes = (
-      <Switch>
-        <Route path="/auth" component={asyncAuth} />
+  let routes = (
+    <>
+      <Route path="/auth" component={Auth} />
+      <Route exact path="/" component={BurgerBuilder} />
+      <Redirect to="/" />
+    </>
+  );
+
+  if (isAuthenticated) {
+    routes = (
+      <>
         <Route exact path="/" component={BurgerBuilder} />
+        <Route path="/checkout" component={Checkout} />
+        <Route path="/orders" component={Orders} />
+        <Route exact path="/logout" component={Logout} />
         <Redirect to="/" />
-      </Switch>
-    );
-
-    if (this.props.isAuth) {
-      routes = (
-        <Switch>
-          <Route path="/checkout" component={asyncCheckout} />
-          <Route path="/orders" component={asyncOrders} />
-          <Route exact path="/logout" component={Logout} />
-          <Route path="/auth" component={asyncAuth} />
-          <Route exact path="/" component={BurgerBuilder} />
-          <Redirect to="/" />
-        </Switch>
-      );
-    }
-
-    return (
-      <div>
-        <Layout>
-          <Switch>{routes}</Switch>
-        </Layout>
-      </div>
+      </>
     );
   }
-}
-
-const mapState = (state) => {
-  return {
-    isAuth: state.auth.token !== null,
-  };
+  return (
+    <Switch>
+      <Layout isAuthenticated={isAuthenticated}>{routes}</Layout>
+    </Switch>
+  );
 };
-
-const mapDispatch = (dispath) => {
-  return {
-    onTryAutoSignup: () => dispath(authCheckState()),
-  };
-};
-
-export default withRouter(connect(mapState, mapDispatch)(App));
