@@ -12,3 +12,10 @@
     width: 510px;
   }
 }
+
+.Input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}

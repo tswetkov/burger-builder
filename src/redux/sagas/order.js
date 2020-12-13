@@ -8,9 +8,12 @@ import {
   fetchOrdersStart,
   fetchOrdersSuccess,
   fetchOrdersFailure,
+  purchaseBurgerStart,
 } from '../actions/order';
 
 export function* purchaseBurgerSaga(action) {
+  yield put(purchaseBurgerStart());
+
   try {
     const response = yield axios.post(
       '/orders.json?auth=' + action.token,

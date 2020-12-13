@@ -1,10 +1,10 @@
 import React from 'react';
 import classes from './Toolbar.module.css';
-import Logo from '../../Logo/Logo';
-import NavigationItems from '../NavigationItems/NavigationItems';
-import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
+import { Logo } from '../../Logo';
+import { NavigationItems } from '../NavigationItems';
+import { DrawerToggle } from '../SideDrawer/DrawerToggle';
 
-const Toolbar = ({ drawerToggleClicked, isAuthenticated }) => {
+export const Toolbar = ({ drawerToggleClicked, isAuthenticated }) => {
   return (
     <header className={classes.Toolbar}>
       <DrawerToggle clicked={drawerToggleClicked} />
@@ -17,5 +17,3 @@ const Toolbar = ({ drawerToggleClicked, isAuthenticated }) => {
     </header>
   );
 };
-
-export default Toolbar;

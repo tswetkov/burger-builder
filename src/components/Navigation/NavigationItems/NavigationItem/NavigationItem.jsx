@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import classes from './NavigationItem.module.css';
 
-const NavigationItem = ({ children, link, exact }) => {
+export const NavigationItem = ({ children, link, exact }) => {
   return (
     <li className={classes.NavigationItem}>
       <NavLink to={link} exact={exact} activeClassName={classes.active}>
@@ -12,5 +12,3 @@ const NavigationItem = ({ children, link, exact }) => {
     </li>
   );
 };
-
-export default NavigationItem;

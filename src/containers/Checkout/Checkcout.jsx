@@ -1,56 +1,39 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
-import ContactData from './ContactData/ContactData';
-import { purchaseInit } from '../../redux/actions';
+import { CheckoutSummary } from '../../components/Order/CheckoutSummary';
+import { ContactData } from './ContactData';
 
-class CheckoutComponent extends Component {
-  handleCheckoutCancel = () => {
-    this.props.history.goBack();
-  };
-
-  handleCheckoutContinued = () => {
-    this.props.history.replace('/checkout/contact-data');
-  };
-
-  render() {
-    let summary = <Redirect to="/" />;
-
-    if (this.props.ingredients) {
-      const purchasedRedirect = this.props.purchased ? (
-        <Redirect to="/" />
-      ) : null;
-      summary = (
-        <Fragment>
-          {purchasedRedirect}
-          <CheckoutSummary
-            ingredients={this.props.ingredients}
-            checkoutCancel={this.handleCheckoutCancel}
-            checkoutContinued={this.handleCheckoutContinued}
-          />
-          <Route
-            path={this.props.match.path + '/contact-data'}
-            component={ContactData}
-          />
-        </Fragment>
-      );
-    }
-    return summary;
-  }
-}
-const mapState = (state) => {
-  return {
+export const Checkout = ({ match, history }) => {
+  const { ingredients, purchased } = useSelector((state) => ({
     ingredients: state.ingredients.ingredients,
     purchased: state.order.purchased,
-  };
-};
+  }));
 
-const mapDispatch = (dispatch) => {
-  return {
-    onInitPurchase: () => dispatch(purchaseInit()),
+  const handleCheckoutCancel = () => {
+    history.goBack();
   };
-};
 
-export const Checkout = connect(mapState, mapDispatch)(CheckoutComponent);
+  const handleCheckoutContinued = () => {
+    history.replace('/checkout/contact-data');
+  };
+
+  if (ingredients) {
+    const purchasedRedirect = purchased ? <Redirect to="/" /> : null;
+
+    return (
+      <>
+        {purchasedRedirect}
+        <CheckoutSummary
+          ingredients={ingredients}
+          checkoutCancel={handleCheckoutCancel}
+          checkoutContinued={handleCheckoutContinued}
+        />
+        <Route path={match.path + '/contact-data'} component={ContactData} />
+      </>
+    );
+  }
+
+  return <Redirect to="/" />;
+};

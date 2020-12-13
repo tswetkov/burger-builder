@@ -6,7 +6,12 @@ import {
 } from '../actionTypes';
 
 const initialState = {
-  ingredients: null,
+  ingredients: {
+    bacon: 0,
+    cheese: 0,
+    meat: 0,
+    salad: 0,
+  },
   totalPrice: 0,
   error: false,
   building: false,

@@ -5,7 +5,7 @@ import { Button } from '../../UI';
 
 import classes from './CheckoutSummary.module.css';
 
-const CheckoutSummary = ({
+export const CheckoutSummary = ({
   ingredients,
   checkoutCancel,
   checkoutContinued,
@@ -25,5 +25,3 @@ const CheckoutSummary = ({
     </div>
   );
 };
-
-export default CheckoutSummary;

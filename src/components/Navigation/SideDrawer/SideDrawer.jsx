@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 
-import Logo from '../../Logo/Logo';
-import NavigationItems from '../NavigationItems/NavigationItems';
+import { Logo } from '../../Logo';
+import { NavigationItems } from '../NavigationItems';
 import { Backdrop } from '../../UI';
 
 import classes from './SideDrawer.module.css';
 
-const SideDrawer = ({ closed, open }) => {
+export const SideDrawer = ({ closed, open }) => {
   let attachedClasses = [classes.SideDrawer, classes.Closed];
   if (open) {
     attachedClasses = [classes.SideDrawer, classes.Open];
@@ -25,5 +25,3 @@ const SideDrawer = ({ closed, open }) => {
     </Fragment>
   );
 };
-
-export default SideDrawer;

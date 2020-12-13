@@ -2,9 +2,9 @@ import React, { useEffect, useCallback } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Layout } from './hoc/Layout/Layout';
+import { Layout } from './hoc/Layout';
 import { Logout } from './containers/Auth/Logout';
-import { Auth } from './containers/Auth/Auth';
+import { SignIn } from './containers/Auth';
 import { Checkout } from './containers/Checkout';
 import { BurgerBuilder } from './containers/BurgerBuilder';
 import { Orders } from './containers/Orders';
@@ -25,7 +25,7 @@ export const App = () => {
 
   let routes = (
     <>
-      <Route path="/auth" component={Auth} />
+      <Route path="/signin" component={SignIn} />
       <Route exact path="/" component={BurgerBuilder} />
       <Redirect to="/" />
     </>
