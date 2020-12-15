@@ -3,8 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Layout } from './hoc/Layout';
-import { Logout } from './containers/Auth/Logout';
-import { SignIn } from './containers/Auth';
+import { Logout } from './components/Logout';
+import { SignIn } from './containers/SignIn';
 import { Checkout } from './containers/Checkout';
 import { BurgerBuilder } from './containers/BurgerBuilder';
 import { Orders } from './containers/Orders';
