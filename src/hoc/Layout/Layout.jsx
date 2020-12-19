@@ -1,8 +1,12 @@
 import React, { useState, useCallback } from 'react';
+import styled from 'styled-components';
 
-import classes from './Layout.module.css';
 import { Toolbar } from '../../components/Navigation/Toolbar';
 import { SideDrawer } from '../../components/Navigation/SideDrawer';
+
+const Content = styled.div`
+  margin-top: 72px;
+`;
 
 export const Layout = ({ children, isAuthenticated }) => {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
@@ -25,7 +29,7 @@ export const Layout = ({ children, isAuthenticated }) => {
         open={showSideDrawer}
         closed={handleSideDrawerClose}
       />
-      <main className={classes.Content}>{children}</main>
+      <Content>{children}</Content>
     </>
   );
 };

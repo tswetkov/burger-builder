@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BaseInput } from '../components/UI/Input';
+import { Input } from '../components/UI/Input';
 import { Button } from '../components/UI';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -18,42 +18,42 @@ export const ContactDataForm = ({ onSubmit }) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h4>Введите Ваши данные:</h4>
 
-      <BaseInput
+      <Input
         ref={register}
         placeholder="Имя"
         name="name"
         error={errors.name?.message}
       />
 
-      <BaseInput
+      <Input
         ref={register}
         placeholder="Улица"
         name="street"
         error={errors.street?.message}
       />
 
-      <BaseInput
+      <Input
         ref={register}
         placeholder="Индекс"
         name="index"
         error={errors.index?.message}
       />
 
-      <BaseInput
+      <Input
         ref={register}
         placeholder="Страна"
         name="country"
         error={errors.country?.message}
       />
 
-      <BaseInput
+      <Input
         ref={register}
         placeholder="Почта"
         name="email"
         error={errors.email?.message}
       />
 
-      <Button btnType="Success">ЗАКАЗАТЬ</Button>
+      <Button btnType="success">ЗАКАЗАТЬ</Button>
     </form>
   );
 };

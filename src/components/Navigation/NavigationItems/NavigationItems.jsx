@@ -1,11 +1,25 @@
 import React from 'react';
 
-import classes from './NavigationItems.module.css';
 import { NavigationItem } from './NavigationItem';
+import styled from 'styled-components';
+
+const NavigationItemsWrapper = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 100%;
+
+  @media (min-width: 500px) {
+    flex-flow: row;
+  }
+`;
 
 export const NavigationItems = ({ isAuthenticated }) => {
   return (
-    <ul className={classes.NavigationItems}>
+    <NavigationItemsWrapper>
       <NavigationItem link="/" exact>
         Конструктор
       </NavigationItem>
@@ -17,6 +31,6 @@ export const NavigationItems = ({ isAuthenticated }) => {
       ) : (
         <NavigationItem link="/logout">Выйти</NavigationItem>
       )}
-    </ul>
+    </NavigationItemsWrapper>
   );
 };

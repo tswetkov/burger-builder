@@ -1,79 +1,48 @@
 import React from 'react';
-import classes from './Input.module.css';
+import styled, { css } from 'styled-components/macro';
 
-export const Input = ({
-  label,
-  elementType,
-  elementConfig,
-  value,
-  changed,
-  invalid,
-  shouldValidate,
-  touched,
-}) => {
-  let inputElement = null;
-  let validationError = '';
-  const inputClasses = [classes.InputElement];
+const InputWrapper = styled.div`
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+`;
 
-  if (invalid && shouldValidate && touched) {
-    inputClasses.push(classes.Invalid);
-    validationError = (
-      <p className={classes.ValidationError}>Какая-то ошибка</p>
-    );
-  }
+const invalidInputStyles = `
+  border: 1px solid tomato;
+  background-color: #fda49a;
+ `;
 
-  switch (elementType) {
-    case 'input':
-      inputElement = (
-        <input
-          className={inputClasses.join(' ')}
-          {...elementConfig}
-          value={value}
-          onChange={changed}
-        />
-      );
-      break;
-    case 'textarea':
-      inputElement = (
-        <textarea
-          className={inputClasses.join(' ')}
-          {...elementConfig}
-          value={value}
-          onChange={changed}
-        />
-      );
-      break;
-    case 'select':
-      inputElement = (
-        <select
-          className={inputClasses.join(' ')}
-          value={value}
-          onChange={changed}
-        >
-          {elementConfig.options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.displayValue}
-            </option>
-          ))}
-        </select>
-      );
-      break;
-    default:
-      inputElement = (
-        <input
-          className={inputClasses.join(' ')}
-          {...elementConfig}
-          value={value}
-          onChange={changed}
-        />
-      );
-  }
+const InputElement = styled.input`
+  outline: none;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font: inherit;
+  padding: 6px 10px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  ${({ invalid }) =>
+    invalid
+      ? css`
+          ${invalidInputStyles}
+        `
+      : ``}
+`;
+
+const InputError = styled.p`
+  text-align: left;
+  color: tomato;
+  margin: 5px 0;
+`;
+
+export const Input = React.forwardRef((props, ref) => {
+  const hasError = props.error?.length;
 
   return (
-    <div className={classes.Input}>
-      <label className={classes.Label}>{label}</label>
-      {inputElement}
-      {validationError}
-    </div>
+    <InputWrapper>
+      <InputElement type="text" ref={ref} {...props} invalid={hasError} />
+      {hasError && <InputError>{props.error}</InputError>}
+    </InputWrapper>
   );
-};
+});

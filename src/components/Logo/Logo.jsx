@@ -1,12 +1,24 @@
 import React from 'react';
-import classes from './Logo.module.css';
 
 import burgerLogo from '../../assets/images/burger-logo.png';
+import styled from 'styled-components'
+
+const LogoWrapper = styled.div`
+  background-color: #fff;
+  padding: 8px;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+`;
+
+const Image = styled.img`
+  height: 100%;
+`;
 
 export const Logo = () => {
   return (
-    <div className={classes.Logo}>
-      <img src={burgerLogo} alt="MyBurger" />
-    </div>
+    <LogoWrapper>
+      <Image src={burgerLogo} alt="MyBurger" />
+    </LogoWrapper>
   );
 };

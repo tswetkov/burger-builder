@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { BaseInput } from '../components/UI/Input';
-import classes from '../containers/SignIn/SignIn.module.css';
+import { Input } from '../components/UI/Input';
 import { Button } from '../components/UI';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -17,24 +16,22 @@ export const SignInForm = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <BaseInput
+      <Input
         name="email"
         ref={register}
-        className={classes.Input}
         type="text"
         placeholder="email@email.com"
         error={errors.email?.message}
       />
-      <BaseInput
+      <Input
         name="password"
         ref={register}
-        className={classes.Input}
         type="password"
         placeholder="password"
         error={errors.password?.message}
       />
 
-      <Button btnType="Success" disabled={Object.keys(errors).length}>
+      <Button btnType="success" disabled={Object.keys(errors).length}>
         SUBMIT
       </Button>
     </form>

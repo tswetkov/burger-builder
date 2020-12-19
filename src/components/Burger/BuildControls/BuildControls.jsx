@@ -2,7 +2,8 @@ import React from 'react';
 
 import { BuildControl } from './BuildControl';
 
-import classes from './BuildControls.module.css';
+import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 
 const controls = [
   { label: 'Салат', type: 'salad' },
@@ -10,6 +11,59 @@ const controls = [
   { label: 'Сыр', type: 'cheese' },
   { label: 'Мясо', type: 'meat' },
 ];
+
+const enable = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+const BuildControlsWrapper = styled.div`
+  width: 100%;
+  background-color: #cf8f2e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 1px #ccc;
+  margin: auto;
+  padding: 10px 0;
+`;
+
+const OrderButton = styled.div`
+  background-color: #dad735;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #966909;
+  color: #966909;
+  font-family: inherit;
+  font-size: 1.2em;
+  padding: 15px 30px;
+  box-shadow: 2px 2px 2px #966909;
+
+  &:hover,
+  &:active {
+    background-color: #a0db41;
+    border: 1px solid #966909;
+    color: #966909;
+  }
+
+  &:disabled {
+    background-color: #c7c6c6;
+    cursor: not-allowed;
+    border: 1px solid #ccc;
+    color: #888888;
+  }
+
+  &:not(:disabled) {
+    animation: ${enable} 0.3s linear;
+  }
+`;
 
 export const BuildControls = ({
   ingredientAdded,
@@ -21,7 +75,7 @@ export const BuildControls = ({
   isAuthenticated,
 }) => {
   return (
-    <div className={classes.BuildControls}>
+    <BuildControlsWrapper>
       <p>
         Текущая цена: <strong>{price.toFixed(2)}</strong>
       </p>
@@ -34,13 +88,9 @@ export const BuildControls = ({
           disabled={disabled[item.type]}
         />
       ))}
-      <button
-        className={classes.OrderButton}
-        disabled={!purchasable}
-        onClick={ordered}
-      >
+      <OrderButton disabled={!purchasable} onClick={ordered}>
         {isAuthenticated ? 'ЗАКАЗАТЬ' : 'ВОЙТИ ДЛЯ ЗАКАЗА'}
-      </button>
-    </div>
+      </OrderButton>
+    </BuildControlsWrapper>
   );
 };

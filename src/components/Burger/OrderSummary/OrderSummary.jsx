@@ -30,10 +30,10 @@ export const OrderSummary = ({
         <strong>Конечная цена: {price.toFixed(2)}</strong>
       </p>
       <p>Что дальше?</p>
-      <Button clicked={modalClosed} btnType="Danger">
+      <Button clicked={modalClosed} btnType="danger">
         ЗАКРЫТЬ
       </Button>
-      <Button clicked={modalContinue} btnType="Success">
+      <Button clicked={modalContinue} btnType="success">
         ПРОДОЛЖИТЬ
       </Button>
     </>

@@ -1,5 +1,14 @@
 import React from 'react';
-import classes from './Order.module.css';
+import styled from 'styled-components';
+
+const OrderWrapper = styled.div`
+  width: 80%;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 10px;
+  margin: 10px auto;
+  box-sizing: border-box;
+`;
 
 export const Order = ({ ingredients, price }) => {
   const ingredientsArray = [];
@@ -29,11 +38,11 @@ export const Order = ({ ingredients, price }) => {
   });
 
   return (
-    <div className={classes.Order}>
+    <OrderWrapper>
       <p>Ингридиенты: {ingredientOutput}</p>
       <p>
         Цена: <strong>{Number.parseFloat(price).toFixed(2)} Р</strong>
       </p>
-    </div>
+    </OrderWrapper>
   );
 };
