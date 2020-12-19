@@ -1,8 +1,10 @@
+import 'regenerator-runtime/runtime.js';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { createGlobalStyle } from 'styled-components/macro';
+import { createGlobalStyle } from 'styled-components';
 
 import { store } from './redux/store';
 
@@ -16,6 +18,10 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+const root = document.getElementById('root');
+
+if (!root) throw new Error('Element with id "root" is not founded');
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
@@ -23,5 +29,5 @@ ReactDOM.render(
       <GlobalStyles />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('root'),
+  root,
 );
