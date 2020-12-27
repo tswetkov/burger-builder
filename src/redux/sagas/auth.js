@@ -9,6 +9,7 @@ import {
   checkAuthTimeout,
   authFailure,
 } from '../actions/auth';
+import { history } from '../../utils';
 
 export function* logoutSaga(action) {
   yield call([localStorage, 'removeItem'], 'token'); //стало
@@ -50,6 +51,7 @@ export function* authUserSaga(action) {
     yield localStorage.setItem('userId', response.data.localId);
     yield put(authSuccess(response.data.idToken, response.data.localId));
     yield put(checkAuthTimeout(response.data.expiresIn));
+    history.push('/');
   } catch (error) {
     yield put(authFailure(error.response.data.error));
   }

@@ -6,12 +6,7 @@ import {
 } from '../actionTypes';
 
 const initialState = {
-  ingredients: {
-    bacon: 0,
-    cheese: 0,
-    meat: 0,
-    salad: 0,
-  },
+  ingredients: [],
   totalPrice: 0,
   error: false,
   building: false,
@@ -29,30 +24,38 @@ export const ingredients = (state = initialState, action) => {
     case ADD_INGREDIENTS:
       return {
         ...state,
-        ingredients: {
-          ...state.ingredients,
-          [action.ingredientName]: state.ingredients[action.ingredientName] + 1,
-        },
+        ingredients: [action.ingredientName, ...state.ingredients],
         totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
         building: true,
       };
+
     case REMOVE_INGREDIENTS:
-      return {
-        ...state,
-        ingredients: {
-          ...state.ingredients,
-          [action.ingredientName]: state.ingredients[action.ingredientName] - 1,
-        },
-        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
-      };
+      const copiedIngredients = [...state.ingredients];
+      const index = copiedIngredients.findIndex(
+        (v) => v === action.ingredientName,
+      );
+
+      if (index > -1) {
+        copiedIngredients.splice(index, 1);
+        return {
+          ...state,
+          ingredients: copiedIngredients,
+          totalPrice:
+            state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
+        };
+      }
+
+      return state;
+
     case SET_INGREDIENTS:
       return {
         ...state,
         totalPrice: 0,
-        ingredients: action.ingredients,
+        ingredients: [],
         error: false,
         building: false,
       };
+
     case FETCH_INGREDIENTS_FAILED:
       return {
         ...state,

@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React, { useEffect, useCallback } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +11,9 @@ import { BurgerBuilder } from './containers/BurgerBuilder';
 import { Orders } from './containers/Orders';
 
 import { authCheckState } from './redux/actions';
+import { GuardRoute } from './utils';
 
-export const App = () => {
+const AppComponent = () => {
   const isAuthenticated = useSelector((state) => state.auth.token !== null);
   const dispatch = useDispatch();
 
@@ -23,28 +25,32 @@ export const App = () => {
     onTryAutoSignup();
   }, [onTryAutoSignup]);
 
-  let routes = (
-    <>
-      <Route path="/signin" component={SignIn} />
-      <Route exact path="/" component={BurgerBuilder} />
-      <Redirect to="/" />
-    </>
-  );
-
-  if (isAuthenticated) {
-    routes = (
-      <>
-        <Route exact path="/" component={BurgerBuilder} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/orders" component={Orders} />
-        <Route exact path="/logout" component={Logout} />
-        <Redirect to="/" />
-      </>
-    );
-  }
   return (
     <Switch>
-      <Layout isAuthenticated={isAuthenticated}>{routes}</Layout>
+      <Layout isAuthenticated={isAuthenticated}>
+        <Route exact path="/" component={BurgerBuilder} />
+        <Route path="/signin" component={SignIn} />
+
+        <GuardRoute
+          isAuthenticated={isAuthenticated}
+          path="/checkout"
+          component={Checkout}
+        />
+        <GuardRoute
+          isAuthenticated={isAuthenticated}
+          path="/orders"
+          component={Orders}
+        />
+        <GuardRoute
+          isAuthenticated={isAuthenticated}
+          exact
+          path="/logout"
+          component={Logout}
+        />
+        <Redirect to="/" />
+      </Layout>
     </Switch>
   );
 };
+
+export const App = hot(AppComponent);

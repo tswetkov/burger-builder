@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import React from 'react';
+import { createPortal } from 'react-dom';
 
 import { Backdrop } from '../Backdrop';
 import styled from 'styled-components';
@@ -22,18 +23,12 @@ const ModalBody = styled.div`
   }
 `;
 
-export const Modal = memo(function Modal({ children, show, modalClosed }) {
-  return (
+export const Modal = ({ children, modalClosed }) => {
+  return createPortal(
     <>
-      <Backdrop show={show} clicked={modalClosed} />
-      <ModalBody
-        style={{
-          transform: show ? 'translateY(0)' : 'translateY(-100vh)',
-          opacity: show ? '1' : '0',
-        }}
-      >
-        {children}
-      </ModalBody>
-    </>
+      <Backdrop clicked={modalClosed} />
+      <ModalBody>{children}</ModalBody>
+    </>,
+    document.getElementById('modal'),
   );
-});
+};

@@ -6,6 +6,7 @@
       {
         "displayName": true
       }
-    ]
+    ],
+    "react-hot-loader/babel"
   ]
 }

@@ -4,13 +4,11 @@ import styled from 'styled-components';
 import { Logo } from '../../Logo';
 import { NavigationItems } from '../NavigationItems';
 import { DrawerToggle } from '../SideDrawer/DrawerToggle';
+import { Link } from 'react-router-dom';
 
-const ToolbarWrapper = styled.div`
-  height: 56px;
+const HeaderWrapper = styled.div`
+  height: var(--header-height);
   width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
   background-color: #703b09;
   display: flex;
   justify-content: space-between;
@@ -27,20 +25,20 @@ const Navigation = styled.nav`
   }
 `;
 
-const ToolbarLogoWrapper = styled.div`
+const HeaderLogoWrapper = styled(Link)`
   height: 80%;
 `;
 
-export const Toolbar = ({ drawerToggleClicked, isAuthenticated }) => {
+export const Header = ({ drawerToggleClicked, isAuthenticated }) => {
   return (
-    <ToolbarWrapper>
+    <HeaderWrapper>
       <DrawerToggle clicked={drawerToggleClicked} />
-      <ToolbarLogoWrapper>
+      <HeaderLogoWrapper to="/">
         <Logo />
-      </ToolbarLogoWrapper>
+      </HeaderLogoWrapper>
       <Navigation>
         <NavigationItems isAuthenticated={isAuthenticated} />
       </Navigation>
-    </ToolbarWrapper>
+    </HeaderWrapper>
   );
 };

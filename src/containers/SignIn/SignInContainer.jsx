@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 import { auth } from '../../redux/actions';
 import { SignInForm } from '../../forms';

@@ -1,10 +1,8 @@
-import React, { Fragment, useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Burger } from '../../components/Burger';
 import { BuildControls } from '../../components/Burger/BuildControls';
-import { Modal, Spinner } from '../../components/UI';
-import { OrderSummary } from '../../components/Burger/OrderSummary';
 
 import {
   addIngredient,
@@ -14,18 +12,17 @@ import {
 
 import { purchaseInit } from '../../redux/actions';
 import { setAuthRedirectPath } from '../../redux/actions';
+import { OrderSummaryModal } from '../../components/modals';
 
 export const BurgerBuilder = ({ history }) => {
   const [purchasing, setPurchasing] = useState(false);
 
-  const { ingredients, totalPrice, error, isAuthenticated } = useSelector(
-    (state) => ({
-      ingredients: state.ingredients.ingredients,
-      totalPrice: state.ingredients.totalPrice,
-      error: state.ingredients.error,
-      isAuthenticated: state.auth.token !== null,
-    }),
-  );
+  const { ingredients, totalPrice, isAuthenticated } = useSelector((state) => ({
+    ingredients: state.ingredients.ingredients,
+    totalPrice: state.ingredients.totalPrice,
+    error: state.ingredients.error,
+    isAuthenticated: state.auth.token !== null,
+  }));
 
   const dispatch = useDispatch();
   const handleAddIngredient = useCallback(
@@ -51,87 +48,45 @@ export const BurgerBuilder = ({ history }) => {
     onInitIngredients();
   }, [onInitIngredients]);
 
-  const updatePurchaseState = (ingredients) => {
-    const sum = Object.keys(ingredients)
-      .map((igKey) => {
-        return ingredients[igKey];
-      })
-      .reduce((sum, el) => {
-        return sum + el;
-      }, 0);
-    return sum > 0;
-  };
-
-  const handlePurchase = () => {
+  const handlePurchase = useCallback(() => {
     if (isAuthenticated) {
       setPurchasing(true);
     } else {
       onSetAuthRedirectPath('/checkout');
       history.push('/signin');
     }
-  };
+  }, [isAuthenticated, setPurchasing, onSetAuthRedirectPath, history]);
 
-  const handleModalCancel = () => {
-    setPurchasing(false);
-  };
+  const handleCloseModal = useCallback(() => setPurchasing(false), [
+    setPurchasing,
+  ]);
 
-  const handleModalContinue = () => {
+  const handleModalContinue = useCallback(() => {
     onInitPurchase();
     history.push('/checkout');
-  };
-
-  const disabledInfo = {
-    ...ingredients,
-  };
-
-  for (let key in disabledInfo) {
-    disabledInfo[key] = disabledInfo[key] <= 0; // {salad: true, cheese: false, ...} and so one
-  }
-
-  /**================================
-     *            Order Summary
-     ==================================*/
-  let orderSummary = null;
-
-  /**================================
-     *            Burger
-     ==================================*/
-  let burger = error ? <p>Не могу загрузить данные</p> : <Spinner />;
-  if (ingredients) {
-    burger = (
-      <Fragment>
-        <Burger ingredients={ingredients} />
-        <BuildControls
-          ingredientAdded={handleAddIngredient}
-          ingredientRemove={handleRemoveIngredient}
-          disabled={disabledInfo}
-          price={totalPrice}
-          purchasable={updatePurchaseState(ingredients)}
-          ordered={handlePurchase}
-          isAuthenticated={isAuthenticated}
-        />
-      </Fragment>
-    );
-
-    /**================================
-       *            Order Summary
-       =================================*/
-    orderSummary = (
-      <OrderSummary
-        ingredients={ingredients}
-        modalClosed={handleModalCancel}
-        modalContinue={handleModalContinue}
-        price={totalPrice}
-      />
-    );
-  }
+  }, [onInitPurchase]);
 
   return (
-    <Fragment>
-      <Modal show={purchasing} modalClosed={handleModalCancel}>
-        {orderSummary}
-      </Modal>
-      {burger}
-    </Fragment>
+    <>
+      <Burger ingredients={ingredients} />
+      <BuildControls
+        ingredientAdded={handleAddIngredient}
+        ingredientRemove={handleRemoveIngredient}
+        disabled={ingredients}
+        price={totalPrice}
+        purchasable={ingredients.length > 0}
+        ordered={handlePurchase}
+        isAuthenticated={isAuthenticated}
+      />
+
+      {purchasing && (
+        <OrderSummaryModal
+          totalPrice={totalPrice}
+          ingredients={ingredients}
+          handleCloseModal={handleCloseModal}
+          handleModalContinue={handleModalContinue}
+        />
+      )}
+    </>
   );
 };

@@ -8,17 +8,24 @@ export const OrderSummary = ({
   price,
   ingredients,
 }) => {
+  // TODO: сделать красиво
+  const transformed = ingredients.reduce((acc, value) => {
+    acc[value] = acc[value] ? acc[value] + 1 : 1;
+
+    return acc;
+  }, {});
+
   const ingredientSummary = useMemo(
     () =>
-      Object.keys(ingredients).map((igKey, index) => {
+      Object.keys(transformed).map((igKey, index) => {
         return (
           <li key={igKey + index}>
             <span style={{ textTransform: 'capitalize' }}>{igKey}</span>:{' '}
-            {ingredients[igKey]}
+            {transformed[igKey]}
           </li>
         );
       }),
-    [ingredients],
+    [transformed],
   );
 
   return (

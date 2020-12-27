@@ -31,11 +31,10 @@ const BuildControlsWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   box-shadow: 0 2px 1px #ccc;
-  margin: auto;
-  padding: 10px 0;
+  padding: 10px 0 30px;
 `;
 
-const OrderButton = styled.div`
+const OrderButton = styled.button`
   background-color: #dad735;
   outline: none;
   cursor: pointer;
@@ -85,7 +84,7 @@ export const BuildControls = ({
           label={item.label}
           added={() => ingredientAdded(item.type)}
           removed={() => ingredientRemove(item.type)}
-          disabled={disabled[item.type]}
+          disabled={!disabled.includes(item.type)}
         />
       ))}
       <OrderButton disabled={!purchasable} onClick={ordered}>

@@ -1,11 +1,20 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Toolbar } from '../../components/Navigation/Toolbar';
+import { Header } from '../../components/Navigation/Header';
 import { SideDrawer } from '../../components/Navigation/SideDrawer';
 
 const Content = styled.div`
-  margin-top: 72px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: calc(100% - 56px);
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 `;
 
 export const Layout = ({ children, isAuthenticated }) => {
@@ -19,8 +28,8 @@ export const Layout = ({ children, isAuthenticated }) => {
   );
 
   return (
-    <>
-      <Toolbar
+    <Wrapper>
+      <Header
         isAuthenticated={isAuthenticated}
         drawerToggleClicked={handleSideDrawerToggle}
       />
@@ -30,6 +39,6 @@ export const Layout = ({ children, isAuthenticated }) => {
         closed={handleSideDrawerClose}
       />
       <Content>{children}</Content>
-    </>
+    </Wrapper>
   );
 };

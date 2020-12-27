@@ -35,7 +35,7 @@ const LogoWrapper = styled.div`
 export const SideDrawer = ({ closed, open }) => {
   return (
     <>
-      <Backdrop show={open} clicked={closed} />
+      {open && <Backdrop clicked={closed} />}
       <SideDrawerWrapper onClick={closed} isOpen={open}>
         <LogoWrapper>
           <Logo />
