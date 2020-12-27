@@ -1,5 +1,4 @@
 import { delay } from 'redux-saga/effects';
-import axios from 'axios';
 import { put, call } from 'redux-saga/effects';
 import {
   logoutSucceed,
@@ -10,6 +9,7 @@ import {
   authFailure,
 } from '../actions/auth';
 import { history } from '../../utils';
+import { authService } from '../../services';
 
 export function* logoutSaga(action) {
   yield call([localStorage, 'removeItem'], 'token'); //стало
@@ -39,10 +39,7 @@ export function* authUserSaga(action) {
   }
 
   try {
-    const response = yield axios.post(
-      `https://www.googleapis.com/identitytoolkit/v3/relyingparty/${url}?key=AIzaSyBaCpuaz4uIV_H3kNsxQYBJAzIfjXCiej4`,
-      authData,
-    );
+    const response = yield authService.login(authData);
     const expirationDate = yield new Date(
       new Date().getTime() + response.data.expiresIn * 1000,
     );

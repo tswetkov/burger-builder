@@ -29,24 +29,20 @@ export const BurgerBuilder = ({ history }) => {
     (ingredientName) => dispatch(addIngredient(ingredientName)),
     [dispatch],
   );
+
   const handleRemoveIngredient = useCallback(
     (ingredientName) => dispatch(removeIngredient(ingredientName)),
     [dispatch],
   );
-  const onInitIngredients = useCallback(() => dispatch(initIngredients()), [
-    dispatch,
-  ]);
+
   const onInitPurchase = useCallback(() => dispatch(purchaseInit()), [
     dispatch,
   ]);
+
   const onSetAuthRedirectPath = useCallback(
     (path) => dispatch(setAuthRedirectPath(path)),
     [dispatch],
   );
-
-  useEffect(() => {
-    onInitIngredients();
-  }, [onInitIngredients]);
 
   const handlePurchase = useCallback(() => {
     if (isAuthenticated) {

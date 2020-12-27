@@ -30,7 +30,6 @@ export const Checkout = ({ match, history }) => {
           checkoutCancel={handleCheckoutCancel}
           checkoutContinued={handleCheckoutContinued}
         />
-        <Route path={match.path + '/contact-data'} component={ContactData} />
       </>
     );
   }
