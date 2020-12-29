@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 import styled, { css } from 'styled-components';
 
 const successStyles = `
@@ -49,7 +51,19 @@ const ButtonWrapper = styled.button`
       : ``}
 `;
 
-export const Button = ({ children, clicked, disabled, btnType }) => {
+type Props = {
+  children: Node,
+  clicked?: () => void,
+  disabled?: boolean,
+  btnType: string,
+};
+
+export const Button = ({
+  children,
+  clicked,
+  disabled,
+  btnType,
+}: Props): Node => {
   return (
     <ButtonWrapper
       disabled={disabled}

@@ -1,7 +1,10 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 import styled from 'styled-components';
 
 import { BurgerIngredient } from './BurgerIngredient';
+import type { Ingredient } from './BurgerIngredient';
 
 const BurgerWrapper = styled.div`
   margin: auto;
@@ -34,9 +37,12 @@ const BurgerWrapper = styled.div`
 const BurgerContent = styled.div`
   margin-top: auto;
 `;
+type Props = {
+  ingredients: Ingredient[],
+};
 
-export const Burger = ({ ingredients }) => {
-  let transformedIngredients = ingredients.map((ingredient, index) => (
+export const Burger = ({ ingredients }: Props): Node => {
+  let transformedIngredients = ingredients.map((ingredient, index): Node => (
     <BurgerIngredient key={`${ingredient}/${index}`} type={ingredient} />
   ));
 

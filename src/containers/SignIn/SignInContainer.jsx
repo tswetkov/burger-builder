@@ -19,11 +19,11 @@ const SignInWrapper = styled.div`
   }
 `;
 
-export const SignIn = () => {
+export const SignIn = (): Node => {
   const dispatch = useDispatch();
 
   const handleAuthSubmit = useCallback(
-    ({ email, password }) => {
+    ({ email, password }: Props): Node => {
       dispatch(auth(email, password));
     },
     [dispatch],

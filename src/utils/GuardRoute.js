@@ -1,6 +1,15 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-export const GuardRoute = ({ isAuthenticated, ...rest }) => {
+type Props = {
+  isAuthenticated: boolean,
+  path: string,
+  component: Node,
+  exact?: boolean,
+};
+
+export const GuardRoute = ({ isAuthenticated, ...rest }: Props): Node => {
   return isAuthenticated ? <Route {...rest} /> : <Redirect to="/" />;
 };

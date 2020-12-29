@@ -1,5 +1,7 @@
+// @flow
+
 import { hot } from 'react-hot-loader/root';
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, type Node } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -60,6 +62,7 @@ const AppComponent = () => {
         <SideDrawer
           isAuthenticated={isAuthenticated}
           open={showSideDrawer}
+          isAuthenticated={isAuthenticated}
           closed={handleSideDrawerClose}
         />
         <Content>
@@ -70,6 +73,7 @@ const AppComponent = () => {
             isAuthenticated={isAuthenticated}
             exact
             path="/checkout"
+            // $FlowFixMe TODO: разобраться с типом
             component={Checkout}
           />
           <GuardRoute
@@ -95,4 +99,4 @@ const AppComponent = () => {
   );
 };
 
-export const App = hot(AppComponent);
+export const App: Node = hot(AppComponent);

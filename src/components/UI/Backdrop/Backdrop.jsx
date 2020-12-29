@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 import styled from 'styled-components';
 
 const StyledBackdrop = styled.div`
@@ -11,4 +13,10 @@ const StyledBackdrop = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const Backdrop = ({ clicked }) => <StyledBackdrop onClick={clicked} />;
+type Props = {
+  clicked: () => void,
+};
+
+export const Backdrop = ({ clicked }: Props): Node => (
+  <StyledBackdrop onClick={clicked} />
+);

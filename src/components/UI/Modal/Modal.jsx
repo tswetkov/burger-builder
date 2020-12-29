@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 import { createPortal } from 'react-dom';
 
 import { Backdrop } from '../Backdrop';
@@ -23,7 +25,12 @@ const ModalBody = styled.div`
   }
 `;
 
-export const Modal = ({ children, modalClosed }) => {
+type Props = {
+  children: Node,
+  modalClosed: () => void,
+};
+
+export const Modal = ({ children, modalClosed }: Props): Node => {
   return createPortal(
     <>
       <Backdrop clicked={modalClosed} />

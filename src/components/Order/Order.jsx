@@ -1,4 +1,7 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
+import { TODO_ANY } from '../../utils';
 import styled from 'styled-components';
 
 const OrderWrapper = styled.div`
@@ -10,17 +13,21 @@ const OrderWrapper = styled.div`
   box-sizing: border-box;
 `;
 
-export const Order = ({ ingredients, price }) => {
+type Props = {
+  ingredients: Array<typeof TODO_ANY>,
+  price: string,
+};
+
+export const Order = ({ ingredients, price }: Props): Node => {
   const ingredientsArray = [];
 
-  for (let ingredientName in ingredients) {
+  for (let ingredientName of ingredients) {
     ingredientsArray.push({
       name: ingredientName,
-      amount: ingredients[ingredientName],
     });
   }
 
-  const ingredientOutput = ingredientsArray.map((ing) => {
+  const ingredientOutput = ingredientsArray.map((ing): Node => {
     return (
       <span
         key={ing.name}
@@ -32,7 +39,7 @@ export const Order = ({ ingredients, price }) => {
           padding: '5px',
         }}
       >
-        {ing.name} ({ing.amount})
+        {ing.name}
       </span>
     );
   });

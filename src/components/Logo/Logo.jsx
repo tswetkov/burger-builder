@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 
 import burgerLogo from '../../assets/images/burger-logo.png';
 import styled from 'styled-components'
@@ -15,7 +17,7 @@ const Image = styled.img`
   height: 100%;
 `;
 
-export const Logo = () => {
+export const Logo = (): Node => {
   return (
     <LogoWrapper>
       <Image src={burgerLogo} alt="MyBurger" />

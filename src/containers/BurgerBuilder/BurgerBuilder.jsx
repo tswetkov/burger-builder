@@ -14,10 +14,10 @@ import { purchaseInit } from '../../redux/actions';
 import { setAuthRedirectPath } from '../../redux/actions';
 import { OrderSummaryModal } from '../../components/modals';
 
-export const BurgerBuilder = ({ history }) => {
+export const BurgerBuilder = ({ history }: Props): Node => {
   const [purchasing, setPurchasing] = useState(false);
 
-  const { ingredients, totalPrice, isAuthenticated } = useSelector((state) => ({
+  const { ingredients, totalPrice, isAuthenticated } = useSelector((state): Node => ({
     ingredients: state.ingredients.ingredients,
     totalPrice: state.ingredients.totalPrice,
     error: state.ingredients.error,
@@ -26,25 +26,25 @@ export const BurgerBuilder = ({ history }) => {
 
   const dispatch = useDispatch();
   const handleAddIngredient = useCallback(
-    (ingredientName) => dispatch(addIngredient(ingredientName)),
+    (ingredientName): Node => dispatch(addIngredient(ingredientName)),
     [dispatch],
   );
 
   const handleRemoveIngredient = useCallback(
-    (ingredientName) => dispatch(removeIngredient(ingredientName)),
+    (ingredientName): Node => dispatch(removeIngredient(ingredientName)),
     [dispatch],
   );
 
-  const onInitPurchase = useCallback(() => dispatch(purchaseInit()), [
+  const onInitPurchase = useCallback((): Node => dispatch(purchaseInit()), [
     dispatch,
   ]);
 
   const onSetAuthRedirectPath = useCallback(
-    (path) => dispatch(setAuthRedirectPath(path)),
+    (path): Node => dispatch(setAuthRedirectPath(path)),
     [dispatch],
   );
 
-  const handlePurchase = useCallback(() => {
+  const handlePurchase = useCallback((): Node => {
     if (isAuthenticated) {
       setPurchasing(true);
     } else {
@@ -53,11 +53,11 @@ export const BurgerBuilder = ({ history }) => {
     }
   }, [isAuthenticated, setPurchasing, onSetAuthRedirectPath, history]);
 
-  const handleCloseModal = useCallback(() => setPurchasing(false), [
+  const handleCloseModal = useCallback((): Node => setPurchasing(false), [
     setPurchasing,
   ]);
 
-  const handleModalContinue = useCallback(() => {
+  const handleModalContinue = useCallback((): Node => {
     onInitPurchase();
     history.push('/checkout');
   }, [onInitPurchase]);

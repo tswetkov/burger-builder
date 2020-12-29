@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 
 import { Input } from '../components/UI/Input';
 import { Button } from '../components/UI';
@@ -6,7 +8,18 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { contactDataValidationSchema } from './validations';
 
-export const ContactDataForm = ({ onSubmit }) => {
+type FormData = {
+  name: string,
+  street: string,
+  index: string,
+  country: string,
+  email: string,
+};
+type Props = {
+  onSubmit: (data: FormData) => void,
+};
+
+export const ContactDataForm = ({ onSubmit }: Props): Node => {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(contactDataValidationSchema),
     mode: 'all',

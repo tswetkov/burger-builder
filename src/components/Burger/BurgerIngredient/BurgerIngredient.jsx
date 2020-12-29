@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 import styled from 'styled-components';
 
 const BreadTop = styled.div`
@@ -108,7 +110,19 @@ const Bacon = styled.div`
   margin: 2% auto;
 `;
 
-export const BurgerIngredient = ({ type }) => {
+export type Ingredient =
+  | 'bread-bottom'
+  | 'bread-top'
+  | 'meat'
+  | 'cheese'
+  | 'bacon'
+  | 'salad';
+
+type Props = {
+  type: Ingredient,
+};
+
+export const BurgerIngredient = ({ type }: Props): Node => {
   let ingredient = null;
 
   switch (type) {

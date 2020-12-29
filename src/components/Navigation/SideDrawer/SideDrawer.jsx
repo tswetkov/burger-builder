@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 
 import { Logo } from '../../Logo';
 import { NavigationItems } from '../NavigationItems';
@@ -32,7 +34,13 @@ const LogoWrapper = styled.div`
   margin-bottom: 32px;
 `;
 
-export const SideDrawer = ({ closed, open }) => {
+type Props = {
+  closed: () => void,
+  open: boolean,
+  isAuthenticated: boolean,
+};
+
+export const SideDrawer = ({ closed, open, isAuthenticated }: Props): Node => {
   return (
     <>
       {open && <Backdrop clicked={closed} />}
@@ -41,7 +49,7 @@ export const SideDrawer = ({ closed, open }) => {
           <Logo />
         </LogoWrapper>
         <nav>
-          <NavigationItems />
+          <NavigationItems isAuthenticated={isAuthenticated} />
         </nav>
       </SideDrawerWrapper>
     </>

@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions';
 import { Redirect } from 'react-router-dom';
 
-export const Logout = () => {
+export const Logout = (): Node => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect((): Node => {
     dispatch(logout());
   }, [dispatch]);
 

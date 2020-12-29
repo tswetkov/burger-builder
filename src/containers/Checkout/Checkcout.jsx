@@ -1,11 +1,20 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { CheckoutSummary } from '../../components/Order/CheckoutSummary';
 import { ContactData } from './ContactData';
 
-export const Checkout = ({ match, history }) => {
+type Props = {
+  history: {
+    goBack: () => void,
+    replace: (path: string) => void,
+  },
+};
+
+export const Checkout = ({ history }: Props): Node => {
   const { ingredients, purchased } = useSelector((state) => ({
     ingredients: state.ingredients.ingredients,
     purchased: state.order.purchased,

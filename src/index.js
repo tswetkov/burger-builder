@@ -1,6 +1,8 @@
 import 'regenerator-runtime/runtime.js';
 
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';

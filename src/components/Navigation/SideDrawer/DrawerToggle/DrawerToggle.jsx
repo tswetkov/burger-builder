@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 
 import styled from 'styled-components';
 
@@ -24,7 +26,11 @@ const DrawerToggleLine = styled.div`
   background-color: white;
 `;
 
-export const DrawerToggle = ({ clicked }) => {
+type Props = {
+  clicked: () => void,
+};
+
+export const DrawerToggle = ({ clicked }: Props): Node => {
   return (
     <DrawerToggleWrapper onClick={clicked}>
       <DrawerToggleLine />

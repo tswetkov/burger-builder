@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 
 import { NavigationItem } from './NavigationItem';
 import styled from 'styled-components';
@@ -17,7 +19,11 @@ const NavigationItemsWrapper = styled.ul`
   }
 `;
 
-export const NavigationItems = ({ isAuthenticated }) => {
+type Props = {
+  isAuthenticated: boolean,
+};
+
+export const NavigationItems = ({ isAuthenticated }: Props): Node => {
   return (
     <NavigationItemsWrapper>
       <NavigationItem link="/" exact>

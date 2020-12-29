@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -49,7 +51,13 @@ const Link = styled(NavLink).attrs({
   }
 `;
 
-export const NavigationItem = ({ children, link, exact }) => {
+type Props = {
+  children: Node,
+  link: string,
+  exact?: boolean,
+};
+
+export const NavigationItem = ({ children, link, exact }: Props): Node => {
   return (
     <NavigationItemWrapper>
       <Link to={link} exact={exact} activeClassName={activeClassName}>

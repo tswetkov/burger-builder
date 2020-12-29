@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 
 import { BuildControl } from './BuildControl';
 
@@ -63,6 +65,15 @@ const OrderButton = styled.button`
     animation: ${enable} 0.3s linear;
   }
 `;
+type Props = {
+  ingredientAdded: (type: string) => void,
+  ingredientRemove: (type: string) => void,
+  disabled: string[],
+  price: number,
+  purchasable: boolean,
+  ordered: () => void,
+  isAuthenticated: boolean,
+};
 
 export const BuildControls = ({
   ingredientAdded,
@@ -72,7 +83,7 @@ export const BuildControls = ({
   purchasable,
   ordered,
   isAuthenticated,
-}) => {
+}: Props): Node => {
   return (
     <BuildControlsWrapper>
       <p>

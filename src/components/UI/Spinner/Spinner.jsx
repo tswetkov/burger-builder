@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
@@ -56,4 +58,4 @@ const Loader = styled.div`
   transform: translateZ(0);
 `;
 
-export const Spinner = () => <Loader>Loading...</Loader>;
+export const Spinner = (): Node => <Loader>Loading...</Loader>;

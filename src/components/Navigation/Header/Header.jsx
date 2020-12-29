@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import React, { type Node } from 'react';
 import styled from 'styled-components';
 
 import { Logo } from '../../Logo';
@@ -29,7 +31,15 @@ const HeaderLogoWrapper = styled(Link)`
   height: 80%;
 `;
 
-export const Header = ({ drawerToggleClicked, isAuthenticated }) => {
+type Props = {
+  drawerToggleClicked: () => void,
+  isAuthenticated: boolean,
+};
+
+export const Header = ({
+  drawerToggleClicked,
+  isAuthenticated,
+}: Props): Node => {
   return (
     <HeaderWrapper>
       <DrawerToggle clicked={drawerToggleClicked} />

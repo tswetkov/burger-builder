@@ -22,9 +22,9 @@ const ContactDataWrapper = styled.div`
   }
 `;
 
-export const ContactData = () => {
+export const ContactData = (): Node => {
   const { ingredients, price, loading, token, userId } = useSelector(
-    (state) => ({
+    (state): Node => ({
       ingredients: state.ingredients.ingredients,
       price: state.ingredients.totalPrice,
       loading: state.order.loading,
@@ -35,20 +35,19 @@ export const ContactData = () => {
 
   const dispatch = useDispatch();
 
-  console.log('ingredients', ingredients);
-  useEffect(() => {
+  useEffect((): Node => {
     if (ingredients.length === 0) {
       history.push('/');
     }
   }, [ingredients]);
 
   const onOrderBurger = useCallback(
-    (orderData, token) => dispatch(purchaseBurger(orderData, token)),
+    (orderData, token): Node => dispatch(purchaseBurger(orderData, token)),
     [dispatch],
   );
 
   const handleOrder = useCallback(
-    (formData) => {
+    (formData): Node => {
       const order = {
         ingredients: ingredients,
         price: price,

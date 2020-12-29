@@ -7,17 +7,17 @@ export const OrderSummary = ({
   modalContinue,
   price,
   ingredients,
-}) => {
+}: Props): Node => {
   // TODO: сделать красиво
-  const transformed = ingredients.reduce((acc, value) => {
+  const transformed = ingredients.reduce((acc, value): Node => {
     acc[value] = acc[value] ? acc[value] + 1 : 1;
 
     return acc;
   }, {});
 
   const ingredientSummary = useMemo(
-    () =>
-      Object.keys(transformed).map((igKey, index) => {
+    (): Node =>
+      Object.keys(transformed).map((igKey, index): Node => {
         return (
           <li key={igKey + index}>
             <span style={{ textTransform: 'capitalize' }}>{igKey}</span>:{' '}

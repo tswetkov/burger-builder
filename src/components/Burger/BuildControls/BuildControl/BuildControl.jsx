@@ -1,5 +1,7 @@
-import React from 'react';
-import styled from 'styled-components'
+// @flow
+
+import React, { type Node } from 'react';
+import styled from 'styled-components';
 
 const BuildControlWrapper = styled.div`
   display: flex;
@@ -60,7 +62,19 @@ const More = styled(BuildControlButton)`
   }
 `;
 
-export const BuildControl = ({ label, added, removed, disabled }) => {
+type Props = {
+  label: string,
+  added: () => void,
+  removed: () => void,
+  disabled: boolean,
+};
+
+export const BuildControl = ({
+  label,
+  added,
+  removed,
+  disabled,
+}: Props): Node => {
   return (
     <BuildControlWrapper>
       <Label>{label}</Label>
