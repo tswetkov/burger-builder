@@ -3,13 +3,13 @@
 import React, { type Node } from 'react';
 import styled, { css } from 'styled-components';
 
-const successStyles = `
+const successStyles = css`
   color: #5c9210;
-    margin: 10px 0;
+  margin: 10px 0;
 `;
-const dangerStyles = `
+const dangerStyles = css`
   color: #5c9210;
-    margin: 10px 0;
+  margin: 10px 0;
 `;
 
 const ButtonWrapper = styled.button`
@@ -38,14 +38,14 @@ const ButtonWrapper = styled.button`
 
   ${({ success }) =>
     success
-      ? css`
+      ? `
           ${successStyles}
         `
       : ``}
 
   ${({ danger }) =>
     danger
-      ? css`
+      ? `
           ${dangerStyles}
         `
       : ``}

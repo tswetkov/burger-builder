@@ -3,18 +3,16 @@
 import React, { type Node, type AbstractComponent } from 'react';
 import styled, { css } from 'styled-components';
 
-import { TODO_ANY } from '../../../utils';
-
 const InputWrapper = styled.div`
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
 `;
 
-const invalidInputStyles = `
+const invalidInputStyles = css`
   border: 1px solid tomato;
   background-color: #fda49a;
- `;
+`;
 
 const InputElement = styled.input`
   outline: none;
@@ -28,7 +26,7 @@ const InputElement = styled.input`
 
   ${({ invalid }: Props): Node =>
     invalid
-      ? css`
+      ? `
           ${invalidInputStyles}
         `
       : ``}
@@ -45,7 +43,7 @@ type Props = {
   type?: string,
   placeholder: string,
   error?: string,
-} & typeof TODO_ANY;
+} & any;
 
 export const Input: AbstractComponent<Props, HTMLElement> = React.forwardRef(
   (props, ref) => {

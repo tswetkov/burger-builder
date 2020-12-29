@@ -1,8 +1,8 @@
 // @flow
 
 import React, { type Node } from 'react';
-import { TODO_ANY } from '../../utils';
 import styled from 'styled-components';
+import type { Ingredient } from '../Burger/BurgerIngredient';
 
 const OrderWrapper = styled.div`
   width: 80%;
@@ -14,7 +14,7 @@ const OrderWrapper = styled.div`
 `;
 
 type Props = {
-  ingredients: Array<typeof TODO_ANY>,
+  ingredients: Ingredient[],
   price: string,
 };
 
@@ -27,10 +27,10 @@ export const Order = ({ ingredients, price }: Props): Node => {
     });
   }
 
-  const ingredientOutput = ingredientsArray.map((ing): Node => {
+  const ingredientOutput = ingredientsArray.map((ing, index): Node => {
     return (
       <span
-        key={ing.name}
+        key={`${ing.name}/${index}`}
         style={{
           textTransform: 'capitalize',
           display: 'inline-block',
