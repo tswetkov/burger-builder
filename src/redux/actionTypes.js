@@ -21,7 +21,7 @@ export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 
 export const SET_AUTH_REDIRECT_PATH = 'SET_AUTH_REDIRECT_PATH';
 
-/**Sagas initialization action types */
+/** Sagas initialization action types */
 export const AUTH_CHECK_TIMEOUT = 'AUTH_CHECK_TIMEOUT';
 export const AUTH_CHECK_STATE = 'AUTH_CHECK_STATE';
 export const AUTH_INITIATE_LOGOUT = 'AUTH_INITIATE_LOGOUT';

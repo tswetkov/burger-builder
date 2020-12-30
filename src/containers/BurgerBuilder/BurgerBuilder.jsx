@@ -1,63 +1,67 @@
-import React, { useState, useCallback, useEffect } from 'react';
+// @flow
+
+import React, { useState, useCallback, type Node } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Burger } from '../../components/Burger';
 import { BuildControls } from '../../components/Burger/BuildControls';
 
 import {
+  setAuthRedirectPath,
+  purchaseInit,
   addIngredient,
   removeIngredient,
-  initIngredients,
 } from '../../redux/actions';
-
-import { purchaseInit } from '../../redux/actions';
-import { setAuthRedirectPath } from '../../redux/actions';
 import { OrderSummaryModal } from '../../components/modals';
+
+type Props = {
+  history: any,
+};
 
 export const BurgerBuilder = ({ history }: Props): Node => {
   const [purchasing, setPurchasing] = useState(false);
 
-  const { ingredients, totalPrice, isAuthenticated } = useSelector((state): Node => ({
+  const { ingredients, totalPrice, isAuth } = useSelector((state) => ({
     ingredients: state.ingredients.ingredients,
     totalPrice: state.ingredients.totalPrice,
     error: state.ingredients.error,
-    isAuthenticated: state.auth.token !== null,
+    isAuth: state.auth.token !== null,
   }));
 
   const dispatch = useDispatch();
   const handleAddIngredient = useCallback(
-    (ingredientName): Node => dispatch(addIngredient(ingredientName)),
+    (ingredientName) => dispatch(addIngredient(ingredientName)),
     [dispatch],
   );
 
   const handleRemoveIngredient = useCallback(
-    (ingredientName): Node => dispatch(removeIngredient(ingredientName)),
+    (ingredientName) => dispatch(removeIngredient(ingredientName)),
     [dispatch],
   );
 
-  const onInitPurchase = useCallback((): Node => dispatch(purchaseInit()), [
+  const onInitPurchase = useCallback(() => dispatch(purchaseInit()), [
     dispatch,
   ]);
 
   const onSetAuthRedirectPath = useCallback(
-    (path): Node => dispatch(setAuthRedirectPath(path)),
+    (path) => dispatch(setAuthRedirectPath(path)),
     [dispatch],
   );
 
-  const handlePurchase = useCallback((): Node => {
-    if (isAuthenticated) {
+  const handlePurchase = useCallback(() => {
+    if (isAuth) {
       setPurchasing(true);
     } else {
       onSetAuthRedirectPath('/checkout');
       history.push('/signin');
     }
-  }, [isAuthenticated, setPurchasing, onSetAuthRedirectPath, history]);
+  }, [isAuth, setPurchasing, onSetAuthRedirectPath, history]);
 
-  const handleCloseModal = useCallback((): Node => setPurchasing(false), [
+  const handleCloseModal = useCallback(() => setPurchasing(false), [
     setPurchasing,
   ]);
 
-  const handleModalContinue = useCallback((): Node => {
+  const handleModalContinue = useCallback(() => {
     onInitPurchase();
     history.push('/checkout');
   }, [onInitPurchase]);
@@ -72,7 +76,7 @@ export const BurgerBuilder = ({ history }: Props): Node => {
         price={totalPrice}
         purchasable={ingredients.length > 0}
         ordered={handlePurchase}
-        isAuthenticated={isAuthenticated}
+        isAuth={isAuth}
       />
 
       {purchasing && (

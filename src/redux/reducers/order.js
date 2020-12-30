@@ -36,7 +36,7 @@ export const order = (state = initialState, action) => {
         loading: false,
         purchased: true,
         orders: state.orders.concat(newOrder),
-      }; //returns new array
+      }; // returns new array
     case PURCHASE_BURGER_FAILURE:
       return {
         ...state,

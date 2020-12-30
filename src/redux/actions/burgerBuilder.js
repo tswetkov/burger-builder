@@ -5,29 +5,21 @@ import {
   FETCH_INGREDIENTS_FAILED,
 } from '../actionTypes';
 
-export const addIngredient = (ingredientName) => {
-  return {
-    type: ADD_INGREDIENTS,
-    ingredientName,
-  };
-};
+export const addIngredient = (ingredientName) => ({
+  type: ADD_INGREDIENTS,
+  ingredientName,
+});
 
-export const removeIngredient = (ingredientName) => {
-  return {
-    type: REMOVE_INGREDIENTS,
-    ingredientName,
-  };
-};
+export const removeIngredient = (ingredientName) => ({
+  type: REMOVE_INGREDIENTS,
+  ingredientName,
+});
 
-export const setIngredietns = (ingredients) => {
-  return {
-    type: SET_INGREDIENTS,
-    ingredients,
-  };
-};
+export const setIngredietns = (ingredients) => ({
+  type: SET_INGREDIENTS,
+  ingredients,
+});
 
-export const fetchIngredientsFailed = () => {
-  return {
-    type: FETCH_INGREDIENTS_FAILED,
-  };
-};
+export const fetchIngredientsFailed = () => ({
+  type: FETCH_INGREDIENTS_FAILED,
+});

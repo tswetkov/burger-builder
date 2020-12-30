@@ -16,7 +16,7 @@ export function* purchaseBurgerSaga(action) {
 
   try {
     const response = yield orderService.order(
-      '/orders.json?auth=' + action.token,
+      `/orders.json?auth=${action.token}`,
       action.orderData,
     );
     yield put(purchaseBurgerSuccess(response.data.name, action.orderData));
@@ -30,11 +30,11 @@ export function* fetchOrderSaga(action) {
   yield put(fetchOrdersStart());
   const queryParams = `?auth=${action.token}&orderBy="userId"&equalTo="${action.userId}"`;
   try {
-    const response = yield orderService.getOrders('/orders.json' + queryParams);
+    const response = yield orderService.getOrders(`/orders.json${queryParams}`);
     const fetchOrders = [];
-    for (let key in response.data) {
+    Object.keys(response.data).forEach((key) => {
       fetchOrders.push({ ...response.data[key], id: key });
-    }
+    });
     yield put(fetchOrdersSuccess(fetchOrders));
   } catch (error) {
     yield put(fetchOrdersFailure(error));

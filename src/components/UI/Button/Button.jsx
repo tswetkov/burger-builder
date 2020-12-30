@@ -53,21 +53,21 @@ const ButtonWrapper = styled.button`
 
 type Props = {
   children: Node,
-  clicked?: () => void,
+  onClick?: () => void,
   disabled?: boolean,
   btnType: string,
 };
 
 export const Button = ({
   children,
-  clicked,
+  onClick,
   disabled,
   btnType,
 }: Props): Node => {
   return (
     <ButtonWrapper
       disabled={disabled}
-      onClick={clicked}
+      onClick={onClick}
       success={btnType === 'success'}
       danger={btnType === 'danger'}
     >

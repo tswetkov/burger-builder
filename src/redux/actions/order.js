@@ -10,65 +10,47 @@ import {
   FETCH_ORDERS,
 } from '../actionTypes';
 
-export const purchaseBurgerSuccess = (id, orderData) => {
-  return {
-    type: PURCHASE_BURGER_SUCCESS,
-    id,
-    orderData,
-  };
-};
+export const purchaseBurgerSuccess = (id, orderData) => ({
+  type: PURCHASE_BURGER_SUCCESS,
+  id,
+  orderData,
+});
 
-export const purchaseBurgerFailure = (error) => {
-  return {
-    type: PURCHASE_BURGER_FAILURE,
-    error,
-  };
-};
+export const purchaseBurgerFailure = (error) => ({
+  type: PURCHASE_BURGER_FAILURE,
+  error,
+});
 
-export const purchaseBurgerStart = () => {
-  return {
-    type: PURCHASE_BURGER_START,
-  };
-};
+export const purchaseBurgerStart = () => ({
+  type: PURCHASE_BURGER_START,
+});
 
-export const purchaseBurger = (orderData, token) => {
-  return {
-    type: PURCHASE_BURGER,
-    orderData,
-    token,
-  };
-};
+export const purchaseBurger = (orderData, token) => ({
+  type: PURCHASE_BURGER,
+  orderData,
+  token,
+});
 
-export const purchaseInit = () => {
-  return {
-    type: PURCHASE_INIT,
-  };
-};
+export const purchaseInit = () => ({
+  type: PURCHASE_INIT,
+});
 
-export const fetchOrdersSuccess = (orders) => {
-  return {
-    type: FETCH_ORDERS_SUCCESS,
-    orders,
-  };
-};
+export const fetchOrdersSuccess = (orders) => ({
+  type: FETCH_ORDERS_SUCCESS,
+  orders,
+});
 
-export const fetchOrdersFailure = (error) => {
-  return {
-    type: FETCH_ORDERS_FAILURE,
-    error,
-  };
-};
+export const fetchOrdersFailure = (error) => ({
+  type: FETCH_ORDERS_FAILURE,
+  error,
+});
 
-export const fetchOrdersStart = () => {
-  return {
-    type: FETCH_ORDERS_START,
-  };
-};
+export const fetchOrdersStart = () => ({
+  type: FETCH_ORDERS_START,
+});
 
-export const fetchOrders = (token, userId) => {
-  return {
-    type: FETCH_ORDERS,
-    token,
-    userId,
-  };
-};
+export const fetchOrders = (token, userId) => ({
+  type: FETCH_ORDERS,
+  token,
+  userId,
+});

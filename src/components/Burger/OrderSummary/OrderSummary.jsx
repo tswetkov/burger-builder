@@ -1,30 +1,37 @@
-import { Button } from '../../UI';
+// @flow
 
-import React, { useMemo } from 'react';
+import React, { useMemo, type Node } from 'react';
+import { Button } from '../../UI';
+import type { Ingredient } from '../BurgerIngredient';
+
+type Props = {
+  onClose: () => void,
+  onContinue: () => void,
+  price: number,
+  ingredients: Ingredient[],
+};
 
 export const OrderSummary = ({
-  modalClosed,
-  modalContinue,
+  onClose,
+  onContinue,
   price,
   ingredients,
 }: Props): Node => {
   // TODO: сделать красиво
-  const transformed = ingredients.reduce((acc, value): Node => {
+  const transformed = ingredients.reduce((acc, value) => {
     acc[value] = acc[value] ? acc[value] + 1 : 1;
 
     return acc;
   }, {});
 
   const ingredientSummary = useMemo(
-    (): Node =>
-      Object.keys(transformed).map((igKey, index): Node => {
-        return (
-          <li key={igKey + index}>
-            <span style={{ textTransform: 'capitalize' }}>{igKey}</span>:{' '}
-            {transformed[igKey]}
-          </li>
-        );
-      }),
+    () =>
+      Object.keys(transformed).map((igKey, index) => (
+        <li key={igKey + index}>
+          <span style={{ textTransform: 'capitalize' }}>{igKey}</span>:{' '}
+          {transformed[igKey]}
+        </li>
+      )),
     [transformed],
   );
 
@@ -37,10 +44,10 @@ export const OrderSummary = ({
         <strong>Конечная цена: {price.toFixed(2)}</strong>
       </p>
       <p>Что дальше?</p>
-      <Button clicked={modalClosed} btnType="danger">
+      <Button onClick={onClose} btnType="danger">
         ЗАКРЫТЬ
       </Button>
-      <Button clicked={modalContinue} btnType="success">
+      <Button onClick={onContinue} btnType="success">
         ПРОДОЛЖИТЬ
       </Button>
     </>

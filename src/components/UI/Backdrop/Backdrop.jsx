@@ -14,9 +14,9 @@ const StyledBackdrop = styled.div`
 `;
 
 type Props = {
-  clicked: () => void,
+  onClick: () => void,
 };
 
-export const Backdrop = ({ clicked }: Props): Node => (
-  <StyledBackdrop onClick={clicked} />
+export const Backdrop = ({ onClick }: Props): Node => (
+  <StyledBackdrop onClick={onClick} />
 );

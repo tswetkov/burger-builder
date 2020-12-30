@@ -30,6 +30,7 @@ export const ingredients = (state = initialState, action) => {
       };
 
     case REMOVE_INGREDIENTS:
+      // TODO: сделать лучше
       const copiedIngredients = [...state.ingredients];
       const index = copiedIngredients.findIndex(
         (v) => v === action.ingredientName,

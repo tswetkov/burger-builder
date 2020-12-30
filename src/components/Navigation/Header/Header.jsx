@@ -2,11 +2,11 @@
 
 import React, { type Node } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { Logo } from '../../Logo';
 import { NavigationItems } from '../NavigationItems';
 import { DrawerToggle } from '../SideDrawer/DrawerToggle';
-import { Link } from 'react-router-dom';
 
 const HeaderWrapper = styled.div`
   height: var(--header-height);
@@ -32,23 +32,18 @@ const HeaderLogoWrapper = styled(Link)`
 `;
 
 type Props = {
-  drawerToggleClicked: () => void,
-  isAuthenticated: boolean,
+  onToggleDrawer: () => void,
+  isAuth: boolean,
 };
 
-export const Header = ({
-  drawerToggleClicked,
-  isAuthenticated,
-}: Props): Node => {
-  return (
-    <HeaderWrapper>
-      <DrawerToggle clicked={drawerToggleClicked} />
-      <HeaderLogoWrapper to="/">
-        <Logo />
-      </HeaderLogoWrapper>
-      <Navigation>
-        <NavigationItems isAuthenticated={isAuthenticated} />
-      </Navigation>
-    </HeaderWrapper>
-  );
-};
+export const Header = ({ onToggleDrawer, isAuth }: Props): Node => (
+  <HeaderWrapper>
+    <DrawerToggle onClick={onToggleDrawer} />
+    <HeaderLogoWrapper to="/">
+      <Logo />
+    </HeaderLogoWrapper>
+    <Navigation>
+      <NavigationItems isAuth={isAuth} />
+    </Navigation>
+  </HeaderWrapper>
+);

@@ -2,6 +2,7 @@
 
 import { hot } from 'react-hot-loader/root';
 import React, { useEffect, useCallback, useState, type Node } from 'react';
+import styled from 'styled-components';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,7 +16,6 @@ import { authCheckState } from './redux/actions';
 import { GuardRoute } from './utils';
 import { Header } from './components/Navigation/Header';
 import { SideDrawer } from './components/Navigation/SideDrawer';
-import styled from 'styled-components';
 import { ContactData } from './containers/Checkout/ContactData';
 
 const Content = styled.div`
@@ -32,66 +32,56 @@ const Wrapper = styled.div`
 `;
 
 const AppComponent = () => {
-  const isAuthenticated = useSelector((state) => state.auth.token !== null);
+  const isAuth = useSelector((state) => state.auth.token !== null);
   const dispatch = useDispatch();
 
-  const onTryAutoSignup = useCallback(() => {
+  const checkAuthStatus = useCallback(() => {
     dispatch(authCheckState());
   }, [dispatch]);
 
   useEffect(() => {
-    onTryAutoSignup();
-  }, [onTryAutoSignup]);
+    checkAuthStatus();
+  }, [checkAuthStatus]);
 
-  const [showSideDrawer, setShowSideDrawer] = useState(false);
+  const [isSideDrawerVisible, setIsSideDrawerVisible] = useState(false);
 
-  const handleSideDrawerClose = useCallback(() => setShowSideDrawer(false), []);
+  const handleSideDrawerClose = useCallback(
+    () => setIsSideDrawerVisible(false),
+    [],
+  );
 
   const handleSideDrawerToggle = useCallback(
-    () => setShowSideDrawer((prevState) => !prevState),
+    () => setIsSideDrawerVisible((prevState) => !prevState),
     [],
   );
 
   return (
     <Switch>
       <Wrapper>
-        <Header
-          isAuthenticated={isAuthenticated}
-          drawerToggleClicked={handleSideDrawerToggle}
-        />
+        <Header isAuth={isAuth} onToggleDrawer={handleSideDrawerToggle} />
         <SideDrawer
-          isAuthenticated={isAuthenticated}
-          open={showSideDrawer}
-          isAuthenticated={isAuthenticated}
-          closed={handleSideDrawerClose}
+          isAuth={isAuth}
+          isOpen={isSideDrawerVisible}
+          onClick={handleSideDrawerClose}
         />
         <Content>
           <Route exact path="/" component={BurgerBuilder} />
           <Route path="/signin" component={SignIn} />
 
           <GuardRoute
-            isAuthenticated={isAuthenticated}
+            isAuth={isAuth}
             exact
             path="/checkout"
             // $FlowFixMe TODO: разобраться с типом
             component={Checkout}
           />
           <GuardRoute
-            isAuthenticated={isAuthenticated}
+            isAuth={isAuth}
             path="/checkout/contact-data"
             component={ContactData}
           />
-          <GuardRoute
-            isAuthenticated={isAuthenticated}
-            path="/orders"
-            component={Orders}
-          />
-          <GuardRoute
-            isAuthenticated={isAuthenticated}
-            exact
-            path="/logout"
-            component={Logout}
-          />
+          <GuardRoute isAuth={isAuth} path="/orders" component={Orders} />
+          <GuardRoute isAuth={isAuth} exact path="/logout" component={Logout} />
           <Redirect to="/" />
         </Content>
       </Wrapper>

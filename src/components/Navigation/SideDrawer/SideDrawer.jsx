@@ -1,12 +1,11 @@
 // @flow
 
 import React, { type Node } from 'react';
+import styled from 'styled-components';
 
 import { Logo } from '../../Logo';
 import { NavigationItems } from '../NavigationItems';
 import { Backdrop } from '../../UI';
-
-import styled from 'styled-components';
 
 const SideDrawerWrapper = styled.div`
   position: fixed;
@@ -35,23 +34,21 @@ const LogoWrapper = styled.div`
 `;
 
 type Props = {
-  closed: () => void,
-  open: boolean,
-  isAuthenticated: boolean,
+  onClick: () => void,
+  isOpen: boolean,
+  isAuth: boolean,
 };
 
-export const SideDrawer = ({ closed, open, isAuthenticated }: Props): Node => {
-  return (
-    <>
-      {open && <Backdrop clicked={closed} />}
-      <SideDrawerWrapper onClick={closed} isOpen={open}>
-        <LogoWrapper>
-          <Logo />
-        </LogoWrapper>
-        <nav>
-          <NavigationItems isAuthenticated={isAuthenticated} />
-        </nav>
-      </SideDrawerWrapper>
-    </>
-  );
-};
+export const SideDrawer = ({ onClick, isOpen, isAuth }: Props): Node => (
+  <>
+    {isOpen && <Backdrop onClick={onClick} />}
+    <SideDrawerWrapper onClick={onClick} isOpen={isOpen}>
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
+      <nav>
+        <NavigationItems isAuth={isAuth} />
+      </nav>
+    </SideDrawerWrapper>
+  </>
+);

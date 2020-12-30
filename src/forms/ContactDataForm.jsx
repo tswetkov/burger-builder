@@ -2,10 +2,10 @@
 
 import React, { type Node } from 'react';
 
-import { Input } from '../components/UI/Input';
-import { Button } from '../components/UI';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { Input } from '../components/UI/Input';
+import { Button } from '../components/UI';
 import { contactDataValidationSchema } from './validations';
 
 type FormData = {

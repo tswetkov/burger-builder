@@ -5,6 +5,7 @@ import {
   AUTH_LOGOUT,
   SET_AUTH_REDIRECT_PATH,
 } from '../actionTypes';
+
 const initialState = {
   token: null,
   userId: null,
@@ -13,46 +14,36 @@ const initialState = {
   authRedirectPath: '/',
 };
 
-const authStart = (state, action) => {
-  return {
-    ...state,
-    error: null,
-    loading: true,
-  };
-};
+const authStart = (state) => ({
+  ...state,
+  error: null,
+  loading: true,
+});
 
-const authSuccess = (state, action) => {
-  return {
-    ...state,
-    token: action.idToken,
-    userId: action.userId,
-    error: null,
-    loading: false,
-  };
-};
+const authSuccess = (state, action) => ({
+  ...state,
+  token: action.idToken,
+  userId: action.userId,
+  error: null,
+  loading: false,
+});
 
-const authFailure = (state, action) => {
-  return {
-    ...state,
-    error: action.error,
-    loading: false,
-  };
-};
+const authFailure = (state, action) => ({
+  ...state,
+  error: action.error,
+  loading: false,
+});
 
-const authLogout = (state, action) => {
-  return {
-    ...state,
-    token: null,
-    userId: null,
-  };
-};
+const authLogout = (state) => ({
+  ...state,
+  token: null,
+  userId: null,
+});
 
-const setAuthRedirectPath = (state, action) => {
-  return {
-    ...state,
-    authRedirectPath: action.path,
-  };
-};
+const setAuthRedirectPath = (state, action) => ({
+  ...state,
+  authRedirectPath: action.path,
+});
 
 export const auth = (state = initialState, action) => {
   switch (action.type) {

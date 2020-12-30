@@ -20,19 +20,19 @@ const NavigationItemsWrapper = styled.ul`
 `;
 
 type Props = {
-  isAuthenticated: boolean,
+  isAuth: boolean,
 };
 
-export const NavigationItems = ({ isAuthenticated }: Props): Node => {
+export const NavigationItems = ({ isAuth }: Props): Node => {
   return (
     <NavigationItemsWrapper>
       <NavigationItem link="/" exact>
         Конструктор
       </NavigationItem>
-      {isAuthenticated ? (
+      {isAuth ? (
         <NavigationItem link="/orders">Заказы</NavigationItem>
       ) : null}
-      {!isAuthenticated ? (
+      {!isAuth ? (
         <NavigationItem link="/signin">Войти</NavigationItem>
       ) : (
         <NavigationItem link="/logout">Выйти</NavigationItem>

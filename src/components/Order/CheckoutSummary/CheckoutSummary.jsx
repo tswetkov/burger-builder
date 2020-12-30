@@ -30,10 +30,10 @@ export const CheckoutSummary = ({
       <div style={{ width: '100%', margin: 'auto' }}>
         <Burger ingredients={ingredients} />
       </div>
-      <Button clicked={checkoutCancel} btnType="danger">
+      <Button onClick={checkoutCancel} btnType="danger">
         ОТМЕНА
       </Button>
-      <Button clicked={checkoutContinued} btnType="success">
+      <Button onClick={checkoutContinued} btnType="success">
         ПРОДОЛЖИТЬ
       </Button>
     </CheckoutSummaryWrapper>

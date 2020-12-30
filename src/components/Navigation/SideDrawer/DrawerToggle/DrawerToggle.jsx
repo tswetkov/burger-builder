@@ -27,12 +27,12 @@ const DrawerToggleLine = styled.div`
 `;
 
 type Props = {
-  clicked: () => void,
+  onClick: () => void,
 };
 
-export const DrawerToggle = ({ clicked }: Props): Node => {
+export const DrawerToggle = ({ onClick }: Props): Node => {
   return (
-    <DrawerToggleWrapper onClick={clicked}>
+    <DrawerToggleWrapper onClick={onClick}>
       <DrawerToggleLine />
       <DrawerToggleLine />
       <DrawerToggleLine />

@@ -72,7 +72,7 @@ type Props = {
   price: number,
   purchasable: boolean,
   ordered: () => void,
-  isAuthenticated: boolean,
+  isAuth: boolean,
 };
 
 export const BuildControls = ({
@@ -82,7 +82,7 @@ export const BuildControls = ({
   price,
   purchasable,
   ordered,
-  isAuthenticated,
+  isAuth,
 }: Props): Node => {
   return (
     <BuildControlsWrapper>
@@ -99,7 +99,7 @@ export const BuildControls = ({
         />
       ))}
       <OrderButton disabled={!purchasable} onClick={ordered}>
-        {isAuthenticated ? 'ЗАКАЗАТЬ' : 'ВОЙТИ ДЛЯ ЗАКАЗА'}
+        {isAuth ? 'ЗАКАЗАТЬ' : 'ВОЙТИ ДЛЯ ЗАКАЗА'}
       </OrderButton>
     </BuildControlsWrapper>
   );

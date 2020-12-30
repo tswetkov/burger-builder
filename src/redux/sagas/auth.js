@@ -1,5 +1,5 @@
-import { delay } from 'redux-saga/effects';
-import { put, call } from 'redux-saga/effects';
+import { delay, put, call } from 'redux-saga/effects';
+
 import {
   logoutSucceed,
   logout,
@@ -11,8 +11,8 @@ import {
 import { history } from '../../utils';
 import { authService } from '../../services';
 
-export function* logoutSaga(action) {
-  yield call([localStorage, 'removeItem'], 'token'); //стало
+export function* logoutSaga() {
+  yield call([localStorage, 'removeItem'], 'token'); // стало
   yield call([localStorage, 'removeItem'], 'expirationDate');
   yield call([localStorage, 'removeItem'], 'userId');
   // yield localStorage.removeItem("token"); // было
@@ -33,10 +33,6 @@ export function* authUserSaga(action) {
     password: action.password,
     returnSecureToken: true,
   };
-  let url = 'signupNewUser';
-  if (!action.isSignup) {
-    url = 'verifyPassword';
-  }
 
   try {
     const response = yield authService.login(authData);
@@ -54,7 +50,7 @@ export function* authUserSaga(action) {
   }
 }
 
-export function* authCheckStateSaga(action) {
+export function* authCheckStateSaga() {
   const token = yield localStorage.getItem('token');
   if (!token) {
     yield put(logout());

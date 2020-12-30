@@ -4,24 +4,26 @@ import React, { type Node } from 'react';
 
 import { OrderSummary } from '../Burger/OrderSummary';
 import { Modal } from '../UI';
+import type { Ingredient } from '../Burger/BurgerIngredient';
+
 type Props = {
   handleCloseModal: () => void,
-  ingredients: string[],
+  ingredients: Ingredient[],
   handleModalContinue: () => void,
-  totalPrice: string,
+  totalPrice: number,
 };
 
 export const OrderSummaryModal = ({
   handleCloseModal,
-  ingredients,
   handleModalContinue,
+  ingredients,
   totalPrice,
 }: Props): Node => (
-  <Modal modalClosed={handleCloseModal}>
+  <Modal onClick={handleCloseModal}>
     <OrderSummary
       ingredients={ingredients}
-      modalClosed={handleCloseModal}
-      modalContinue={handleModalContinue}
+      onClose={handleCloseModal}
+      onContinue={handleModalContinue}
       price={totalPrice}
     />
   </Modal>
