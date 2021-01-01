@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+// @flow
+
+import React, { useEffect, type Node } from 'react';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../redux/actions';
 import { Redirect } from 'react-router-dom';
+import { logout } from 'store/actions';
 
 export const Logout = (): Node => {
   const dispatch = useDispatch();
 
-  useEffect((): Node => {
+  useEffect(() => {
     dispatch(logout());
   }, [dispatch]);
 

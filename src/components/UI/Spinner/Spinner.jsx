@@ -2,8 +2,7 @@
 
 import React, { type Node } from 'react';
 
-import styled from 'styled-components';
-import { keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const load4 = keyframes`
   0%,

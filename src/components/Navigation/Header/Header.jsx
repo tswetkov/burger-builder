@@ -4,7 +4,7 @@ import React, { type Node } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { Logo } from '../../Logo';
+import { Logo } from 'components/Logo';
 import { NavigationItems } from '../NavigationItems';
 import { DrawerToggle } from '../SideDrawer/DrawerToggle';
 

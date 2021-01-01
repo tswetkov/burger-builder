@@ -1,11 +1,13 @@
-import React, { useCallback, useEffect } from 'react';
+// @flow
+
+import React, { useCallback, useEffect, type Node } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Spinner } from '../../../components/UI';
-import { purchaseBurger } from '../../../redux/actions';
-import { ContactDataForm } from '../../../forms';
 import styled from 'styled-components';
-import { history } from '../../../utils';
+import { Spinner } from 'components/UI';
+import { purchaseBurger } from 'store/actions';
+import { ContactDataForm } from 'forms';
+import { history } from 'utils';
 
 const ContactDataWrapper = styled.div`
   width: 80%;
@@ -24,7 +26,7 @@ const ContactDataWrapper = styled.div`
 
 export const ContactData = (): Node => {
   const { ingredients, price, loading, token, userId } = useSelector(
-    (state): Node => ({
+    (state) => ({
       ingredients: state.ingredients.ingredients,
       price: state.ingredients.totalPrice,
       loading: state.order.loading,
@@ -35,24 +37,24 @@ export const ContactData = (): Node => {
 
   const dispatch = useDispatch();
 
-  useEffect((): Node => {
+  useEffect(() => {
     if (ingredients.length === 0) {
       history.push('/');
     }
   }, [ingredients]);
 
   const onOrderBurger = useCallback(
-    (orderData, token): Node => dispatch(purchaseBurger(orderData, token)),
+    (orderData, userToken) => dispatch(purchaseBurger(orderData, userToken)),
     [dispatch],
   );
 
   const handleOrder = useCallback(
-    (formData): Node => {
+    (formData) => {
       const order = {
-        ingredients: ingredients,
-        price: price,
+        ingredients,
+        price,
         orderData: { ...formData, deliveryMethod: 'fastest' },
-        userId: userId,
+        userId,
       };
 
       onOrderBurger(order, token);

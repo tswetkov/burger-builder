@@ -2,10 +2,9 @@
 
 import React, { type Node } from 'react';
 
-import { BuildControl } from './BuildControl';
+import styled, { keyframes } from 'styled-components';
 
-import styled from 'styled-components';
-import { keyframes } from 'styled-components';
+import { BuildControl } from './BuildControl';
 
 const controls = [
   { label: 'Салат', type: 'salad' },
@@ -83,24 +82,22 @@ export const BuildControls = ({
   purchasable,
   ordered,
   isAuth,
-}: Props): Node => {
-  return (
-    <BuildControlsWrapper>
-      <p>
-        Текущая цена: <strong>{price.toFixed(2)}</strong>
-      </p>
-      {controls.map((item) => (
-        <BuildControl
-          key={item.label}
-          label={item.label}
-          added={() => ingredientAdded(item.type)}
-          removed={() => ingredientRemove(item.type)}
-          disabled={!disabled.includes(item.type)}
-        />
-      ))}
-      <OrderButton disabled={!purchasable} onClick={ordered}>
-        {isAuth ? 'ЗАКАЗАТЬ' : 'ВОЙТИ ДЛЯ ЗАКАЗА'}
-      </OrderButton>
-    </BuildControlsWrapper>
-  );
-};
+}: Props): Node => (
+  <BuildControlsWrapper>
+    <p>
+      Текущая цена: <strong>{price.toFixed(2)}</strong>
+    </p>
+    {controls.map((item) => (
+      <BuildControl
+        key={item.label}
+        label={item.label}
+        added={() => ingredientAdded(item.type)}
+        removed={() => ingredientRemove(item.type)}
+        disabled={!disabled.includes(item.type)}
+      />
+    ))}
+    <OrderButton disabled={!purchasable} onClick={ordered}>
+      {isAuth ? 'ЗАКАЗАТЬ' : 'ВОЙТИ ДЛЯ ЗАКАЗА'}
+    </OrderButton>
+  </BuildControlsWrapper>
+);

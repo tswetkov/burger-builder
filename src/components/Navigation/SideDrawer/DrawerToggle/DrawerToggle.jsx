@@ -30,12 +30,10 @@ type Props = {
   onClick: () => void,
 };
 
-export const DrawerToggle = ({ onClick }: Props): Node => {
-  return (
-    <DrawerToggleWrapper onClick={onClick}>
-      <DrawerToggleLine />
-      <DrawerToggleLine />
-      <DrawerToggleLine />
-    </DrawerToggleWrapper>
-  );
-};
+export const DrawerToggle = ({ onClick }: Props): Node => (
+  <DrawerToggleWrapper onClick={onClick}>
+    <DrawerToggleLine />
+    <DrawerToggleLine />
+    <DrawerToggleLine />
+  </DrawerToggleWrapper>
+);

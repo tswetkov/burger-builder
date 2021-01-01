@@ -2,8 +2,8 @@
 
 import React, { type Node } from 'react';
 
-import { NavigationItem } from './NavigationItem';
 import styled from 'styled-components';
+import { NavigationItem } from './NavigationItem';
 
 const NavigationItemsWrapper = styled.ul`
   margin: 0;
@@ -23,20 +23,16 @@ type Props = {
   isAuth: boolean,
 };
 
-export const NavigationItems = ({ isAuth }: Props): Node => {
-  return (
-    <NavigationItemsWrapper>
-      <NavigationItem link="/" exact>
-        Конструктор
-      </NavigationItem>
-      {isAuth ? (
-        <NavigationItem link="/orders">Заказы</NavigationItem>
-      ) : null}
-      {!isAuth ? (
-        <NavigationItem link="/signin">Войти</NavigationItem>
-      ) : (
-        <NavigationItem link="/logout">Выйти</NavigationItem>
-      )}
-    </NavigationItemsWrapper>
-  );
-};
+export const NavigationItems = ({ isAuth }: Props): Node => (
+  <NavigationItemsWrapper>
+    <NavigationItem link="/" exact>
+      Конструктор
+    </NavigationItem>
+    {isAuth ? <NavigationItem link="/orders">Заказы</NavigationItem> : null}
+    {!isAuth ? (
+      <NavigationItem link="/signin">Войти</NavigationItem>
+    ) : (
+      <NavigationItem link="/logout">Выйти</NavigationItem>
+    )}
+  </NavigationItemsWrapper>
+);

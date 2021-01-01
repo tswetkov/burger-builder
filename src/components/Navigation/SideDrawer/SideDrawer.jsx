@@ -3,9 +3,9 @@
 import React, { type Node } from 'react';
 import styled from 'styled-components';
 
-import { Logo } from '../../Logo';
+import { Logo } from 'components/Logo';
+import { Backdrop } from 'components/UI';
 import { NavigationItems } from '../NavigationItems';
-import { Backdrop } from '../../UI';
 
 const SideDrawerWrapper = styled.div`
   position: fixed;

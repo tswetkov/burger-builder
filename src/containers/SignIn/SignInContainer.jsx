@@ -1,9 +1,11 @@
-import React, { useCallback } from 'react';
+// @flow
+
+import React, { useCallback, type Node } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { auth } from '../../redux/actions';
-import { SignInForm } from '../../forms';
+import { auth } from 'store/actions';
+import { SignInForm } from 'forms';
 
 const SignInWrapper = styled.div`
   margin: 20px auto;
@@ -23,7 +25,7 @@ export const SignIn = (): Node => {
   const dispatch = useDispatch();
 
   const handleAuthSubmit = useCallback(
-    ({ email, password }: Props): Node => {
+    ({ email, password }) => {
       dispatch(auth(email, password));
     },
     [dispatch],

@@ -21,28 +21,26 @@ type Props = {
 export const Order = ({ ingredients, price }: Props): Node => {
   const ingredientsArray = [];
 
-  for (let ingredientName of ingredients) {
+  ingredients.forEach((ingredientName) => {
     ingredientsArray.push({
       name: ingredientName,
     });
-  }
-
-  const ingredientOutput = ingredientsArray.map((ing, index): Node => {
-    return (
-      <span
-        key={`${ing.name}/${index}`}
-        style={{
-          textTransform: 'capitalize',
-          display: 'inline-block',
-          margin: '0 8px',
-          border: '1px solid lightgray',
-          padding: '5px',
-        }}
-      >
-        {ing.name}
-      </span>
-    );
   });
+
+  const ingredientOutput = ingredientsArray.map((ing, index): Node => (
+    <span
+      key={`${ing.name}/${index}`}
+      style={{
+        textTransform: 'capitalize',
+        display: 'inline-block',
+        margin: '0 8px',
+        border: '1px solid lightgray',
+        padding: '5px',
+      }}
+    >
+      {ing.name}
+    </span>
+  ));
 
   return (
     <OrderWrapper>

@@ -41,14 +41,14 @@ const ButtonWrapper = styled.button`
       ? `
           ${successStyles}
         `
-      : ``}
+      : ''}
 
   ${({ danger }) =>
     danger
       ? `
           ${dangerStyles}
         `
-      : ``}
+      : ''}
 `;
 
 type Props = {
@@ -63,15 +63,13 @@ export const Button = ({
   onClick,
   disabled,
   btnType,
-}: Props): Node => {
-  return (
-    <ButtonWrapper
-      disabled={disabled}
-      onClick={onClick}
-      success={btnType === 'success'}
-      danger={btnType === 'danger'}
-    >
-      {children}
-    </ButtonWrapper>
-  );
-};
+}: Props): Node => (
+  <ButtonWrapper
+    disabled={disabled}
+    onClick={onClick}
+    success={btnType === 'success'}
+    danger={btnType === 'danger'}
+  >
+    {children}
+  </ButtonWrapper>
+);

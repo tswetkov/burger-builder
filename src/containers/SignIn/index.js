@@ -1,1 +1,3 @@
-export * from './SignInContainer';
+// @flow
+
+export { SignIn } from './SignInContainer';

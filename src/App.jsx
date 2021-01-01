@@ -1,22 +1,22 @@
 // @flow
 
 import { hot } from 'react-hot-loader/root';
-import React, { useEffect, useCallback, useState, type Node } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Logout } from './components/Logout';
-import { SignIn } from './containers/SignIn';
-import { Checkout } from './containers/Checkout';
-import { BurgerBuilder } from './containers/BurgerBuilder';
-import { Orders } from './containers/Orders';
+import { Logout } from 'components/Logout';
+import { SignIn } from 'containers/SignIn';
+import { Checkout } from 'containers/Checkout';
+import { BurgerBuilder } from 'containers/BurgerBuilder';
+import { Orders } from 'containers/Orders';
 
-import { authCheckState } from './redux/actions';
-import { GuardRoute } from './utils';
-import { Header } from './components/Navigation/Header';
-import { SideDrawer } from './components/Navigation/SideDrawer';
-import { ContactData } from './containers/Checkout/ContactData';
+import { authCheckState } from 'store/actions';
+import { GuardRoute } from 'utils';
+import { Header } from 'components/Navigation/Header';
+import { SideDrawer } from 'components/Navigation/SideDrawer';
+import { ContactData } from 'containers/Checkout/ContactData';
 
 const Content = styled.div`
   display: flex;
@@ -72,7 +72,6 @@ const AppComponent = () => {
             isAuth={isAuth}
             exact
             path="/checkout"
-            // $FlowFixMe TODO: разобраться с типом
             component={Checkout}
           />
           <GuardRoute
@@ -89,4 +88,5 @@ const AppComponent = () => {
   );
 };
 
-export const App: Node = hot(AppComponent);
+// TODO: разобраться с типом
+export const App: any = hot(AppComponent);

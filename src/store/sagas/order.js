@@ -1,6 +1,7 @@
 import { put } from 'redux-saga/effects';
-import { orderService } from '../../services';
+import { orderService } from 'services';
 
+import { history } from 'utils';
 import {
   purchaseBurgerSuccess,
   purchaseBurgerFailure,
@@ -9,7 +10,6 @@ import {
   fetchOrdersFailure,
   purchaseBurgerStart,
 } from '../actions/order';
-import { history } from '../../utils';
 
 export function* purchaseBurgerSaga(action) {
   yield put(purchaseBurgerStart());

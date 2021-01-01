@@ -2,8 +2,8 @@
 
 import React, { type Node } from 'react';
 
+import styled from 'styled-components';
 import burgerLogo from '../../assets/images/burger-logo.png';
-import styled from 'styled-components'
 
 const LogoWrapper = styled.div`
   background-color: #fff;
@@ -17,10 +17,8 @@ const Image = styled.img`
   height: 100%;
 `;
 
-export const Logo = (): Node => {
-  return (
-    <LogoWrapper>
-      <Image src={burgerLogo} alt="MyBurger" />
-    </LogoWrapper>
-  );
-};
+export const Logo = (): Node => (
+  <LogoWrapper>
+    <Image src={burgerLogo} alt="MyBurger" />
+  </LogoWrapper>
+);

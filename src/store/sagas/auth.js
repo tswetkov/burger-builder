@@ -1,5 +1,7 @@
 import { delay, put, call } from 'redux-saga/effects';
 
+import { history } from 'utils';
+import { authService } from 'services';
 import {
   logoutSucceed,
   logout,
@@ -8,8 +10,6 @@ import {
   checkAuthTimeout,
   authFailure,
 } from '../actions/auth';
-import { history } from '../../utils';
-import { authService } from '../../services';
 
 export function* logoutSaga() {
   yield call([localStorage, 'removeItem'], 'token'); // стало

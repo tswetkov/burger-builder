@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useMemo, type Node } from 'react';
-import { Button } from '../../UI';
+import { Button } from 'components/UI';
 import type { Ingredient } from '../BurgerIngredient';
 
 type Props = {

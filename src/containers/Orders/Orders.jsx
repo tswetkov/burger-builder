@@ -1,13 +1,15 @@
-import React, { useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrders } from '../../redux/actions';
+// @flow
 
-import { Order } from '../../components/Order';
-import { Spinner } from '../../components/UI';
+import React, { useEffect, useCallback, type Node } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchOrders } from 'store/actions';
+
+import { Order } from 'components/Order';
+import { Spinner } from 'components/UI';
 
 export const Orders = (): Node => {
   const dispatch = useDispatch();
-  const { orders, loading, token, userId } = useSelector((state): Node => ({
+  const { orders, loading, token, userId } = useSelector((state) => ({
     orders: state.order.orders,
     loading: state.order.loading,
     token: state.auth.token,
@@ -15,17 +17,17 @@ export const Orders = (): Node => {
   }));
 
   const handleFetchOrder = useCallback(
-    (token, userId): Node => dispatch(fetchOrders(token, userId)),
+    (requestToken, id): Node => dispatch(fetchOrders(requestToken, id)),
     [dispatch],
   );
 
-  useEffect((): Node => {
+  useEffect(() => {
     handleFetchOrder(token, userId);
   }, [handleFetchOrder, token, userId]);
 
   let ordersResult = <Spinner />;
   if (!loading) {
-    ordersResult = orders.map((order): Node => (
+    ordersResult = orders.map((order) => (
       <Order
         key={order.id}
         ingredients={order.ingredients}

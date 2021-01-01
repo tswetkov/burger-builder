@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "lint": "eslint --ext .jsx --ext .js src --fix"
   },
   "author": "Roman Tsvetrkov",
   "license": "ISC",
@@ -18,7 +19,7 @@
   "lint-staged": {
     "*{.js,.jsx}": [
       "pretty-quick --staged",
-      "eslint src/ --fix"
+      "npm run lint"
     ]
   },
   "dependencies": {

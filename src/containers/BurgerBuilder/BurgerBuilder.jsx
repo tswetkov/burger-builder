@@ -3,16 +3,16 @@
 import React, { useState, useCallback, type Node } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Burger } from '../../components/Burger';
-import { BuildControls } from '../../components/Burger/BuildControls';
+import { Burger } from 'components/Burger';
+import { BuildControls } from 'components/Burger/BuildControls';
+import { OrderSummaryModal } from 'components/modals';
 
 import {
   setAuthRedirectPath,
   purchaseInit,
   addIngredient,
   removeIngredient,
-} from '../../redux/actions';
-import { OrderSummaryModal } from '../../components/modals';
+} from 'store/actions';
 
 type Props = {
   history: any,

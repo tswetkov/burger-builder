@@ -74,14 +74,12 @@ export const BuildControl = ({
   added,
   removed,
   disabled,
-}: Props): Node => {
-  return (
-    <BuildControlWrapper>
-      <Label>{label}</Label>
-      <Less onClick={removed} disabled={disabled}>
-        Меньше
-      </Less>
-      <More onClick={added}>Больше</More>
-    </BuildControlWrapper>
-  );
-};
+}: Props): Node => (
+  <BuildControlWrapper>
+    <Label>{label}</Label>
+    <Less onClick={removed} disabled={disabled}>
+      Меньше
+    </Less>
+    <More onClick={added}>Больше</More>
+  </BuildControlWrapper>
+);

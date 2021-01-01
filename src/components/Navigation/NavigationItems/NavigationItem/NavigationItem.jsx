@@ -57,12 +57,10 @@ type Props = {
   exact?: boolean,
 };
 
-export const NavigationItem = ({ children, link, exact }: Props): Node => {
-  return (
-    <NavigationItemWrapper>
-      <Link to={link} exact={exact} activeClassName={activeClassName}>
-        {children}
-      </Link>
-    </NavigationItemWrapper>
-  );
-};
+export const NavigationItem = ({ children, link, exact }: Props): Node => (
+  <NavigationItemWrapper>
+    <Link to={link} exact={exact} activeClassName={activeClassName}>
+      {children}
+    </Link>
+  </NavigationItemWrapper>
+);

@@ -5,8 +5,7 @@ import React, { type Node } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
-import { Input } from '../components/UI/Input';
-import { Button } from '../components/UI';
+import { Input, Button } from '../components/UI';
 import { authFormValidationSchema } from './validations';
 
 type FormData = {

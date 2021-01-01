@@ -4,7 +4,7 @@ import React, { type Node } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
-import { Backdrop } from '../Backdrop';
+import { Backdrop } from 'components/UI/Backdrop';
 
 const ModalBody = styled.div`
   position: fixed;

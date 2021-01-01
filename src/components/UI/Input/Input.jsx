@@ -24,12 +24,12 @@ const InputElement = styled.input`
   width: 100%;
   box-sizing: border-box;
 
-  ${({ invalid }: Props): Node =>
+  ${({ invalid }): Node =>
     invalid
       ? `
           ${invalidInputStyles}
         `
-      : ``}
+      : ''}
 `;
 
 const InputError = styled.p`
