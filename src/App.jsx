@@ -56,15 +56,15 @@ const AppComponent = () => {
   );
 
   return (
-    <Switch>
-      <Wrapper>
-        <Header isAuth={isAuth} onToggleDrawer={handleSideDrawerToggle} />
-        <SideDrawer
-          isAuth={isAuth}
-          isOpen={isSideDrawerVisible}
-          onClick={handleSideDrawerClose}
-        />
-        <Content>
+    <Wrapper>
+      <Header isAuth={isAuth} onToggleDrawer={handleSideDrawerToggle} />
+      <SideDrawer
+        isAuth={isAuth}
+        isOpen={isSideDrawerVisible}
+        onClick={handleSideDrawerClose}
+      />
+      <Content>
+        <Switch>
           <Route exact path="/" component={BurgerBuilder} />
           <Route path="/signin" component={SignIn} />
 
@@ -76,15 +76,16 @@ const AppComponent = () => {
           />
           <GuardRoute
             isAuth={isAuth}
-            path="/checkout/contact-data"
+            // TODO: нужно проверить настройки webpack
+            path="/contact-data"
             component={ContactData}
           />
           <GuardRoute isAuth={isAuth} path="/orders" component={Orders} />
           <GuardRoute isAuth={isAuth} exact path="/logout" component={Logout} />
           <Redirect to="/" />
-        </Content>
-      </Wrapper>
-    </Switch>
+        </Switch>
+      </Content>
+    </Wrapper>
   );
 };
 

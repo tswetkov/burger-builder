@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import burgerLogo from '../../assets/images/burger-logo.png';
 
 const LogoWrapper = styled.div`
-  background-color: #fff;
+  background-color: var(--app-color-white);
   padding: 8px;
   height: 100%;
   box-sizing: border-box;

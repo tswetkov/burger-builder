@@ -18,7 +18,7 @@ export const Checkout = (): Node => {
   };
 
   const handleCheckoutContinued = () => {
-    history.replace('/checkout/contact-data');
+    history.replace('/contact-data');
   };
 
   if (ingredients) {

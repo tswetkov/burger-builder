@@ -17,7 +17,7 @@ const invalidInputStyles = css`
 const InputElement = styled.input`
   outline: none;
   border: 1px solid #ccc;
-  background-color: #fff;
+  background-color: var(--app-color-white);
   font: inherit;
   padding: 6px 10px;
   display: block;

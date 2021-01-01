@@ -21,6 +21,7 @@ const GlobalStyles = createGlobalStyle`
   
   :root {
     --header-height: 56px;
+    --app-color-white: #fff;
   }
 `;
 
