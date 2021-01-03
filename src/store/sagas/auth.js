@@ -15,9 +15,6 @@ export function* logoutSaga() {
   yield call([localStorage, 'removeItem'], 'token'); // стало
   yield call([localStorage, 'removeItem'], 'expirationDate');
   yield call([localStorage, 'removeItem'], 'userId');
-  // yield localStorage.removeItem("token"); // было
-  // yield localStorage.removeItem("expirationDate");
-  // yield localStorage.removeItem("userId");
   yield put(logoutSucceed());
 }
 
@@ -51,6 +48,7 @@ export function* authUserSaga(action) {
 }
 
 export function* authCheckStateSaga() {
+  yield put(authStart());
   const token = yield localStorage.getItem('token');
 
   if (!token) {

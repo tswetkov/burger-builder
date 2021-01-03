@@ -10,7 +10,7 @@ const initialState = {
   token: null,
   userId: null,
   error: null,
-  loading: false,
+  loading: true,
   authRedirectPath: '/',
 };
 
@@ -38,6 +38,7 @@ const authLogout = (state) => ({
   ...state,
   token: null,
   userId: null,
+  loading: false,
 });
 
 const setAuthRedirectPath = (state, action) => ({

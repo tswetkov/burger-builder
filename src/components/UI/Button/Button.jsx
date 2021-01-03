@@ -8,11 +8,11 @@ const successStyles = css`
   margin: 10px 0;
 `;
 const dangerStyles = css`
-  color: #5c9210;
+  color: #944317;
   margin: 10px 0;
 `;
 
-const ButtonWrapper = styled.button`
+const NativeButton = styled.button`
   background-color: transparent;
   border: none;
   color: white;
@@ -36,19 +36,9 @@ const ButtonWrapper = styled.button`
     padding: 5px;
   }
 
-  ${({ success }) =>
-    success
-      ? `
-          ${successStyles}
-        `
-      : ''}
+  ${({ success }) => (success ? successStyles : '')}
 
-  ${({ danger }) =>
-    danger
-      ? `
-          ${dangerStyles}
-        `
-      : ''}
+  ${({ danger }) => (danger ? dangerStyles : '')}
 `;
 
 type Props = {
@@ -64,12 +54,12 @@ export const Button = ({
   disabled,
   btnType,
 }: Props): Node => (
-  <ButtonWrapper
+  <NativeButton
     disabled={disabled}
     onClick={onClick}
     success={btnType === 'success'}
     danger={btnType === 'danger'}
   >
     {children}
-  </ButtonWrapper>
+  </NativeButton>
 );

@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback, type Node } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { Burger } from 'components/Burger';
 import { BuildControls } from 'components/Burger/BuildControls';
@@ -14,13 +15,10 @@ import {
   removeIngredient,
 } from 'store/actions';
 
-type Props = {
-  history: any,
-};
-
-export const BurgerBuilder = ({ history }: Props): Node => {
+export const BurgerBuilder = (): Node => {
   const [purchasing, setPurchasing] = useState(false);
 
+  const history = useHistory();
   const { ingredients, totalPrice, isAuth } = useSelector((state) => ({
     ingredients: state.ingredients.ingredients,
     totalPrice: state.ingredients.totalPrice,
@@ -63,8 +61,8 @@ export const BurgerBuilder = ({ history }: Props): Node => {
 
   const handleModalContinue = useCallback(() => {
     onInitPurchase();
-    history.push('/checkout');
-  }, [onInitPurchase]);
+    history.push(`/checkout#${btoa(JSON.stringify(ingredients))}`);
+  }, [onInitPurchase, ingredients]);
 
   return (
     <>

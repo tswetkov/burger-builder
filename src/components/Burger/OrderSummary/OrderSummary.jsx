@@ -1,14 +1,35 @@
 // @flow
 
+import styled from 'styled-components';
 import React, { useMemo, type Node } from 'react';
 import { Button } from 'components/UI';
 import type { Ingredient } from '../BurgerIngredient';
+
+const Title = styled.h3`
+  text-align: center;
+`;
+
+const IngredientName = styled.span`
+  text-transform: capitalize;
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
 
 type Props = {
   onClose: () => void,
   onContinue: () => void,
   price: number,
   ingredients: Ingredient[],
+};
+
+const dictionary = {
+  bacon: 'бекон',
+  cheese: 'сыр',
+  meat: 'мясо',
+  salad: 'салат',
 };
 
 export const OrderSummary = ({
@@ -28,7 +49,7 @@ export const OrderSummary = ({
     () =>
       Object.keys(transformed).map((igKey, index) => (
         <li key={igKey + index}>
-          <span style={{ textTransform: 'capitalize' }}>{igKey}</span>:{' '}
+          <IngredientName>{dictionary[igKey]}</IngredientName>:{' '}
           {transformed[igKey]}
         </li>
       )),
@@ -37,19 +58,20 @@ export const OrderSummary = ({
 
   return (
     <>
-      <h3>Ваш заказ</h3>
+      <Title>Ваш заказ</Title>
       <p>Цифровой бургер из:</p>
       <ul>{ingredientSummary}</ul>
       <p>
         <strong>Конечная цена: {price.toFixed(2)}</strong>
       </p>
-      <p>Что дальше?</p>
-      <Button onClick={onClose} btnType="danger">
-        ЗАКРЫТЬ
-      </Button>
-      <Button onClick={onContinue} btnType="success">
-        ПРОДОЛЖИТЬ
-      </Button>
+      <ButtonsWrapper>
+        <Button onClick={onClose} btnType="danger">
+          ЗАКРЫТЬ
+        </Button>
+        <Button onClick={onContinue} btnType="success">
+          ПРОДОЛЖИТЬ
+        </Button>
+      </ButtonsWrapper>
     </>
   );
 };

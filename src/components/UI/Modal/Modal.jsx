@@ -13,7 +13,7 @@ const ModalBody = styled.div`
   width: 70%;
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px black;
-  padding: 16px;
+  padding: 16px 40px;
   left: 15%;
   top: 30%;
   box-sizing: border-box;

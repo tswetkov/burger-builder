@@ -32,7 +32,11 @@ const Wrapper = styled.div`
 `;
 
 const AppComponent = () => {
-  const isAuth = useSelector((state) => state.auth.token !== null);
+  const { isAuth, isLoading } = useSelector((state) => ({
+    isAuth: state.auth.token !== null,
+    isLoading: state.auth.loading,
+  }));
+
   const dispatch = useDispatch();
 
   const checkAuthStatus = useCallback(() => {
@@ -54,6 +58,10 @@ const AppComponent = () => {
     () => setIsSideDrawerVisible((prevState) => !prevState),
     [],
   );
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <Wrapper>
