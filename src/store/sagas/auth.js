@@ -12,22 +12,22 @@ import {
 } from '../actions/auth';
 
 export function* logoutSaga() {
-  yield call([localStorage, 'removeItem'], 'token'); // стало
+  yield call([localStorage, 'removeItem'], 'token');
   yield call([localStorage, 'removeItem'], 'expirationDate');
   yield call([localStorage, 'removeItem'], 'userId');
   yield put(logoutSucceed());
 }
 
 export function* checkAuthTimeoutSaga(action) {
-  yield delay(action.expirationTime * 1000);
+  yield delay(action.payload.expirationTime * 1000);
   yield put(logout());
 }
 
 export function* authUserSaga(action) {
   yield put(authStart());
   const authData = {
-    email: action.email,
-    password: action.password,
+    email: action.payload.email,
+    password: action.payload.password,
     returnSecureToken: true,
   };
 

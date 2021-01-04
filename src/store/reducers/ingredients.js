@@ -1,3 +1,7 @@
+// @flow
+import type { Ingredient } from '../../components/Burger/BurgerIngredient';
+import type { Actions } from '../actions';
+
 import {
   ADD_INGREDIENTS,
   REMOVE_INGREDIENTS,
@@ -19,13 +23,24 @@ const INGREDIENT_PRICES = {
   bacon: 25,
 };
 
-export const ingredients = (state = initialState, action) => {
+type State = {
+  ingredients: Ingredient[],
+  totalPrice: number,
+  error: boolean,
+  building: boolean,
+};
+
+export const ingredients = (
+  state: State = initialState,
+  action: Actions,
+): State => {
   switch (action.type) {
     case ADD_INGREDIENTS:
       return {
         ...state,
-        ingredients: [action.ingredientName, ...state.ingredients],
-        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName],
+        ingredients: [action.payload.ingredientName, ...state.ingredients],
+        totalPrice:
+          state.totalPrice + INGREDIENT_PRICES[action.payload.ingredientName],
         building: true,
       };
 
@@ -33,7 +48,7 @@ export const ingredients = (state = initialState, action) => {
       // TODO: сделать лучше
       const copiedIngredients = [...state.ingredients];
       const index = copiedIngredients.findIndex(
-        (v) => v === action.ingredientName,
+        (v) => v === action.payload.ingredientName,
       );
 
       if (index > -1) {
@@ -42,7 +57,7 @@ export const ingredients = (state = initialState, action) => {
           ...state,
           ingredients: copiedIngredients,
           totalPrice:
-            state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
+            state.totalPrice - INGREDIENT_PRICES[action.payload.ingredientName],
         };
       }
 

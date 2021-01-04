@@ -7,3 +7,8 @@ export { GuardRoute } from './GuardRoute';
 
 // $FlowFixMe
 export const history = createBrowserHistory();
+
+export type Action<Type, Payload = void> = {
+  type: Type,
+  payload: ?Payload,
+};

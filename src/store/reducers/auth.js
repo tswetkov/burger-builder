@@ -1,3 +1,5 @@
+// @flow
+
 import {
   AUTH_START,
   AUTH_SUCCESS,
@@ -6,7 +8,17 @@ import {
   SET_AUTH_REDIRECT_PATH,
 } from '../actionTypes';
 
-const initialState = {
+import type { Actions } from '../actions';
+
+type State = {
+  token: string | null,
+  userId: string | null,
+  error: string | null,
+  loading: boolean,
+  authRedirectPath: string,
+};
+
+const initialState: State = {
   token: null,
   userId: null,
   error: null,
@@ -46,21 +58,21 @@ const setAuthRedirectPath = (state, action) => ({
   authRedirectPath: action.path,
 });
 
-export const auth = (state = initialState, action) => {
+export const auth = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case AUTH_START:
-      return authStart(state, action);
+      return authStart(state);
 
     case AUTH_SUCCESS:
-      return authSuccess(state, action);
+      return authSuccess(state, action.payload);
 
     case AUTH_FAILURE:
-      return authFailure(state, action);
+      return authFailure(state, action.payload);
 
     case AUTH_LOGOUT:
-      return authLogout(state, action);
+      return authLogout(state);
     case SET_AUTH_REDIRECT_PATH:
-      return setAuthRedirectPath(state, action);
+      return setAuthRedirectPath(state, action.payload);
     default:
       return state;
   }

@@ -1,3 +1,5 @@
+// @flow
+
 import {
   PURCHASE_BURGER_FAILURE,
   PURCHASE_BURGER_SUCCESS,
@@ -10,47 +12,123 @@ import {
   FETCH_ORDERS,
 } from '../actionTypes';
 
-export const purchaseBurgerSuccess = (id, orderData) => ({
+type PurchaseBurgerSuccessActionType = {
+  type: 'PURCHASE_BURGER_SUCCESS',
+  payload: {
+    id: string,
+    orderData: any,
+  },
+};
+type PurchaseBurgerFailureActionType = {
+  type: 'PURCHASE_BURGER_FAILURE',
+  payload: {
+    error: string,
+  },
+};
+type PurchaseBurgerStartActionType = {
+  type: 'PURCHASE_BURGER_START',
+};
+type PurchaseBurgerActionType = {
+  type: 'PURCHASE_BURGER',
+  payload: {
+    orderData: any,
+    token: string,
+  },
+};
+type PurchaseInitActionType = {
+  type: 'PURCHASE_INIT',
+};
+type FetchOrdersSuccessActionType = {
+  type: 'FETCH_ORDERS_SUCCESS',
+  payload: {
+    orders: any[],
+  },
+};
+type FetchOrdersFailureActionType = {
+  type: 'FETCH_ORDERS_FAILURE',
+  payload: {
+    error: string,
+  },
+};
+type FetchOrdersStartActionType = {
+  type: 'FETCH_ORDERS_START',
+};
+type FetchOrdersActionType = {
+  type: 'FETCH_ORDERS',
+  payload: {
+    token: string,
+    userId: string,
+  },
+};
+
+export const purchaseBurgerSuccess = (
+  id: string,
+  orderData: any,
+): PurchaseBurgerSuccessActionType => ({
   type: PURCHASE_BURGER_SUCCESS,
-  id,
-  orderData,
+  payload: {
+    id,
+    orderData,
+  },
 });
 
-export const purchaseBurgerFailure = (error) => ({
+export const purchaseBurgerFailure = (
+  error: string,
+): PurchaseBurgerFailureActionType => ({
   type: PURCHASE_BURGER_FAILURE,
-  error,
+  payload: {
+    error,
+  },
 });
 
-export const purchaseBurgerStart = () => ({
+export const purchaseBurgerStart = (): PurchaseBurgerStartActionType => ({
   type: PURCHASE_BURGER_START,
 });
 
-export const purchaseBurger = (orderData, token) => ({
+export const purchaseBurger = (
+  orderData: any,
+  token: string,
+): PurchaseBurgerActionType => ({
   type: PURCHASE_BURGER,
-  orderData,
-  token,
+  payload: {
+    orderData,
+    token,
+  },
 });
 
-export const purchaseInit = () => ({
+export const purchaseInit = (): PurchaseInitActionType => ({
   type: PURCHASE_INIT,
 });
 
-export const fetchOrdersSuccess = (orders) => ({
+export const fetchOrdersSuccess = (
+  orders: any[],
+): FetchOrdersSuccessActionType => ({
   type: FETCH_ORDERS_SUCCESS,
-  orders,
+  payload: {
+    orders,
+  },
 });
 
-export const fetchOrdersFailure = (error) => ({
+export const fetchOrdersFailure = (
+  error: string,
+): FetchOrdersFailureActionType => ({
   type: FETCH_ORDERS_FAILURE,
-  error,
+  payload: {
+    error,
+  },
 });
 
-export const fetchOrdersStart = () => ({
+export const fetchOrdersStart = (): FetchOrdersStartActionType => ({
   type: FETCH_ORDERS_START,
 });
 
-export const fetchOrders = (token, userId) => ({
+export const fetchOrders = (
+  token: string,
+  userId: string,
+): FetchOrdersActionType => ({
   type: FETCH_ORDERS,
-  token,
-  userId,
+  payload: {
+    token,
+    userId,
+  },
 });

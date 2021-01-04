@@ -1,3 +1,7 @@
+// @flow
+
+import type { Ingredient } from '../../components/Burger/BurgerIngredient';
+
 import {
   ADD_INGREDIENTS,
   REMOVE_INGREDIENTS,
@@ -5,21 +9,58 @@ import {
   FETCH_INGREDIENTS_FAILED,
 } from '../actionTypes';
 
-export const addIngredient = (ingredientName) => ({
+type AddIngredientsActionType = {
+  type: 'ADD_INGREDIENTS',
+  payload: {
+    ingredientName: string,
+  },
+};
+
+type RemoveIngredientsActionType = {
+  type: 'REMOVE_INGREDIENTS',
+  payload: {
+    ingredientName: string,
+  },
+};
+
+type SetIngredientsActionType = {
+  type: 'SET_INGREDIENTS',
+  payload: {
+    ingredients: Ingredient[],
+  },
+};
+
+type FetchIngredientsFaildActionType = {
+  type: 'FETCH_INGREDIENTS_FAILED',
+};
+
+export const addIngredient = (
+  ingredientName: string,
+): AddIngredientsActionType => ({
   type: ADD_INGREDIENTS,
-  ingredientName,
+  payload: {
+    ingredientName,
+  },
 });
 
-export const removeIngredient = (ingredientName) => ({
+export const removeIngredient = (
+  ingredientName: string,
+): RemoveIngredientsActionType => ({
   type: REMOVE_INGREDIENTS,
-  ingredientName,
+  payload: {
+    ingredientName,
+  },
 });
 
-export const setIngredietns = (ingredients) => ({
+export const setIngredietns = (
+  ingredients: Ingredient[],
+): SetIngredientsActionType => ({
   type: SET_INGREDIENTS,
-  ingredients,
+  payload: {
+    ingredients,
+  },
 });
 
-export const fetchIngredientsFailed = () => ({
+export const fetchIngredientsFailed = (): FetchIngredientsFaildActionType => ({
   type: FETCH_INGREDIENTS_FAILED,
 });

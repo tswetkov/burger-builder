@@ -1,3 +1,5 @@
+// @flow
+
 import {
   AUTH_FAILURE,
   AUTH_START,
@@ -10,44 +12,121 @@ import {
   AUTH_CHECK_STATE,
 } from '../actionTypes';
 
-export const authStart = () => ({
+type AuthStartActionType = {
+  type: typeof AUTH_START,
+};
+
+export type AuthStartSuccessActionType = {
+  type: typeof AUTH_SUCCESS,
+  payload: {
+    idToken: string,
+    userId: string,
+  },
+};
+
+export type AuthStartFailureActionType = {
+  type: typeof AUTH_FAILURE,
+  payload: {
+    error: string,
+  },
+};
+
+export type LogoutActionType = {
+  type: typeof AUTH_INITIATE_LOGOUT,
+};
+
+export type LogoutSuccessActionType = {
+  type: typeof AUTH_LOGOUT,
+};
+
+export type CheckAuthTimeoutActionType = {
+  type: typeof AUTH_CHECK_TIMEOUT,
+  payload: {
+    expirationTime: string,
+  },
+};
+
+export type AuthUserActionType = {
+  type: typeof AUTH_USER,
+  payload: {
+    email: string,
+    password: string,
+    isSignup: boolean,
+  },
+};
+
+export type SstRedirectPathActionType = {
+  type: typeof SET_AUTH_REDIRECT_PATH,
+  payload: {
+    path: string,
+  },
+};
+
+export type AuthCheckStateActionType = {
+  type: typeof AUTH_CHECK_STATE,
+};
+
+export const authStart = (): AuthStartActionType => ({
   type: AUTH_START,
 });
 
-export const authSuccess = (idToken, userId) => ({
+export const authSuccess = (
+  idToken: string,
+  userId: string,
+): AuthStartSuccessActionType => ({
   type: AUTH_SUCCESS,
-  idToken,
-  userId,
+  payload: {
+    idToken,
+    userId,
+  },
 });
 
-export const authFailure = (error) => ({
+export const authFailure = (error: string): AuthStartFailureActionType => ({
   type: AUTH_FAILURE,
-  error,
+  payload: {
+    error,
+  },
 });
 
-export const logout = () => ({
+export const logout = (): LogoutActionType => ({
   type: AUTH_INITIATE_LOGOUT,
 });
 
-export const logoutSucceed = () => ({ type: AUTH_LOGOUT });
+export const logoutSucceed = (): LogoutSuccessActionType => ({
+  type: AUTH_LOGOUT,
+});
 
-export const checkAuthTimeout = (expirationTime) => ({
+export const checkAuthTimeout = (
+  expirationTime: string,
+): CheckAuthTimeoutActionType => ({
   type: AUTH_CHECK_TIMEOUT,
-  expirationTime,
+  payload: {
+    expirationTime,
+  },
 });
 
-export const auth = (email, password, isSignup = false) => ({
+export const auth = (
+  email: string,
+  password: string,
+  isSignup: boolean = false,
+): AuthUserActionType => ({
   type: AUTH_USER,
-  email,
-  password,
-  isSignup,
+  payload: {
+    email,
+    password,
+    isSignup,
+  },
 });
 
-export const setAuthRedirectPath = (path) => ({
+export const setAuthRedirectPath = (
+  path: string,
+): SstRedirectPathActionType => ({
   type: SET_AUTH_REDIRECT_PATH,
-  path,
+  payload: {
+    path,
+  },
 });
 
-export const authCheckState = () => ({
+export const authCheckState = (): AuthCheckStateActionType => ({
   type: AUTH_CHECK_STATE,
 });
