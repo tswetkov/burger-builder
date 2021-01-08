@@ -1,4 +1,5 @@
 // @flow
+
 import type { Ingredient } from '../../components/Burger/BurgerIngredient';
 import type { Actions } from '../actions';
 

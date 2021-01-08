@@ -22,7 +22,7 @@ export function* purchaseBurgerSaga(
   yield put(purchaseBurgerStart());
 
   try {
-    const response = yield orderService.order(
+    const response: any = yield orderService.order(
       `/orders.json?auth=${action.payload.token}`,
       action.payload.orderData,
     );
