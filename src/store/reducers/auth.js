@@ -10,7 +10,7 @@ import {
 
 import type { Actions } from '../actions';
 
-type State = {
+export type AuthState = {
   token: string | null,
   userId: string | null,
   error: string | null,
@@ -18,7 +18,7 @@ type State = {
   authRedirectPath: string,
 };
 
-const initialState: State = {
+const initialState: AuthState = {
   token: null,
   userId: null,
   error: null,
@@ -58,7 +58,10 @@ const setAuthRedirectPath = (state, action) => ({
   authRedirectPath: action.path,
 });
 
-export const auth = (state: State = initialState, action: Actions): State => {
+export const auth = (
+  state: AuthState = initialState,
+  action: Actions,
+): AuthState => {
   switch (action.type) {
     case AUTH_START:
       return authStart(state);

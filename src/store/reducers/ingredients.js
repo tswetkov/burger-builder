@@ -21,9 +21,11 @@ const INGREDIENT_PRICES = {
   cheese: 20,
   meat: 40,
   bacon: 25,
+  'bread-top': 0,
+  'bread-bottom': 0,
 };
 
-type State = {
+export type IngredientsState = {
   ingredients: Ingredient[],
   totalPrice: number,
   error: boolean,
@@ -31,9 +33,9 @@ type State = {
 };
 
 export const ingredients = (
-  state: State = initialState,
+  state: IngredientsState = initialState,
   action: Actions,
-): State => {
+): IngredientsState => {
   switch (action.type) {
     case ADD_INGREDIENTS:
       return {

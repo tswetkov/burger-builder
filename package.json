@@ -19,7 +19,8 @@
   "lint-staged": {
     "*{.js,.jsx}": [
       "pretty-quick --staged",
-      "npm run lint"
+      "npm run lint",
+      "flow focus-check src"
     ]
   },
   "dependencies": {

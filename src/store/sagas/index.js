@@ -1,3 +1,5 @@
+// @flow
+import type { Saga } from 'redux-saga';
 import { takeEvery, all, takeLatest } from 'redux-saga/effects';
 
 import {
@@ -17,7 +19,7 @@ import {
 } from './auth';
 import { purchaseBurgerSaga, fetchOrderSaga } from './order';
 
-export function* watchAuth() {
+export function* watchAuth(): Saga<void> {
   yield all([
     takeEvery(AUTH_INITIATE_LOGOUT, logoutSaga),
     takeEvery(AUTH_CHECK_TIMEOUT, checkAuthTimeoutSaga),
@@ -26,7 +28,7 @@ export function* watchAuth() {
   ]);
 }
 
-export function* watchOrders() {
+export function* watchOrders(): Saga<void> {
   yield takeLatest(PURCHASE_BURGER, purchaseBurgerSaga);
   yield takeEvery(FETCH_ORDERS, fetchOrderSaga);
 }

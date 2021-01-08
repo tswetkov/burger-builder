@@ -42,7 +42,7 @@ export type LogoutSuccessActionType = {
 export type CheckAuthTimeoutActionType = {
   type: typeof AUTH_CHECK_TIMEOUT,
   payload: {
-    expirationTime: string,
+    expirationTime: number,
   },
 };
 
@@ -97,7 +97,7 @@ export const logoutSucceed = (): LogoutSuccessActionType => ({
 });
 
 export const checkAuthTimeout = (
-  expirationTime: string,
+  expirationTime: number,
 ): CheckAuthTimeoutActionType => ({
   type: AUTH_CHECK_TIMEOUT,
   payload: {

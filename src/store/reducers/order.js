@@ -28,19 +28,22 @@ type Order = {
   userId: string,
 };
 
-type State = {
+export type OrderState = {
   orders: Order[],
   loading: boolean,
   purchased: boolean,
 };
 
-const initialState: State = {
+const initialState: OrderState = {
   orders: [],
   loading: false,
   purchased: false,
 };
 
-export const order = (state: State = initialState, action: Actions): State => {
+export const order = (
+  state: OrderState = initialState,
+  action: Actions,
+): OrderState => {
   switch (action.type) {
     case PURCHASE_INIT:
       return {

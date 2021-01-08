@@ -12,48 +12,48 @@ import {
   FETCH_ORDERS,
 } from '../actionTypes';
 
-type PurchaseBurgerSuccessActionType = {
+export type PurchaseBurgerSuccessActionType = {
   type: 'PURCHASE_BURGER_SUCCESS',
   payload: {
     id: string,
     orderData: any,
   },
 };
-type PurchaseBurgerFailureActionType = {
+export type PurchaseBurgerFailureActionType = {
   type: 'PURCHASE_BURGER_FAILURE',
   payload: {
     error: string,
   },
 };
-type PurchaseBurgerStartActionType = {
+export type PurchaseBurgerStartActionType = {
   type: 'PURCHASE_BURGER_START',
 };
-type PurchaseBurgerActionType = {
+export type PurchaseBurgerActionType = {
   type: 'PURCHASE_BURGER',
   payload: {
     orderData: any,
     token: string,
   },
 };
-type PurchaseInitActionType = {
+export type PurchaseInitActionType = {
   type: 'PURCHASE_INIT',
 };
-type FetchOrdersSuccessActionType = {
+export type FetchOrdersSuccessActionType = {
   type: 'FETCH_ORDERS_SUCCESS',
   payload: {
     orders: any[],
   },
 };
-type FetchOrdersFailureActionType = {
+export type FetchOrdersFailureActionType = {
   type: 'FETCH_ORDERS_FAILURE',
   payload: {
     error: string,
   },
 };
-type FetchOrdersStartActionType = {
+export type FetchOrdersStartActionType = {
   type: 'FETCH_ORDERS_START',
 };
-type FetchOrdersActionType = {
+export type FetchOrdersActionType = {
   type: 'FETCH_ORDERS',
   payload: {
     token: string,

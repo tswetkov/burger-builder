@@ -5,8 +5,9 @@ import React, { type Node } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import { BuildControl } from './BuildControl';
+import type { Ingredient } from '../BurgerIngredient';
 
-const controls = [
+const controls: Array<{ label: string, type: Ingredient }> = [
   { label: 'Салат', type: 'salad' },
   { label: 'Бекон', type: 'bacon' },
   { label: 'Сыр', type: 'cheese' },
@@ -65,8 +66,8 @@ const OrderButton = styled.button`
   }
 `;
 type Props = {
-  ingredientAdded: (type: string) => void,
-  ingredientRemove: (type: string) => void,
+  ingredientAdded: (type: Ingredient) => void,
+  ingredientRemove: (type: Ingredient) => void,
   disabled: string[],
   price: number,
   purchasable: boolean,

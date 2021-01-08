@@ -9,33 +9,33 @@ import {
   FETCH_INGREDIENTS_FAILED,
 } from '../actionTypes';
 
-type AddIngredientsActionType = {
+export type AddIngredientsActionType = {
   type: 'ADD_INGREDIENTS',
   payload: {
-    ingredientName: string,
+    ingredientName: Ingredient,
   },
 };
 
-type RemoveIngredientsActionType = {
+export type RemoveIngredientsActionType = {
   type: 'REMOVE_INGREDIENTS',
   payload: {
-    ingredientName: string,
+    ingredientName: Ingredient,
   },
 };
 
-type SetIngredientsActionType = {
+export type SetIngredientsActionType = {
   type: 'SET_INGREDIENTS',
   payload: {
     ingredients: Ingredient[],
   },
 };
 
-type FetchIngredientsFaildActionType = {
+export type FetchIngredientsFaildActionType = {
   type: 'FETCH_INGREDIENTS_FAILED',
 };
 
 export const addIngredient = (
-  ingredientName: string,
+  ingredientName: Ingredient,
 ): AddIngredientsActionType => ({
   type: ADD_INGREDIENTS,
   payload: {
@@ -44,7 +44,7 @@ export const addIngredient = (
 });
 
 export const removeIngredient = (
-  ingredientName: string,
+  ingredientName: Ingredient,
 ): RemoveIngredientsActionType => ({
   type: REMOVE_INGREDIENTS,
   payload: {

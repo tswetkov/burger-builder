@@ -1,13 +1,19 @@
 // @flow
 
-import { combineReducers } from 'redux';
+import { combineReducers, type Reducer } from 'redux';
 
-import { ingredients } from './ingredients';
-import { order } from './order';
-import { auth } from './auth';
+import { ingredients, type IngredientsState } from './ingredients';
+import { order, type OrderState } from './order';
+import { auth, type AuthState } from './auth';
+import type { Actions } from '../actions';
 
-// TODO: определить тип
-export const reducers: any = combineReducers({
+export type State = {
+  ingredients: IngredientsState,
+  order: OrderState,
+  auth: AuthState,
+};
+
+export const reducers: Reducer<State, Actions> = combineReducers({
   ingredients,
   order,
   auth,

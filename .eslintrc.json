@@ -24,7 +24,8 @@
     "no-confusing-arrow": "off",
     "object-curly-newline": "off",
     "no-case-declarations": "off",
-    "function-paren-newline": "off"
+    "function-paren-newline": "off",
+    "operator-linebreak": "off"
   },
   "settings": {
     "import/resolver": {
