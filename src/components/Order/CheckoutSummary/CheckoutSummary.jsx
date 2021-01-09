@@ -30,9 +30,7 @@ export const CheckoutSummary = ({
   return (
     <CheckoutSummaryWrapper>
       <h1>Я надеюсь, что это вкусно</h1>
-      <div style={{ width: '100%', margin: 'auto' }}>
-        <Burger ingredients={ingredients} />
-      </div>
+      <Burger ingredients={ingredients} />
       <Button onClick={checkoutCancel} btnType="danger">
         ОТМЕНА
       </Button>

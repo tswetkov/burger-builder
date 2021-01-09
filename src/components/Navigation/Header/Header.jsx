@@ -1,6 +1,6 @@
 // @flow
 
-import React, { type Node } from 'react';
+import React, { type AbstractComponent, memo } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -36,14 +36,19 @@ type Props = {
   isAuth: boolean,
 };
 
-export const Header = ({ onToggleDrawer, isAuth }: Props): Node => (
-  <HeaderWrapper>
-    <DrawerToggle onClick={onToggleDrawer} />
-    <HeaderLogoWrapper to="/">
-      <Logo />
-    </HeaderLogoWrapper>
-    <Navigation>
-      <NavigationItems isAuth={isAuth} />
-    </Navigation>
-  </HeaderWrapper>
-);
+export const Header: AbstractComponent<Props, mixed> = memo(function Header({
+  onToggleDrawer,
+  isAuth,
+}) {
+  return (
+    <HeaderWrapper>
+      <DrawerToggle onClick={onToggleDrawer} />
+      <HeaderLogoWrapper to="/">
+        <Logo />
+      </HeaderLogoWrapper>
+      <Navigation>
+        <NavigationItems isAuth={isAuth} />
+      </Navigation>
+    </HeaderWrapper>
+  );
+});

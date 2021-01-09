@@ -25,7 +25,8 @@
     "object-curly-newline": "off",
     "no-case-declarations": "off",
     "function-paren-newline": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "prefer-arrow-callback": "off"
   },
   "settings": {
     "import/resolver": {
