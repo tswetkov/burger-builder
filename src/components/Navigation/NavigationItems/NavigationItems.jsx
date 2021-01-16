@@ -1,6 +1,7 @@
 // @flow
 
 import React, { type Node } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styled from 'styled-components';
 import { NavigationItem } from './NavigationItem';
@@ -23,16 +24,22 @@ type Props = {
   isAuth: boolean,
 };
 
-export const NavigationItems = ({ isAuth }: Props): Node => (
-  <NavigationItemsWrapper>
-    <NavigationItem link="/" exact>
-      Конструктор
-    </NavigationItem>
-    {isAuth ? <NavigationItem link="/orders">Заказы</NavigationItem> : null}
-    {!isAuth ? (
-      <NavigationItem link="/signin">Войти</NavigationItem>
-    ) : (
-      <NavigationItem link="/logout">Выйти</NavigationItem>
-    )}
-  </NavigationItemsWrapper>
-);
+export const NavigationItems = ({ isAuth }: Props): Node => {
+  const { t } = useTranslation();
+
+  return (
+    <NavigationItemsWrapper>
+      <NavigationItem link="/" exact>
+        {t('constructor')}
+      </NavigationItem>
+      {isAuth ? (
+        <NavigationItem link="/orders">{t('orders')}</NavigationItem>
+      ) : null}
+      {!isAuth ? (
+        <NavigationItem link="/signin">{t('login')}</NavigationItem>
+      ) : (
+        <NavigationItem link="/logout">{t('logout')}</NavigationItem>
+      )}
+    </NavigationItemsWrapper>
+  );
+};

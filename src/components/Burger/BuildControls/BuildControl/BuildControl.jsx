@@ -1,6 +1,7 @@
 // @flow
 
 import React, { type Node } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 const BuildControlWrapper = styled.div`
@@ -74,12 +75,16 @@ export const BuildControl = ({
   added,
   removed,
   disabled,
-}: Props): Node => (
-  <BuildControlWrapper>
-    <Label>{label}</Label>
-    <Less onClick={removed} disabled={disabled}>
-      Меньше
-    </Less>
-    <More onClick={added}>Больше</More>
-  </BuildControlWrapper>
-);
+}: Props): Node => {
+  const { t } = useTranslation();
+
+  return (
+    <BuildControlWrapper>
+      <Label>{label}</Label>
+      <Less onClick={removed} disabled={disabled}>
+        {t('less')}
+      </Less>
+      <More onClick={added}>{t('more')}</More>
+    </BuildControlWrapper>
+  );
+};

@@ -1,18 +1,12 @@
 // @flow
 
-import React, { type Node } from 'react';
+import React, { type Node, useMemo } from 'react';
 
 import styled, { keyframes } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 import { BuildControl } from './BuildControl';
 import type { Ingredient } from '../BurgerIngredient';
-
-const controls: Array<{ label: string, type: Ingredient }> = [
-  { label: 'Салат', type: 'salad' },
-  { label: 'Бекон', type: 'bacon' },
-  { label: 'Сыр', type: 'cheese' },
-  { label: 'Мясо', type: 'meat' },
-];
 
 const enable = keyframes`
   0% {
@@ -46,6 +40,7 @@ const OrderButton = styled.button`
   font-size: 1.2em;
   padding: 15px 30px;
   box-shadow: 2px 2px 2px #966909;
+  text-transform: uppercase;
 
   &:hover,
   &:active {
@@ -83,22 +78,41 @@ export const BuildControls = ({
   purchasable,
   ordered,
   isAuth,
-}: Props): Node => (
-  <BuildControlsWrapper>
-    <p>
-      Текущая цена: <strong>{price.toFixed(2)}</strong>
-    </p>
-    {controls.map((item) => (
-      <BuildControl
-        key={item.label}
-        label={item.label}
-        added={() => ingredientAdded(item.type)}
-        removed={() => ingredientRemove(item.type)}
-        disabled={!disabled.includes(item.type)}
-      />
-    ))}
-    <OrderButton disabled={!purchasable} onClick={ordered}>
-      {isAuth ? 'ЗАКАЗАТЬ' : 'ВОЙТИ ДЛЯ ЗАКАЗА'}
-    </OrderButton>
-  </BuildControlsWrapper>
-);
+}: Props): Node => {
+  const { t } = useTranslation();
+
+  const controls: Array<{ label: string, type: Ingredient }> = useMemo(
+    () => [
+      { label: t('salad'), type: 'salad' },
+      { label: t('bacon'), type: 'bacon' },
+      { label: t('cheese'), type: 'cheese' },
+      { label: t('meat'), type: 'meat' },
+    ],
+    [],
+  );
+
+  const label = useMemo(
+    () => (isAuth ? 'authMainButton' : 'noAuthMainButton'),
+    [isAuth],
+  );
+
+  return (
+    <BuildControlsWrapper>
+      <p>
+        {t('currentPrice')}: <strong>{price.toFixed(2)}</strong>
+      </p>
+      {controls.map((item) => (
+        <BuildControl
+          key={item.label}
+          label={item.label}
+          added={() => ingredientAdded(item.type)}
+          removed={() => ingredientRemove(item.type)}
+          disabled={!disabled.includes(item.type)}
+        />
+      ))}
+      <OrderButton disabled={!purchasable} onClick={ordered}>
+        {t(label)}
+      </OrderButton>
+    </BuildControlsWrapper>
+  );
+};

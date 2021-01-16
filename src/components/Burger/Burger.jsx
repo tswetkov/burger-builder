@@ -2,12 +2,12 @@
 
 import React, { type Node } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 import { BurgerIngredient } from './BurgerIngredient';
 import type { Ingredient } from './BurgerIngredient';
 
 const BurgerWrapper = styled.div`
-  margin: auto;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -22,6 +22,7 @@ const BurgerWrapper = styled.div`
   }
 
   @media (min-width: 500px) and (min-height: 400px) {
+    margin: auto;
     width: 350px;
   }
 
@@ -42,12 +43,13 @@ type Props = {
 };
 
 export const Burger = ({ ingredients }: Props): Node => {
+  const { t } = useTranslation();
   let transformedIngredients = ingredients.map((ingredient, index): Node => (
     <BurgerIngredient key={`${ingredient}/${index}`} type={ingredient} />
   ));
 
   if (transformedIngredients.length === 0) {
-    transformedIngredients = <p>Пожалуйста, добавьте ингридиенты</p>;
+    transformedIngredients = <p>{t('addIngredients')}</p>;
   }
 
   return (
