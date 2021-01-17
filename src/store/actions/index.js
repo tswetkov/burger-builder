@@ -26,7 +26,7 @@ import type {
 import type {
   AddIngredientsActionType,
   RemoveIngredientsActionType,
-  SetIngredientsActionType,
+  ResetIngredientsActionType,
   FetchIngredientsFaildActionType,
 } from './burgerBuilder';
 
@@ -50,14 +50,14 @@ export type Actions =
   | FetchOrdersActionType
   | AddIngredientsActionType
   | RemoveIngredientsActionType
-  | SetIngredientsActionType
+  | ResetIngredientsActionType
   | FetchIngredientsFaildActionType;
 
 export {
   addIngredient,
   fetchIngredientsFailed,
   removeIngredient,
-  setIngredietns,
+  resetIngredietns,
 } from './burgerBuilder';
 
 export { purchaseBurger, purchaseInit, fetchOrders } from './order';

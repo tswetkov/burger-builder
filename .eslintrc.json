@@ -26,7 +26,8 @@
     "no-case-declarations": "off",
     "function-paren-newline": "off",
     "operator-linebreak": "off",
-    "prefer-arrow-callback": "off"
+    "prefer-arrow-callback": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   },
   "settings": {
     "import/resolver": {

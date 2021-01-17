@@ -1,6 +1,7 @@
 // @flow
 
 import React, { type Node } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import type { Ingredient } from '../Burger/BurgerIngredient';
 
@@ -19,6 +20,7 @@ type Props = {
 };
 
 export const Order = ({ ingredients, price }: Props): Node => {
+  const { t } = useTranslation();
   const ingredientsArray = [];
 
   ingredients.forEach((ingredientName) => {
@@ -44,7 +46,9 @@ export const Order = ({ ingredients, price }: Props): Node => {
 
   return (
     <OrderWrapper>
-      <p>Ингридиенты: {ingredientOutput}</p>
+      <p>
+        {t('ingredients')}: {ingredientOutput}
+      </p>
       <p>
         Цена: <strong>{Number.parseFloat(price).toFixed(2)} Р</strong>
       </p>

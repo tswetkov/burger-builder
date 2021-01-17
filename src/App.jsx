@@ -17,6 +17,7 @@ import { GuardRoute } from 'utils';
 import { Header } from 'components/Navigation/Header';
 import { SideDrawer } from 'components/Navigation/SideDrawer';
 import { ContactData } from 'containers/Checkout/ContactData';
+import { useTranslation } from 'react-i18next';
 
 const Content = styled.div`
   display: flex;
@@ -32,6 +33,7 @@ const Wrapper = styled.div`
 `;
 
 const AppComponent = () => {
+  const { t } = useTranslation();
   const { isAuth, isLoading } = useSelector((state) => ({
     isAuth: state.auth.token !== null,
     isLoading: state.auth.loading,
@@ -60,7 +62,7 @@ const AppComponent = () => {
   );
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p>{t('loading')}...</p>;
   }
 
   return (

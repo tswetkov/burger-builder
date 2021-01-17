@@ -7,7 +7,7 @@ import {
   ADD_INGREDIENTS,
   REMOVE_INGREDIENTS,
   FETCH_INGREDIENTS_FAILED,
-  SET_INGREDIENTS,
+  RESET_INGREDIENTS,
 } from '../actionTypes';
 
 const initialState = {
@@ -66,14 +66,8 @@ export const ingredients = (
 
       return state;
 
-    case SET_INGREDIENTS:
-      return {
-        ...state,
-        totalPrice: 0,
-        ingredients: [],
-        error: false,
-        building: false,
-      };
+    case RESET_INGREDIENTS:
+      return initialState;
 
     case FETCH_INGREDIENTS_FAILED:
       return {

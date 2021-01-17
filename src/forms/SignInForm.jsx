@@ -4,6 +4,7 @@ import React, { type Node } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Input, Button } from '../components/UI';
 import { authFormValidationSchema } from './validations';
@@ -17,6 +18,7 @@ type Props = {
 };
 
 export const SignInForm = ({ onSubmit }: Props): Node => {
+  const { t } = useTranslation();
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(authFormValidationSchema),
     mode: 'all',
@@ -42,7 +44,7 @@ export const SignInForm = ({ onSubmit }: Props): Node => {
       />
 
       <Button btnType="success" disabled={Object.keys(errors).length > 0}>
-        SUBMIT
+        {t('login')}
       </Button>
     </form>
   );

@@ -1,6 +1,6 @@
 // @flow
 
-import React, { type Node } from 'react';
+import React, { type Node, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styled from 'styled-components';
@@ -20,8 +20,45 @@ const NavigationItemsWrapper = styled.ul`
   }
 `;
 
+const LanguageChange = styled.span`
+  color: #7b7575;
+  margin-right: auto;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+
+  @media (min-width: 500px) {
+    margin-right: 20px;
+    color: #fff;
+  }
+`;
+
 type Props = {
   isAuth: boolean,
+};
+
+const ToggleLanguagle = () => {
+  const { i18n } = useTranslation();
+
+  const label = useMemo(() => {
+    const lan = localStorage.getItem('lan');
+    return lan === 'ru' ? 'en' : 'ru';
+  }, [i18n.language]);
+
+  const handleLanguageChange = () => {
+    try {
+      i18n.changeLanguage(label);
+      localStorage.setItem('lan', i18n.language);
+    } catch (error) {
+      throw new Error('Error during change language');
+    }
+  };
+
+  return (
+    <LanguageChange role="button" tabIndex="0" onClick={handleLanguageChange}>
+      {label}
+    </LanguageChange>
+  );
 };
 
 export const NavigationItems = ({ isAuth }: Props): Node => {
@@ -29,6 +66,7 @@ export const NavigationItems = ({ isAuth }: Props): Node => {
 
   return (
     <NavigationItemsWrapper>
+      <ToggleLanguagle />
       <NavigationItem link="/" exact>
         {t('constructor')}
       </NavigationItem>

@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState, useCallback, type Node } from 'react';
+import React, { useState, useCallback, type Node, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -13,20 +13,30 @@ import {
   purchaseInit,
   addIngredient,
   removeIngredient,
+  resetIngredietns,
 } from 'store/actions';
 
 export const BurgerBuilder = (): Node => {
   const [purchasing, setPurchasing] = useState(false);
-
-  const history = useHistory();
-  const { ingredients, totalPrice, isAuth } = useSelector((state) => ({
-    ingredients: state.ingredients.ingredients,
-    totalPrice: state.ingredients.totalPrice,
-    error: state.ingredients.error,
-    isAuth: state.auth.token !== null,
-  }));
-
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const { ingredients, totalPrice, isAuth, purchased } = useSelector(
+    (state) => ({
+      ingredients: state.ingredients.ingredients,
+      totalPrice: state.ingredients.totalPrice,
+      error: state.ingredients.error,
+      purchased: state.order.purchased,
+      isAuth: state.auth.token !== null,
+    }),
+  );
+
+  useEffect(() => {
+    if (purchased) {
+      dispatch(resetIngredietns());
+    }
+  }, [purchased]);
+
   const handleAddIngredient = useCallback(
     (ingredientName) => dispatch(addIngredient(ingredientName)),
     [dispatch],

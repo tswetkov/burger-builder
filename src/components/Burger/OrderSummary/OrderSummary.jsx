@@ -2,6 +2,7 @@
 
 import styled from 'styled-components';
 import React, { useMemo, type Node } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from 'components/UI';
 import type { Ingredient } from '../BurgerIngredient';
 
@@ -25,19 +26,13 @@ type Props = {
   ingredients: Ingredient[],
 };
 
-const dictionary = {
-  bacon: 'бекон',
-  cheese: 'сыр',
-  meat: 'мясо',
-  salad: 'салат',
-};
-
 export const OrderSummary = ({
   onClose,
   onContinue,
   price,
   ingredients,
 }: Props): Node => {
+  const { t } = useTranslation();
   // TODO: сделать красиво
   const transformed = ingredients.reduce((acc, value) => {
     acc[value] = acc[value] ? acc[value] + 1 : 1;
@@ -49,8 +44,7 @@ export const OrderSummary = ({
     () =>
       Object.keys(transformed).map((igKey, index) => (
         <li key={igKey + index}>
-          <IngredientName>{dictionary[igKey]}</IngredientName>:{' '}
-          {transformed[igKey]}
+          <IngredientName>{t(igKey)}</IngredientName>: {transformed[igKey]}
         </li>
       )),
     [transformed],
@@ -58,18 +52,20 @@ export const OrderSummary = ({
 
   return (
     <>
-      <Title>Ваш заказ</Title>
-      <p>Цифровой бургер из:</p>
+      <Title>{t('orderSummary.title')}</Title>
+      <p>{t('orderSummary.subtitle')}:</p>
       <ul>{ingredientSummary}</ul>
       <p>
-        <strong>Конечная цена: {price.toFixed(2)}</strong>
+        <strong>
+          {t('orderSummary.price')}: {price.toFixed(2)}
+        </strong>
       </p>
       <ButtonsWrapper>
         <Button onClick={onClose} btnType="danger">
-          ЗАКРЫТЬ
+          {t('orderSummary.close')}
         </Button>
         <Button onClick={onContinue} btnType="success">
-          ПРОДОЛЖИТЬ
+          {t('orderSummary.next')}
         </Button>
       </ButtonsWrapper>
     </>

@@ -5,7 +5,7 @@ import type { Ingredient } from '../../components/Burger/BurgerIngredient';
 import {
   ADD_INGREDIENTS,
   REMOVE_INGREDIENTS,
-  SET_INGREDIENTS,
+  RESET_INGREDIENTS,
   FETCH_INGREDIENTS_FAILED,
 } from '../actionTypes';
 
@@ -23,11 +23,8 @@ export type RemoveIngredientsActionType = {
   },
 };
 
-export type SetIngredientsActionType = {
-  type: 'SET_INGREDIENTS',
-  payload: {
-    ingredients: Ingredient[],
-  },
+export type ResetIngredientsActionType = {
+  type: 'RESET_INGREDIENTS',
 };
 
 export type FetchIngredientsFaildActionType = {
@@ -52,13 +49,8 @@ export const removeIngredient = (
   },
 });
 
-export const setIngredietns = (
-  ingredients: Ingredient[],
-): SetIngredientsActionType => ({
-  type: SET_INGREDIENTS,
-  payload: {
-    ingredients,
-  },
+export const resetIngredietns = (): ResetIngredientsActionType => ({
+  type: RESET_INGREDIENTS,
 });
 
 export const fetchIngredientsFailed = (): FetchIngredientsFaildActionType => ({

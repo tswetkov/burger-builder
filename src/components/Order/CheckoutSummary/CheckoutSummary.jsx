@@ -7,6 +7,7 @@ import { Burger } from 'components/Burger';
 import { Button } from 'components/UI';
 import type { Ingredient } from 'components/Burger/BurgerIngredient';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const CheckoutSummaryWrapper = styled.div`
   text-align: center;
@@ -24,18 +25,19 @@ export const CheckoutSummary = ({
   checkoutContinued,
 }: Props): Node => {
   const history = useHistory();
+  const { t } = useTranslation();
   const [, ingredientsData] = history.location.hash.split('#');
   const ingredients: Ingredient[] = JSON.parse(atob(ingredientsData));
 
   return (
     <CheckoutSummaryWrapper>
-      <h1>Я надеюсь, что это вкусно</h1>
+      <h1>{t('checkoutSummary.title')}</h1>
       <Burger ingredients={ingredients} />
       <Button onClick={checkoutCancel} btnType="danger">
-        ОТМЕНА
+        {t('checkoutSummary.close')}
       </Button>
       <Button onClick={checkoutContinued} btnType="success">
-        ПРОДОЛЖИТЬ
+        {t('checkoutSummary.next')}
       </Button>
     </CheckoutSummaryWrapper>
   );
