@@ -1,24 +1,21 @@
 // @flow
 
-import { createStore, applyMiddleware, compose } from 'redux';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import type { Store } from 'redux';
-import thunk from 'redux-thunk';
+
 import createSagaMiddleware from 'redux-saga';
 import { reducers, type State } from './reducers';
 import { watchAuth, watchOrders } from './sagas';
 import type { Actions } from './actions';
 
-const componseEnhancers =
-  process.env.NODE_ENV === 'development'
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : compose;
-
 const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware];
 
-export const store: Store<State, Actions> = createStore(
-  reducers,
-  componseEnhancers(applyMiddleware(thunk, sagaMiddleware)),
-);
+export const store: Store<State, Actions> = configureStore({
+  reducer: reducers,
+  devTools: process.env.NODE_ENV === 'development',
+  middleware: [...getDefaultMiddleware({ thunk: false }), ...middlewares],
+});
 
 sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchOrders);

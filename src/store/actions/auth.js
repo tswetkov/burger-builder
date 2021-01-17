@@ -70,30 +70,8 @@ export const authStart = (): AuthStartActionType => ({
   type: AUTH_START,
 });
 
-export const authSuccess = (
-  idToken: string,
-  userId: string,
-): AuthStartSuccessActionType => ({
-  type: AUTH_SUCCESS,
-  payload: {
-    idToken,
-    userId,
-  },
-});
-
-export const authFailure = (error: string): AuthStartFailureActionType => ({
-  type: AUTH_FAILURE,
-  payload: {
-    error,
-  },
-});
-
 export const logout = (): LogoutActionType => ({
   type: AUTH_INITIATE_LOGOUT,
-});
-
-export const logoutSucceed = (): LogoutSuccessActionType => ({
-  type: AUTH_LOGOUT,
 });
 
 export const checkAuthTimeout = (
@@ -115,15 +93,6 @@ export const auth = (
     email,
     password,
     isSignup,
-  },
-});
-
-export const setAuthRedirectPath = (
-  path: string,
-): SstRedirectPathActionType => ({
-  type: SET_AUTH_REDIRECT_PATH,
-  payload: {
-    path,
   },
 });
 

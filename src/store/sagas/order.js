@@ -6,15 +6,18 @@ import { orderService } from 'services';
 
 import { history } from 'utils';
 import {
+  type PurchaseBurgerActionType,
+  type FetchOrdersActionType,
+} from '../actions/order';
+
+import {
   purchaseBurgerSuccess,
   purchaseBurgerFailure,
   fetchOrdersStart,
   fetchOrdersSuccess,
   fetchOrdersFailure,
   purchaseBurgerStart,
-  type PurchaseBurgerActionType,
-  type FetchOrdersActionType,
-} from '../actions/order';
+} from '../slices/orderSlice';
 
 export function* purchaseBurgerSaga(
   action: PurchaseBurgerActionType,
@@ -27,7 +30,10 @@ export function* purchaseBurgerSaga(
       action.payload.orderData,
     );
     yield put(
-      purchaseBurgerSuccess(response.data.name, action.payload.orderData),
+      purchaseBurgerSuccess({
+        id: response.data.name,
+        orderData: action.payload.orderData,
+      }),
     );
     history.push('/');
   } catch (error) {
@@ -44,7 +50,7 @@ export function* fetchOrderSaga(action: FetchOrdersActionType): Saga<void> {
     Object.keys(response.data).forEach((key) => {
       fetchOrders.push({ ...response.data[key], id: key });
     });
-    yield put(fetchOrdersSuccess(fetchOrders));
+    yield put(fetchOrdersSuccess({ orders: fetchOrders }));
   } catch (error) {
     yield put(fetchOrdersFailure(error));
   }

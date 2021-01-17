@@ -1,16 +1,7 @@
 // @flow
 
-import {
-  PURCHASE_BURGER_SUCCESS,
-  PURCHASE_BURGER_FAILURE,
-  PURCHASE_BURGER_START,
-  PURCHASE_INIT,
-  FETCH_ORDERS_START,
-  FETCH_ORDERS_SUCCESS,
-  FETCH_ORDERS_FAILURE,
-} from '../actionTypes';
+import { createSlice } from '@reduxjs/toolkit';
 
-import type { Actions } from '../actions';
 import type { Ingredient } from '../../components/Burger/BurgerIngredient';
 
 type Order = {
@@ -40,22 +31,25 @@ const initialState: OrderState = {
   purchased: false,
 };
 
-export const order = (
-  state: OrderState = initialState,
-  action: Actions,
-): OrderState => {
-  switch (action.type) {
-    case PURCHASE_INIT:
+const orderSlice: any = createSlice({
+  name: 'order',
+  initialState,
+  reducers: {
+    purchaseInit(state) {
       return {
         ...state,
         purchased: false,
       };
-    case PURCHASE_BURGER_START:
+    },
+
+    purchaseBurgerStart(state) {
       return {
         ...state,
         loading: true,
       };
-    case PURCHASE_BURGER_SUCCESS:
+    },
+
+    purchaseBurgerSuccess(state, action) {
       const newOrder = {
         ...action.payload.orderData,
         id: action.payload.id,
@@ -66,28 +60,48 @@ export const order = (
         purchased: true,
         orders: state.orders.concat(newOrder),
       };
-    case PURCHASE_BURGER_FAILURE:
+    },
+
+    purchaseBurgerFailure(state) {
       return {
         ...state,
         loading: false,
       };
-    case FETCH_ORDERS_START:
+    },
+
+    fetchOrdersStart(state) {
       return {
         ...state,
         loading: true,
       };
-    case FETCH_ORDERS_SUCCESS:
+    },
+
+    fetchOrdersSuccess(state, action) {
       return {
         ...state,
         orders: action.payload.orders,
         loading: false,
       };
-    case FETCH_ORDERS_FAILURE:
+    },
+
+    fetchOrdersFailure(state) {
       return {
         ...state,
         loading: false,
       };
-    default:
-      return state;
-  }
-};
+    },
+  },
+});
+
+export const {
+  reducer: order,
+  actions: {
+    purchaseInit,
+    purchaseBurgerStart,
+    purchaseBurgerSuccess,
+    purchaseBurgerFailure,
+    fetchOrdersStart,
+    fetchOrdersSuccess,
+    fetchOrdersFailure,
+  },
+} = orderSlice;

@@ -57,8 +57,8 @@ const resources = {
       meat: 'Мясо',
       noAuthMainButton: 'Войти для заказа',
       authMainButton: 'Заказать',
-      less: 'Больше',
-      more: 'Меньше',
+      less: 'Меньше',
+      more: 'Больше',
       loading: 'Загрузка',
       ingredients: 'Ингридиенты',
       orderSummary: {

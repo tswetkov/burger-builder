@@ -1,14 +1,7 @@
 // @flow
 
+import { createSlice } from '@reduxjs/toolkit';
 import type { Ingredient } from '../../components/Burger/BurgerIngredient';
-import type { Actions } from '../actions';
-
-import {
-  ADD_INGREDIENTS,
-  REMOVE_INGREDIENTS,
-  FETCH_INGREDIENTS_FAILED,
-  RESET_INGREDIENTS,
-} from '../actionTypes';
 
 const initialState = {
   ingredients: [],
@@ -33,49 +26,52 @@ export type IngredientsState = {
   building: boolean,
 };
 
-export const ingredients = (
-  state: IngredientsState = initialState,
-  action: Actions,
-): IngredientsState => {
-  switch (action.type) {
-    case ADD_INGREDIENTS:
+export const ingredientsSlice: any = createSlice({
+  name: 'ingredients',
+  initialState,
+  reducers: {
+    addIngredient(state, action) {
       return {
         ...state,
-        ingredients: [action.payload.ingredientName, ...state.ingredients],
-        totalPrice:
-          state.totalPrice + INGREDIENT_PRICES[action.payload.ingredientName],
+        ingredients: [action.payload, ...state.ingredients],
+        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.payload],
         building: true,
       };
-
-    case REMOVE_INGREDIENTS:
+    },
+    removeIngredient(state, action) {
       // TODO: сделать лучше
       const copiedIngredients = [...state.ingredients];
-      const index = copiedIngredients.findIndex(
-        (v) => v === action.payload.ingredientName,
-      );
+      const index = copiedIngredients.findIndex((v) => v === action.payload);
 
       if (index > -1) {
         copiedIngredients.splice(index, 1);
         return {
           ...state,
           ingredients: copiedIngredients,
-          totalPrice:
-            state.totalPrice - INGREDIENT_PRICES[action.payload.ingredientName],
+          totalPrice: state.totalPrice - INGREDIENT_PRICES[action.payload],
         };
       }
 
       return state;
-
-    case RESET_INGREDIENTS:
+    },
+    resetIngredietns() {
       return initialState;
-
-    case FETCH_INGREDIENTS_FAILED:
+    },
+    fetchIngredientsFailed(state) {
       return {
         ...state,
         error: true,
       };
+    },
+  },
+});
 
-    default:
-      return state;
-  }
-};
+export const {
+  reducer: ingredients,
+  actions: {
+    addIngredient,
+    removeIngredient,
+    resetIngredietns,
+    fetchIngredientsFailed,
+  },
+} = ingredientsSlice;

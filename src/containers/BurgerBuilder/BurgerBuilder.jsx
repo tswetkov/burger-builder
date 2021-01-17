@@ -9,12 +9,12 @@ import { BuildControls } from 'components/Burger/BuildControls';
 import { OrderSummaryModal } from 'components/modals';
 
 import {
-  setAuthRedirectPath,
-  purchaseInit,
   addIngredient,
   removeIngredient,
   resetIngredietns,
-} from 'store/actions';
+} from 'store/slices/ingredientsSlice';
+import { setAuthRedirectPath } from 'store/slices/authSlice';
+import { purchaseInit } from 'store/slices/orderSlice';
 
 export const BurgerBuilder = (): Node => {
   const [purchasing, setPurchasing] = useState(false);
@@ -52,7 +52,7 @@ export const BurgerBuilder = (): Node => {
   ]);
 
   const onSetAuthRedirectPath = useCallback(
-    (path) => dispatch(setAuthRedirectPath(path)),
+    (path) => dispatch(setAuthRedirectPath({ path })),
     [dispatch],
   );
 

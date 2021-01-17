@@ -2,9 +2,9 @@
 
 import { combineReducers, type Reducer } from 'redux';
 
-import { ingredients, type IngredientsState } from './ingredients';
-import { order, type OrderState } from './order';
-import { auth, type AuthState } from './auth';
+import { ingredients, type IngredientsState } from '../slices/ingredientsSlice';
+import { order, type OrderState } from '../slices/orderSlice';
+import { auth, type AuthState } from '../slices/authSlice';
 import type { Actions } from '../actions';
 
 export type State = {

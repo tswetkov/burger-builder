@@ -17,7 +17,9 @@ export const Orders = (): Node => {
   }));
 
   const handleFetchOrder = useCallback(
-    (requestToken, id): Node => dispatch(fetchOrders(requestToken, id)),
+    (requestToken, id) => {
+      dispatch(fetchOrders(requestToken, id));
+    },
     [dispatch],
   );
 

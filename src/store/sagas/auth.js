@@ -7,12 +7,15 @@ import { delay, put, call } from 'redux-saga/effects';
 import { history } from 'utils';
 import { authService } from 'services';
 import {
-  logoutSucceed,
-  logout,
   authStart,
   authSuccess,
-  checkAuthTimeout,
   authFailure,
+  authLogout,
+} from '../slices/authSlice';
+
+import {
+  logout,
+  checkAuthTimeout,
   type CheckAuthTimeoutActionType,
   type AuthUserActionType,
 } from '../actions/auth';
@@ -21,7 +24,7 @@ export function* logoutSaga(): Saga<void> {
   yield call([localStorage, 'removeItem'], 'token');
   yield call([localStorage, 'removeItem'], 'expirationDate');
   yield call([localStorage, 'removeItem'], 'userId');
-  yield put(logoutSucceed());
+  yield put(authLogout());
 }
 
 export function* checkAuthTimeoutSaga(
@@ -41,16 +44,14 @@ export function* authUserSaga(action: AuthUserActionType): Saga<void> {
 
   try {
     const response = yield authService.login(authData);
-    const expirationDate = new Date(
-      new Date().getTime() + response.data.expiresIn * 1000,
-    );
+    const { idToken: token, localId: userId, expiresIn } = response.data;
+    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
 
-    localStorage.setItem('token', response.data.idToken);
+    localStorage.setItem('token', token);
     localStorage.setItem('expirationDate', expirationDate.toString());
-    localStorage.setItem('userId', response.data.localId);
-
-    yield put(authSuccess(response.data.idToken, response.data.localId));
-    yield put(checkAuthTimeout(response.data.expiresIn));
+    localStorage.setItem('userId', userId);
+    yield put(authSuccess({ token, userId }));
+    yield put(checkAuthTimeout(expiresIn));
     history.push('/');
   } catch (error) {
     yield put(authFailure(error.response.data.error));
@@ -75,7 +76,7 @@ export function* authCheckStateSaga(): Saga<void> {
       const userId = localStorage.getItem('userId');
       if (!userId) throw new Error('No User Id founded');
 
-      yield put(authSuccess(token, userId));
+      yield put(authSuccess({ token, userId }));
       yield put(
         checkAuthTimeout(
           (expirationDate.getTime() - new Date().getTime()) / 1000,

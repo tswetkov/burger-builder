@@ -53,13 +53,5 @@ export type Actions =
   | ResetIngredientsActionType
   | FetchIngredientsFaildActionType;
 
-export {
-  addIngredient,
-  fetchIngredientsFailed,
-  removeIngredient,
-  resetIngredietns,
-} from './burgerBuilder';
-
-export { purchaseBurger, purchaseInit, fetchOrders } from './order';
-
-export { auth, logout, setAuthRedirectPath, authCheckState } from './auth';
+export { purchaseBurger, fetchOrders } from './order';
+export { auth, logout, authCheckState } from './auth';
