@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "lint": "eslint --ext .jsx --ext .js src --fix"
+    "lint": "eslint --ext .tsx --ext .ts src --fix"
   },
   "author": "Roman Tsvetrkov",
   "license": "ISC",
@@ -19,8 +19,7 @@
   "lint-staged": {
     "*{.js,.jsx}": [
       "pretty-quick --staged",
-      "npm run lint",
-      "flow focus-check src"
+      "npm run lint"
     ]
   },
   "dependencies": {
@@ -47,7 +46,13 @@
     "@babel/preset-env": "7.12.10",
     "@babel/preset-flow": "7.12.1",
     "@babel/preset-react": "7.12.10",
+    "@babel/preset-typescript": "7.12.7",
     "@hot-loader/react-dom": "17.0.1",
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "@types/react-router-dom": "5.1.7",
+    "@typescript-eslint/eslint-plugin": "4.14.1",
+    "@typescript-eslint/parser": "4.14.1",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.2.2",
     "babel-plugin-styled-components": "1.12.0",
@@ -56,6 +61,7 @@
     "css-loader": "5.0.1",
     "eslint": "7.16.0",
     "eslint-config-airbnb": "18.2.1",
+    "eslint-import-resolver-alias": "1.1.2",
     "eslint-plugin-flowtype": "5.2.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsx-a11y": "6.4.1",
@@ -70,6 +76,7 @@
     "prettier": "2.2.1",
     "pretty-quick": "3.1.0",
     "style-loader": "2.0.0",
+    "typescript": "4.1.3",
     "webpack": "4.44.1",
     "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.11.0"

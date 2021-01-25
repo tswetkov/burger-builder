@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = () => ({
-  entry: './src/index.jsx',
+  entry: './src/index.tsx',
   stats: 'minimal',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -13,11 +13,11 @@ module.exports = () => ({
   module: {
     rules: [
       {
-        test: /.(js|jsx)$/,
+        test: /.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         resolve: {
-          extensions: ['.js', '.jsx'],
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
       },
       {
@@ -56,7 +56,7 @@ module.exports = () => ({
     new CleanWebpackPlugin(),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
       components: path.resolve(__dirname, 'src/components/'),
