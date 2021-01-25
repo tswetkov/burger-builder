@@ -1,13 +1,11 @@
-// @flow
-
-import React, { useEffect, useCallback, type Node } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders } from 'store/actions';
 
 import { Order } from 'components/Order';
 import { Spinner } from 'components/UI';
 
-export const Orders = (): Node => {
+export const Orders = () => {
   const dispatch = useDispatch();
   const { orders, loading, token, userId } = useSelector((state) => ({
     orders: state.order.orders,

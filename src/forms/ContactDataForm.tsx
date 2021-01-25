@@ -1,6 +1,4 @@
-// @flow
-
-import React, { type Node } from 'react';
+import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -9,14 +7,14 @@ import { useTranslation } from 'react-i18next';
 import { contactDataValidationSchema } from './validations';
 
 type FormData = {
-  name: string,
-  street: string,
-  index: string,
-  country: string,
-  email: string,
+  name: string;
+  street: string;
+  index: string;
+  country: string;
+  email: string;
 };
 type Props = {
-  onSubmit: (data: FormData) => void,
+  onSubmit: (data: FormData) => void;
 };
 
 export const ContactDataForm = ({ onSubmit }: Props): Node => {

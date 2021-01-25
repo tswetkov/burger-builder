@@ -8,11 +8,11 @@ import { Input, Button } from '../components/UI';
 import { authFormValidationSchema } from './validations';
 
 type FormData = {
-  email: string,
-  password: string,
+  email: string;
+  password: string;
 };
 type Props = {
-  onSubmit: (data: FormData) => void,
+  onSubmit: (data: FormData) => void;
 };
 
 export const SignInForm = ({ onSubmit }: Props): Node => {

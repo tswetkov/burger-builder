@@ -1,6 +1,4 @@
-// @flow
-
-import React, { useState, useCallback, type Node, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -16,7 +14,7 @@ import {
 import { setAuthRedirectPath } from 'store/slices/authSlice';
 import { purchaseInit } from 'store/slices/orderSlice';
 
-export const BurgerBuilder = (): Node => {
+export const BurgerBuilder = () => {
   const [purchasing, setPurchasing] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();

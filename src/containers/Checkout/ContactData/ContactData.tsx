@@ -1,6 +1,4 @@
-// @flow
-
-import React, { useCallback, useEffect, type Node } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styled from 'styled-components';
@@ -24,7 +22,7 @@ const ContactDataWrapper = styled.div`
   }
 `;
 
-export const ContactData = (): Node => {
+export const ContactData = () => {
   const { ingredients, price, loading, token, userId } = useSelector(
     (state) => ({
       ingredients: state.ingredients.ingredients,

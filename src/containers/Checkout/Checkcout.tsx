@@ -1,11 +1,9 @@
-// @flow
-
-import React, { type Node, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { CheckoutSummary } from 'components/Order/CheckoutSummary';
 
-export const Checkout = (): Node => {
+export const Checkout = () => {
   const history = useHistory();
 
   const handleCheckoutCancel = useCallback(() => {
