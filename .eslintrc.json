@@ -27,12 +27,15 @@
     "function-paren-newline": "off",
     "operator-linebreak": "off",
     "prefer-arrow-callback": "off",
-    "jsx-a11y/click-events-have-key-events": "off"
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/jsx-filename-extension": "off",
+    "import/extensions": "off"
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["src"]
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   }
