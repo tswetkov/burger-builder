@@ -1,28 +1,26 @@
-// @flow
-
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { Ingredient } from '../../components/Burger/BurgerIngredient';
+import { Ingredient } from '../../components/Burger/BurgerIngredient';
 
 type Order = {
-  id: string,
-  ingredients: Ingredient[],
+  id: string;
+  ingredients: Ingredient[];
   orderData: {
-    country: string,
-    deliveryMethod: string,
-    email: string,
-    index: string,
-    name: string,
-    street: string,
-  },
-  price: number,
-  userId: string,
+    country: string;
+    deliveryMethod: string;
+    email: string;
+    index: string;
+    name: string;
+    street: string;
+  };
+  price: number;
+  userId: string;
 };
 
 export type OrderState = {
-  orders: Order[],
-  loading: boolean,
-  purchased: boolean,
+  orders: Order[];
+  loading: boolean;
+  purchased: boolean;
 };
 
 const initialState: OrderState = {
@@ -31,7 +29,7 @@ const initialState: OrderState = {
   purchased: false,
 };
 
-const orderSlice: any = createSlice({
+const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {

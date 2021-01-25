@@ -1,7 +1,5 @@
-// @flow
-
 import { createSlice } from '@reduxjs/toolkit';
-import type { Ingredient } from '../../components/Burger/BurgerIngredient';
+import { Ingredient } from '../../components/Burger/BurgerIngredient';
 
 const initialState = {
   ingredients: [],
@@ -20,13 +18,13 @@ const INGREDIENT_PRICES = {
 };
 
 export type IngredientsState = {
-  ingredients: Ingredient[],
-  totalPrice: number,
-  error: boolean,
-  building: boolean,
+  ingredients: Ingredient[];
+  totalPrice: number;
+  error: boolean;
+  building: boolean;
 };
 
-export const ingredientsSlice: any = createSlice({
+export const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {

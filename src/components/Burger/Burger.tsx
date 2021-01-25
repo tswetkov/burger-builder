@@ -1,9 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
-import { BurgerIngredient } from './BurgerIngredient';
-import type { Ingredient } from './BurgerIngredient';
+import { BurgerIngredient, Ingredient } from './BurgerIngredient';
 
 const BurgerWrapper = styled.div`
   flex: 1;

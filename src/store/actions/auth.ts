@@ -1,5 +1,3 @@
-// @flow
-
 import {
   AUTH_FAILURE,
   AUTH_START,
@@ -13,57 +11,57 @@ import {
 } from '../actionTypes';
 
 type AuthStartActionType = {
-  type: typeof AUTH_START,
+  type: typeof AUTH_START;
 };
 
 export type AuthStartSuccessActionType = {
-  type: typeof AUTH_SUCCESS,
+  type: typeof AUTH_SUCCESS;
   payload: {
-    idToken: string,
-    userId: string,
-  },
+    idToken: string;
+    userId: string;
+  };
 };
 
 export type AuthStartFailureActionType = {
-  type: typeof AUTH_FAILURE,
+  type: typeof AUTH_FAILURE;
   payload: {
-    error: string,
-  },
+    error: string;
+  };
 };
 
 export type LogoutActionType = {
-  type: typeof AUTH_INITIATE_LOGOUT,
+  type: typeof AUTH_INITIATE_LOGOUT;
 };
 
 export type LogoutSuccessActionType = {
-  type: typeof AUTH_LOGOUT,
+  type: typeof AUTH_LOGOUT;
 };
 
 export type CheckAuthTimeoutActionType = {
-  type: typeof AUTH_CHECK_TIMEOUT,
+  type: typeof AUTH_CHECK_TIMEOUT;
   payload: {
-    expirationTime: number,
-  },
+    expirationTime: number;
+  };
 };
 
 export type AuthUserActionType = {
-  type: typeof AUTH_USER,
+  type: typeof AUTH_USER;
   payload: {
-    email: string,
-    password: string,
-    isSignup: boolean,
-  },
+    email: string;
+    password: string;
+    isSignup: boolean;
+  };
 };
 
 export type SstRedirectPathActionType = {
-  type: typeof SET_AUTH_REDIRECT_PATH,
+  type: typeof SET_AUTH_REDIRECT_PATH;
   payload: {
-    path: string,
-  },
+    path: string;
+  };
 };
 
 export type AuthCheckStateActionType = {
-  type: typeof AUTH_CHECK_STATE,
+  type: typeof AUTH_CHECK_STATE;
 };
 
 export const authStart = (): AuthStartActionType => ({

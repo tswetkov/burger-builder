@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
@@ -24,7 +24,7 @@ const ModalBody = styled.div`
 `;
 
 type Props = {
-  children;
+  children: any;
   onClick: () => void;
 };
 

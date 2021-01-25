@@ -1,6 +1,4 @@
-// @flow
-
-import type {
+import {
   AuthStartSuccessActionType,
   AuthStartFailureActionType,
   LogoutActionType,
@@ -11,7 +9,7 @@ import type {
   AuthCheckStateActionType,
 } from './auth';
 
-import type {
+import {
   PurchaseBurgerSuccessActionType,
   PurchaseBurgerFailureActionType,
   PurchaseBurgerStartActionType,
@@ -23,7 +21,7 @@ import type {
   FetchOrdersActionType,
 } from './order';
 
-import type {
+import {
   AddIngredientsActionType,
   RemoveIngredientsActionType,
   ResetIngredientsActionType,

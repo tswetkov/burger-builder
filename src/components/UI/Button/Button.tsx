@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled, { css } from 'styled-components';
 
 const successStyles = css`
@@ -40,7 +40,7 @@ const NativeButton = styled.button`
 `;
 
 type Props = {
-  children;
+  children: any;
   onClick?: () => void;
   disabled?: boolean;
   btnType: string;

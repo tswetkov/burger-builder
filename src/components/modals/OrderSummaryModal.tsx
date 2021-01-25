@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 
 import { OrderSummary } from '../Burger/OrderSummary';
 import { Modal } from '../UI';
-import type { Ingredient } from '../Burger/BurgerIngredient';
+import { Ingredient } from '../Burger/BurgerIngredient';
 
 type Props = {
   handleCloseModal: () => void;

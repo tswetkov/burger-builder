@@ -1,13 +1,10 @@
-// @flow
-
-import type { Saga } from 'redux-saga';
 import { put } from 'redux-saga/effects';
 import { orderService } from 'services';
 
 import { history } from 'utils';
 import {
-  type PurchaseBurgerActionType,
-  type FetchOrdersActionType,
+  PurchaseBurgerActionType,
+  FetchOrdersActionType,
 } from '../actions/order';
 
 import {
@@ -19,9 +16,7 @@ import {
   purchaseBurgerStart,
 } from '../slices/orderSlice';
 
-export function* purchaseBurgerSaga(
-  action: PurchaseBurgerActionType,
-): Saga<void> {
+export function* purchaseBurgerSaga(action: PurchaseBurgerActionType) {
   yield put(purchaseBurgerStart());
 
   try {
@@ -41,7 +36,7 @@ export function* purchaseBurgerSaga(
   }
 }
 
-export function* fetchOrderSaga(action: FetchOrdersActionType): Saga<void> {
+export function* fetchOrderSaga(action: FetchOrdersActionType) {
   yield put(fetchOrdersStart());
   const queryParams = `?auth=${action.payload.token}&orderBy="userId"&equalTo="${action.payload.userId}"`;
   try {

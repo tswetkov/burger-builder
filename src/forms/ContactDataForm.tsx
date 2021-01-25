@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -17,7 +17,7 @@ type Props = {
   onSubmit: (data: FormData) => void;
 };
 
-export const ContactDataForm = ({ onSubmit }: Props): Node => {
+export const ContactDataForm = ({ onSubmit }: Props) => {
   const { t } = useTranslation();
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(contactDataValidationSchema),

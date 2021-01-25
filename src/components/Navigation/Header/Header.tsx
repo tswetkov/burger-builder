@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import * as React from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -34,10 +35,7 @@ type Props = {
   isAuth: boolean;
 };
 
-export const Header: AbstractComponent<Props, mixed> = memo(function Header({
-  onToggleDrawer,
-  isAuth,
-}) {
+export const Header = memo<Props>(function Header({ onToggleDrawer, isAuth }) {
   return (
     <HeaderWrapper>
       <DrawerToggle onClick={onToggleDrawer} />

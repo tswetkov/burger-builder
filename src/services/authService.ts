@@ -1,5 +1,3 @@
-// @flow
-
 import { request } from './request';
 
 // verifyPassword/signupNewUser

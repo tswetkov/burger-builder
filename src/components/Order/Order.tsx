@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import type { Ingredient } from '../Burger/BurgerIngredient';
+import { Ingredient } from '../Burger/BurgerIngredient';
 
 const OrderWrapper = styled.div`
   width: 80%;

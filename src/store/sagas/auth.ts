@@ -1,7 +1,3 @@
-// @flow
-
-import type { Saga } from 'redux-saga';
-
 import { delay, put, call } from 'redux-saga/effects';
 
 import { history } from 'utils';
@@ -16,25 +12,23 @@ import {
 import {
   logout,
   checkAuthTimeout,
-  type CheckAuthTimeoutActionType,
-  type AuthUserActionType,
+  CheckAuthTimeoutActionType,
+  AuthUserActionType,
 } from '../actions/auth';
 
-export function* logoutSaga(): Saga<void> {
+export function* logoutSaga() {
   yield call([localStorage, 'removeItem'], 'token');
   yield call([localStorage, 'removeItem'], 'expirationDate');
   yield call([localStorage, 'removeItem'], 'userId');
   yield put(authLogout());
 }
 
-export function* checkAuthTimeoutSaga(
-  action: CheckAuthTimeoutActionType,
-): Saga<void> {
+export function* checkAuthTimeoutSaga(action: CheckAuthTimeoutActionType) {
   yield delay(action.payload.expirationTime * 1000);
   yield put(logout());
 }
 
-export function* authUserSaga(action: AuthUserActionType): Saga<void> {
+export function* authUserSaga(action: AuthUserActionType) {
   yield put(authStart());
   const authData = {
     email: action.payload.email,
@@ -58,7 +52,7 @@ export function* authUserSaga(action: AuthUserActionType): Saga<void> {
   }
 }
 
-export function* authCheckStateSaga(): Saga<void> {
+export function* authCheckStateSaga() {
   yield put(authStart());
   const token = localStorage.getItem('token');
 

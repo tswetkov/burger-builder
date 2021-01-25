@@ -1,13 +1,11 @@
-// @flow
-
 import { createSlice } from '@reduxjs/toolkit';
 
 export type AuthState = {
-  token: string | null,
-  userId: string | null,
-  error: string | null,
-  loading: boolean,
-  authRedirectPath: string,
+  token: string | null;
+  userId: string | null;
+  error: string | null;
+  loading: boolean;
+  authRedirectPath: string;
 };
 
 const initialState: AuthState = {
@@ -18,7 +16,7 @@ const initialState: AuthState = {
   authRedirectPath: '/',
 };
 
-const authSlice: any = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {

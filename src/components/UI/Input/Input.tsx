@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled, { css } from 'styled-components';
 
 const InputWrapper = styled.div`
@@ -43,15 +43,13 @@ type Props = {
   error?: string;
 } & any;
 
-export const Input: AbstractComponent<Props, HTMLElement> = React.forwardRef(
-  (props, ref) => {
-    const hasError = props.error?.length;
+export const Input = React.forwardRef<Props>((props, ref) => {
+  const hasError = props.error?.length;
 
-    return (
-      <InputWrapper>
-        <InputElement type="text" ref={ref} {...props} invalid={hasError} />
-        {hasError && <InputError>{props.error}</InputError>}
-      </InputWrapper>
-    );
-  },
-);
+  return (
+    <InputWrapper>
+      <InputElement type="text" ref={ref} {...props} invalid={hasError} />
+      {hasError && <InputError>{props.error}</InputError>}
+    </InputWrapper>
+  );
+});
