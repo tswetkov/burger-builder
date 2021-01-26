@@ -1,11 +1,11 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'astroturf';
 
 import { Logo } from 'src/components/Logo';
 import { Backdrop } from 'src/components/UI';
 import { NavigationItems } from '../NavigationItems';
 
-const SideDrawerWrapper = styled.div`
+const SideDrawerWrapper = styled.div<{ isOpen: boolean }>`
   position: fixed;
   width: 280px;
   max-width: 70%;
@@ -17,9 +17,11 @@ const SideDrawerWrapper = styled.div`
   padding: 32px 16px;
   box-sizing: border-box;
   transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
 
-  transform: ${({ isOpen }) =>
-    isOpen ? 'translateX(0);' : 'translateX(-100%);'};
+  &.isOpen {
+    transform: translateX(0);
+  }
 
   @media (min-width: 500px) {
     display: none;

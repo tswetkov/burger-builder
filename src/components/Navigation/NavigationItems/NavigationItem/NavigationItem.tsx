@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import styled from 'styled-components';
+import styled from 'astroturf';
 
 const NavigationItemWrapper = styled.li`
   display: block;
@@ -17,6 +17,7 @@ const NavigationItemWrapper = styled.li`
     height: 100%;
   }
 `;
+
 const activeClassName = 'active';
 
 const Link = styled(NavLink).attrs({

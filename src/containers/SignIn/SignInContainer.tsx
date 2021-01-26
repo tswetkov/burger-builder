@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
+import styled from 'astroturf';
 
 import { auth } from 'src/store/actions';
 import { SignInForm } from 'src/forms';

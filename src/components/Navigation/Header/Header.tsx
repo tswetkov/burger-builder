@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { memo } from 'react';
-import styled from 'styled-components';
+import styled from 'astroturf';
 import { Link } from 'react-router-dom';
 
 import { Logo } from 'src/components/Logo';

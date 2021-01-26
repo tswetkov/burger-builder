@@ -1,23 +1,11 @@
 import * as React from 'react';
 import { useMemo } from 'react';
 
-import styled, { keyframes } from 'styled-components';
+import styled from 'astroturf';
 import { useTranslation } from 'react-i18next';
 
 import { BuildControl } from './BuildControl';
 import { Ingredient } from '../BurgerIngredient';
-
-const enable = keyframes`
-  0% {
-    transform: scale(1);
-  }
-  60% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
 
 const BuildControlsWrapper = styled.div`
   width: 100%;
@@ -56,7 +44,19 @@ const OrderButton = styled.button`
   }
 
   &:not(:disabled) {
-    animation: ${enable} 0.3s linear;
+    animation: enable 0.3s linear;
+  }
+
+  @keyframes enable {
+    0% {
+      transform: scale(1);
+    }
+    60% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 `;
 type Props = {

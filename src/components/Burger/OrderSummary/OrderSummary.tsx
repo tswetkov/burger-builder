@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'astroturf';
 import * as React from 'react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
