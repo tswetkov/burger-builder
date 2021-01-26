@@ -1,16 +1,7 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'astroturf';
 
-const successStyles = css`
-  color: #5c9210;
-  margin: 10px 0;
-`;
-const dangerStyles = css`
-  color: #944317;
-  margin: 10px 0;
-`;
-
-const NativeButton = styled.button`
+const NativeButton = styled.button<{ success: boolean; danger: boolean }>`
   background-color: transparent;
   border: none;
   color: white;
@@ -34,9 +25,15 @@ const NativeButton = styled.button`
     padding: 5px;
   }
 
-  ${({ success }) => (success ? successStyles : '')}
+  &.success {
+    color: #5c9210;
+    margin: 10px 0;
+  }
 
-  ${({ danger }) => (danger ? dangerStyles : '')}
+  &.danger {
+    color: #944317;
+    margin: 10px 0;
+  }
 `;
 
 type Props = {

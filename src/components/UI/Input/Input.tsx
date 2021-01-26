@@ -1,15 +1,10 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'astroturf';
 
 const InputWrapper = styled.div`
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
-`;
-
-const invalidInputStyles = css`
-  border: 1px solid tomato;
-  background-color: #fda49a;
 `;
 
 const InputElement = styled.input<{ invalid: boolean }>`
@@ -22,12 +17,10 @@ const InputElement = styled.input<{ invalid: boolean }>`
   width: 100%;
   box-sizing: border-box;
 
-  ${({ invalid }) =>
-    invalid
-      ? `
-          ${invalidInputStyles}
-        `
-      : ''}
+  &.invalid {
+    border: 1px solid tomato;
+    background-color: #fda49a;
+  }
 `;
 
 const InputError = styled.p`

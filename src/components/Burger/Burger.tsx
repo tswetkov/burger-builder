@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'astroturf';
 import { useTranslation } from 'react-i18next';
 
 import { BurgerIngredient, Ingredient } from './BurgerIngredient';

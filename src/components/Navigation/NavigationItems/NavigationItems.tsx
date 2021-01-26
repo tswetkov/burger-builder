@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import styled from 'styled-components';
+import styled from 'astroturf';
 import { NavigationItem } from './NavigationItem';
 
 const NavigationItemsWrapper = styled.ul`
@@ -54,7 +54,7 @@ const ToggleLanguagle = () => {
   };
 
   return (
-    <LanguageChange role="button" tabIndex="0" onClick={handleLanguageChange}>
+    <LanguageChange role="button" onClick={handleLanguageChange}>
       {label}
     </LanguageChange>
   );

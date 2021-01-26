@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'astroturf';
 
 import { Burger } from 'src/components/Burger';
 import { Button } from 'src/components/UI';

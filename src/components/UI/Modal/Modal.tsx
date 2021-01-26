@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
-import styled from 'styled-components';
+import styled from 'astroturf';
 
 import { Backdrop } from 'src/components/UI/Backdrop';
 

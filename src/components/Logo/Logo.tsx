@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import styled from 'styled-components';
+import styled from 'astroturf';
 import burgerLogo from '../../assets/images/burger-logo.png';
 
 const LogoWrapper = styled.div`

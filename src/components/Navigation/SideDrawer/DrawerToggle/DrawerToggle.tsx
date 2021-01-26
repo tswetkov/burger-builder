@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import styled from 'styled-components';
+import styled from 'astroturf';
 
 const DrawerToggleWrapper = styled.div`
   width: 40px;

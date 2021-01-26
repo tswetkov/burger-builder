@@ -1,7 +1,7 @@
 import { hot } from 'react-hot-loader/root';
 import * as React from 'react';
 import { useEffect, useCallback, useState } from 'react';
-import styled from 'styled-components';
+import styled from 'astroturf';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
