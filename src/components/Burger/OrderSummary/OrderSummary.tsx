@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import React, { useMemo } from 'react';
+import * as React from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'components/UI';
+import { Button } from 'src/components/UI';
 import { Ingredient } from '../BurgerIngredient';
 
 const Title = styled.h3`

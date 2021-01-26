@@ -11,6 +11,7 @@ type FormData = {
   email: string;
   password: string;
 };
+
 type Props = {
   onSubmit: (data: FormData) => void;
 };

@@ -1,7 +1,7 @@
 import { put } from 'redux-saga/effects';
-import { orderService } from 'services';
+import { orderService } from 'src/services';
 
-import { history } from 'utils';
+import { history } from 'src/utils';
 import {
   PurchaseBurgerActionType,
   FetchOrdersActionType,

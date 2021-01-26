@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { Input, Button } from 'components/UI';
+import { Input, Button } from 'src/components/UI';
 import { useTranslation } from 'react-i18next';
 import { contactDataValidationSchema } from './validations';
 

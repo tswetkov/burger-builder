@@ -1,23 +1,23 @@
-// @flow
-
 import { hot } from 'react-hot-loader/root';
-import React, { useEffect, useCallback, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { Logout } from 'components/Logout';
-import { SignIn } from 'containers/SignIn';
-import { Checkout } from 'containers/Checkout';
-import { BurgerBuilder } from 'containers/BurgerBuilder';
-import { Orders } from 'containers/Orders';
-
-import { authCheckState } from 'store/actions';
-import { GuardRoute } from 'utils';
-import { Header } from 'components/Navigation/Header';
-import { SideDrawer } from 'components/Navigation/SideDrawer';
-import { ContactData } from 'containers/Checkout/ContactData';
 import { useTranslation } from 'react-i18next';
+
+import { Logout } from 'src/components/Logout';
+import { SignIn } from 'src/containers/SignIn';
+import { Checkout } from 'src/containers/Checkout';
+import { BurgerBuilder } from 'src/containers/BurgerBuilder';
+import { Orders } from 'src/containers/Orders';
+
+import { authCheckState } from 'src/store/actions';
+import { GuardRoute } from 'src/utils';
+import { Header } from 'src/components/Navigation/Header';
+import { SideDrawer } from 'src/components/Navigation/SideDrawer';
+import { ContactData } from 'src/containers/Checkout/ContactData';
+import { RootState } from 'src/store';
 
 const Content = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 
 const AppComponent = () => {
   const { t } = useTranslation();
-  const { isAuth, isLoading } = useSelector((state) => ({
+  const { isAuth, isLoading } = useSelector((state: RootState) => ({
     isAuth: state.auth.token !== null,
     isLoading: state.auth.loading,
   }));

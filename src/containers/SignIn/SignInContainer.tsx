@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react';
+import * as React from 'react';
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { auth } from 'store/actions';
-import { SignInForm } from 'forms';
+import { auth } from 'src/store/actions';
+import { SignInForm } from 'src/forms';
 
 const SignInWrapper = styled.div`
   margin: 20px auto;

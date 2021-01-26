@@ -7,7 +7,7 @@ import { watchAuth, watchOrders } from './sagas';
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
 
-export const store: any = configureStore({
+export const store = configureStore({
   reducer: reducers,
   devTools: process.env.NODE_ENV === 'development',
   middleware: [...getDefaultMiddleware({ thunk: false }), ...middlewares],
@@ -15,3 +15,5 @@ export const store: any = configureStore({
 
 sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchOrders);
+
+export type RootState = ReturnType<typeof reducers>;

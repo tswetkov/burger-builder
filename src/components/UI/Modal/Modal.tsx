@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
-import { Backdrop } from 'components/UI/Backdrop';
+import { Backdrop } from 'src/components/UI/Backdrop';
 
 const ModalBody = styled.div`
   position: fixed;
@@ -28,11 +28,15 @@ type Props = {
   onClick: () => void;
 };
 
-export const Modal = ({ children, onClick }: Props) =>
-  createPortal(
+export const Modal = ({ children, onClick }: Props) => {
+  const modalRoot = document.getElementById('modal');
+  if (!modalRoot) throw new Error('Root element for modal is not found');
+
+  return createPortal(
     <>
       <Backdrop onClick={onClick} />
       <ModalBody>{children}</ModalBody>
     </>,
-    document.getElementById('modal'),
+    modalRoot,
   );
+};

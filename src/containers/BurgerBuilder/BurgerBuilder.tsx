@@ -1,18 +1,19 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { Burger } from 'components/Burger';
-import { BuildControls } from 'components/Burger/BuildControls/index.ts';
-import { OrderSummaryModal } from 'components/modals';
+import { Burger } from 'src/components/Burger';
+import { BuildControls } from 'src/components/Burger/BuildControls/index.ts';
+import { OrderSummaryModal } from 'src/components/modals';
 
 import {
   addIngredient,
   removeIngredient,
   resetIngredietns,
-} from 'store/slices/ingredientsSlice';
-import { setAuthRedirectPath } from 'store/slices/authSlice';
-import { purchaseInit } from 'store/slices/orderSlice';
+} from 'src/store/slices/ingredientsSlice';
+import { setAuthRedirectPath } from 'src/store/slices/authSlice';
+import { purchaseInit } from 'src/store/slices/orderSlice';
 
 export const BurgerBuilder = () => {
   const [purchasing, setPurchasing] = useState(false);

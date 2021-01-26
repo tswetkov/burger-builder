@@ -13,7 +13,7 @@ type Order = {
     name: string;
     street: string;
   };
-  price: number;
+  price: string;
   userId: string;
 };
 

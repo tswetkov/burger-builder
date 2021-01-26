@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import * as React from 'react';
+import { useMemo } from 'react';
 
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';

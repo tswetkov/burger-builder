@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Logo } from 'components/Logo';
-import { Backdrop } from 'components/UI';
+import { Logo } from 'src/components/Logo';
+import { Backdrop } from 'src/components/UI';
 import { NavigationItems } from '../NavigationItems';
 
 const SideDrawerWrapper = styled.div`

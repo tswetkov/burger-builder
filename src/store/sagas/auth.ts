@@ -1,7 +1,7 @@
 import { delay, put, call } from 'redux-saga/effects';
 
-import { history } from 'utils';
-import { authService } from 'services';
+import { history } from 'src/utils';
+import { authService } from 'src/services';
 import {
   authStart,
   authSuccess,

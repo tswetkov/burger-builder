@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react';
+import * as React from 'react';
+import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { CheckoutSummary } from 'components/Order/CheckoutSummary';
+import { CheckoutSummary } from 'src/components/Order/CheckoutSummary';
 
 export const Checkout = () => {
   const history = useHistory();

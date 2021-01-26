@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
+import * as React from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styled from 'styled-components';
-import { Spinner } from 'components/UI';
-import { purchaseBurger } from 'store/actions';
-import { ContactDataForm } from 'forms';
-import { history } from 'utils';
+import { Spinner } from 'src/components/UI';
+import { purchaseBurger } from 'src/store/actions';
+import { ContactDataForm } from 'src/forms';
+import { history } from 'src/utils';
 
 const ContactDataWrapper = styled.div`
   width: 80%;
