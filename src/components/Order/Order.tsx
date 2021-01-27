@@ -45,7 +45,7 @@ export const Order = ({ ingredients, price }: Props) => {
   return (
     <OrderWrapper>
       <p>
-        {t('ingredients')}: {ingredientOutput}
+        {t('ingredients')}:{ingredientOutput}
       </p>
       <p>
         Цена: <strong>{Number.parseFloat(price).toFixed(2)} Р</strong>

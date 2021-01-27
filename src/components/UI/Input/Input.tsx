@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { css } from 'astroturf';
+import styled from 'astroturf';
 
 const InputWrapper = styled.div`
   width: 100%;

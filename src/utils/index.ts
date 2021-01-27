@@ -3,7 +3,7 @@ import { createBrowserHistory } from 'history';
 
 export { GuardRoute } from './GuardRoute';
 
-export const history: any = createBrowserHistory();
+export const history = createBrowserHistory();
 
 export type Action<Type, Payload = void> = {
   type: Type;

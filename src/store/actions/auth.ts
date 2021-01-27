@@ -84,7 +84,7 @@ export const checkAuthTimeout = (
 export const auth = (
   email: string,
   password: string,
-  isSignup: boolean = false,
+  isSignup = false,
 ): AuthUserActionType => ({
   type: AUTH_USER,
   payload: {

@@ -98,7 +98,7 @@ export const BuildControls = ({
   return (
     <BuildControlsWrapper>
       <p>
-        {t('currentPrice')}: <strong>{price.toFixed(2)}</strong>
+        {t('currentPrice')}:<strong>{price.toFixed(2)}</strong>
       </p>
       {controls.map((item) => (
         <BuildControl

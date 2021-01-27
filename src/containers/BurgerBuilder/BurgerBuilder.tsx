@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { Burger } from 'src/components/Burger';
-import { BuildControls } from 'src/components/Burger/BuildControls/index.ts';
+import { BuildControls } from 'src/components/Burger/BuildControls';
 import { OrderSummaryModal } from 'src/components/modals';
 
 import {

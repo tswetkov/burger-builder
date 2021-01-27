@@ -35,16 +35,14 @@ type Props = {
   isAuth: boolean;
 };
 
-export const Header = memo<Props>(function Header({ onToggleDrawer, isAuth }) {
-  return (
-    <HeaderWrapper>
-      <DrawerToggle onClick={onToggleDrawer} />
-      <HeaderLogoWrapper to="/">
-        <Logo />
-      </HeaderLogoWrapper>
-      <Navigation>
-        <NavigationItems isAuth={isAuth} />
-      </Navigation>
-    </HeaderWrapper>
-  );
-});
+export const Header = memo<Props>(({ onToggleDrawer, isAuth }) => (
+  <HeaderWrapper>
+    <DrawerToggle onClick={onToggleDrawer} />
+    <HeaderLogoWrapper to="/">
+      <Logo />
+    </HeaderLogoWrapper>
+    <Navigation>
+      <NavigationItems isAuth={isAuth} />
+    </Navigation>
+  </HeaderWrapper>
+));

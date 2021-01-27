@@ -43,7 +43,7 @@ export const OrderSummary = ({
     () =>
       Object.keys(transformed).map((igKey, index) => (
         <li key={igKey + index}>
-          <IngredientName>{t(igKey)}</IngredientName>: {transformed[igKey]}
+          <IngredientName>{t(igKey)}</IngredientName>:{transformed[igKey]}
         </li>
       )),
     [transformed],
@@ -56,7 +56,7 @@ export const OrderSummary = ({
       <ul>{ingredientSummary}</ul>
       <p>
         <strong>
-          {t('orderSummary.price')}: {price.toFixed(2)}
+          {t('orderSummary.price')}:{price.toFixed(2)}
         </strong>
       </p>
       <ButtonsWrapper>
