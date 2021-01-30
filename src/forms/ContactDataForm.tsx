@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Input, Button } from 'src/components/UI';

@@ -32,7 +32,7 @@ export function* purchaseBurgerSaga(action: PurchaseBurgerActionType) {
     );
     history.push('/');
   } catch (error) {
-    yield put(purchaseBurgerFailure(error));
+    yield put(purchaseBurgerFailure());
   }
 }
 
@@ -47,6 +47,6 @@ export function* fetchOrderSaga(action: FetchOrdersActionType) {
     });
     yield put(fetchOrdersSuccess({ orders: fetchOrders }));
   } catch (error) {
-    yield put(fetchOrdersFailure(error));
+    yield put(fetchOrdersFailure());
   }
 }

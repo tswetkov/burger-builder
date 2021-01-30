@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'astroturf';
 
 import { Burger } from 'src/components/Burger';

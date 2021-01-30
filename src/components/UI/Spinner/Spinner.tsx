@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import styled from 'astroturf';
 
 const Loader = styled.div`

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { OrderSummary } from '../Burger/OrderSummary';
 import { Modal } from '../UI';
 import { Ingredient } from '../Burger/BurgerIngredient';

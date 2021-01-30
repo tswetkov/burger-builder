@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,6 +6,7 @@ import { Spinner } from 'src/components/UI';
 import { purchaseBurger } from 'src/store/actions';
 import { ContactDataForm } from 'src/forms';
 import { history } from 'src/utils';
+import { RootState } from 'src/store';
 
 const ContactDataWrapper = styled.div`
   width: 80%;
@@ -25,7 +25,7 @@ const ContactDataWrapper = styled.div`
 
 export const ContactData = () => {
   const { ingredients, price, loading, token, userId } = useSelector(
-    (state) => ({
+    (state: RootState) => ({
       ingredients: state.ingredients.ingredients,
       price: state.ingredients.totalPrice,
       loading: state.order.loading,

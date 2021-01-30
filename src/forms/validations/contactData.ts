@@ -6,8 +6,10 @@ export const contactDataValidationSchema = yup.object().shape({
   index: yup
     .string()
     .required('Это поле обязательно')
-    .test('index', 'Должны содержаться только числа', (value) =>
-      /^\d+$/.test(value),
+    .test(
+      'index',
+      'Должны содержаться только числа',
+      (value) => typeof value === 'string' && /^\d+$/.test(value),
     ),
   country: yup.string().required('Это поле обязательно'),
   email: yup

@@ -89,7 +89,7 @@ const resources = {
 let lng = 'en';
 
 try {
-  lng = localStorage.getItem('lan');
+  lng = localStorage.getItem('lan') ?? 'en';
 } catch {
   throw new Error('Error during loading language');
 }

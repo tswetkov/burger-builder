@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback } from 'react';
 import styled from 'astroturf';
 import { useTranslation } from 'react-i18next';
 
@@ -41,19 +41,24 @@ type Props = {
 
 export const Burger = ({ ingredients }: Props) => {
   const { t } = useTranslation();
-  let transformedIngredients = ingredients.map((ingredient, index) => (
-    <BurgerIngredient key={`${ingredient}/${index}`} type={ingredient} />
-  ));
 
-  if (transformedIngredients.length === 0) {
-    transformedIngredients = <p>{t('addIngredients')}</p>;
-  }
+  const burgerBody = useCallback(() => {
+    const transformedIngredients = ingredients.map((ingredient, index) => (
+      <BurgerIngredient key={`${ingredient}/${index}`} type={ingredient} />
+    ));
+
+    if (transformedIngredients.length === 0) {
+      return <p>{t('addIngredients')}</p>;
+    }
+
+    return transformedIngredients;
+  }, [ingredients]);
 
   return (
     <BurgerWrapper>
       <BurgerContent>
         <BurgerIngredient type="bread-top" />
-        {transformedIngredients}
+        {burgerBody()}
         <BurgerIngredient type="bread-bottom" />
       </BurgerContent>
     </BurgerWrapper>

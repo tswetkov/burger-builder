@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'astroturf';
 import { Ingredient } from '../Burger/BurgerIngredient';
@@ -19,7 +18,7 @@ type Props = {
 
 export const Order = ({ ingredients, price }: Props) => {
   const { t } = useTranslation();
-  const ingredientsArray = [];
+  const ingredientsArray: Array<{ name: string }> = [];
 
   ingredients.forEach((ingredientName) => {
     ingredientsArray.push({

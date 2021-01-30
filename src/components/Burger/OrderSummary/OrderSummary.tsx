@@ -1,5 +1,5 @@
 import styled from 'astroturf';
-import * as React from 'react';
+
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'src/components/UI';

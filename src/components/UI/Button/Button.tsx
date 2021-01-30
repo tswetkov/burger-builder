@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'astroturf';
 
 const NativeButton = styled.button<{ success: boolean; danger: boolean }>`

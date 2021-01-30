@@ -10,7 +10,7 @@ export const authFormValidationSchema = yup.object().shape({
     .test(
       'password',
       'Пароль должен содержать не менее 8 символов',
-      (password) => password.length > 7,
+      (password) => typeof password === 'string' && password.length > 7,
     )
     .required('Это поле обязательно'),
 });

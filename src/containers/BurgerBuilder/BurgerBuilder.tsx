@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -14,6 +13,7 @@ import {
 } from 'src/store/slices/ingredientsSlice';
 import { setAuthRedirectPath } from 'src/store/slices/authSlice';
 import { purchaseInit } from 'src/store/slices/orderSlice';
+import { RootState } from 'src/store';
 
 export const BurgerBuilder = () => {
   const [purchasing, setPurchasing] = useState(false);
@@ -21,7 +21,7 @@ export const BurgerBuilder = () => {
   const history = useHistory();
 
   const { ingredients, totalPrice, isAuth, purchased } = useSelector(
-    (state) => ({
+    (state: RootState) => ({
       ingredients: state.ingredients.ingredients,
       totalPrice: state.ingredients.totalPrice,
       error: state.ingredients.error,
@@ -32,7 +32,7 @@ export const BurgerBuilder = () => {
 
   useEffect(() => {
     if (purchased) {
-      dispatch(resetIngredietns());
+      dispatch(resetIngredietns(null));
     }
   }, [purchased]);
 

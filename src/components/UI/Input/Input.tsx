@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { InputHTMLAttributes, forwardRef } from 'react';
 import styled from 'astroturf';
 
 const InputWrapper = styled.div`
@@ -31,9 +31,9 @@ const InputError = styled.p`
 
 type Props = {
   error?: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+} & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
+export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
   const hasError = props.error?.length;
 
   return (

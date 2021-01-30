@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader/root';
-import * as React from 'react';
+
 import { useEffect, useCallback, useState } from 'react';
 import styled from 'astroturf';
 import { Route, Switch, Redirect } from 'react-router-dom';

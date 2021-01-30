@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'astroturf';
 
 const StyledBackdrop = styled.div`

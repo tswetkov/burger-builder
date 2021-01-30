@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders } from 'src/store/actions';
