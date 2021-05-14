@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+// TODO: Временное решение
 const resources = {
   en: {
     translation: {
@@ -86,21 +87,17 @@ const resources = {
   },
 };
 
-let lng = 'en';
-
 try {
-  lng = localStorage.getItem('lan') ?? 'en';
+  i18n.use(initReactI18next).init({
+    resources,
+    lng: localStorage.getItem('lan') ?? 'en',
+    keySeparator: '.',
+    interpolation: {
+      escapeValue: false,
+    },
+  });
 } catch {
   throw new Error('Error during loading language');
 }
-
-i18n.use(initReactI18next).init({
-  resources,
-  lng,
-  keySeparator: '.',
-  interpolation: {
-    escapeValue: false,
-  },
-});
 
 export default i18n;

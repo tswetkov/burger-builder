@@ -23,7 +23,7 @@ const ModalBody = styled.div`
 `;
 
 type Props = {
-  children: any;
+  children: React.ReactNode;
   onClick: () => void;
 };
 

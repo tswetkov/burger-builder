@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
 import { Ingredient } from '../../components/Burger/BurgerIngredient';
 
 const initialState = {
@@ -24,11 +24,21 @@ export type IngredientsState = {
   building: boolean;
 };
 
-export const ingredientsSlice = createSlice({
+export const ingredientsSlice = createSlice<
+  IngredientsState,
+  SliceCaseReducers<IngredientsState>,
+  'ingredients'
+>({
   name: 'ingredients',
   initialState,
   reducers: {
-    addIngredient(state, action) {
+    addIngredient(
+      state,
+      action: {
+        readonly type: string;
+        readonly payload: keyof typeof INGREDIENT_PRICES;
+      },
+    ) {
       return {
         ...state,
         ingredients: [action.payload, ...state.ingredients],
@@ -36,7 +46,13 @@ export const ingredientsSlice = createSlice({
         building: true,
       };
     },
-    removeIngredient(state, action) {
+    removeIngredient(
+      state,
+      action: {
+        readonly type: string;
+        readonly payload: keyof typeof INGREDIENT_PRICES;
+      },
+    ) {
       // TODO: сделать лучше
       const copiedIngredients = [...state.ingredients];
       const index = copiedIngredients.findIndex((v) => v === action.payload);
