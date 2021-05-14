@@ -19,6 +19,10 @@ export const SignInForm = ({ onSubmit }: Props) => {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(authFormValidationSchema),
     mode: 'all',
+    defaultValues: {
+      email: 'test@test.com', // TODO: намеренное временное решение
+      password: 'test@test.com',
+    },
   });
 
   const { errors } = formState;

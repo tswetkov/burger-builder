@@ -79,15 +79,12 @@ export const BuildControls = ({
 }: Props) => {
   const { t } = useTranslation();
 
-  const controls: Array<{ label: string; type: Ingredient }> = useMemo(
-    () => [
-      { label: t('salad'), type: 'salad' },
-      { label: t('bacon'), type: 'bacon' },
-      { label: t('cheese'), type: 'cheese' },
-      { label: t('meat'), type: 'meat' },
-    ],
-    [],
-  );
+  const controls: Array<{ label: string; type: Ingredient }> = [
+    { label: t('salad'), type: 'salad' },
+    { label: t('bacon'), type: 'bacon' },
+    { label: t('cheese'), type: 'cheese' },
+    { label: t('meat'), type: 'meat' },
+  ];
 
   const label = useMemo(
     () => (isAuth ? 'authMainButton' : 'noAuthMainButton'),

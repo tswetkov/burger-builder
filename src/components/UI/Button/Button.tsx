@@ -36,7 +36,7 @@ const NativeButton = styled.button<{ success: boolean; danger: boolean }>`
 `;
 
 type Props = {
-  children: any;
+  children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   btnType: string;

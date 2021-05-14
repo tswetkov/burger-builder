@@ -32,21 +32,20 @@ export const OrderSummary = ({
   ingredients,
 }: Props) => {
   const { t } = useTranslation();
-  // TODO: сделать красиво
-  const transformed = ingredients.reduce((acc, value) => {
+  const ingredientsMap = ingredients.reduce((acc, value) => {
     acc[value] = acc[value] ? acc[value] + 1 : 1;
 
     return acc;
-  }, {});
+  }, {} as { [key: string]: number });
 
   const ingredientSummary = useMemo(
     () =>
-      Object.keys(transformed).map((igKey, index) => (
+      Object.keys(ingredientsMap).map((igKey, index) => (
         <li key={igKey + index}>
-          <IngredientName>{t(igKey)}</IngredientName>:{transformed[igKey]}
+          <IngredientName>{t(igKey)}</IngredientName>:{ingredientsMap[igKey]}
         </li>
       )),
-    [transformed],
+    [ingredientsMap],
   );
 
   return (

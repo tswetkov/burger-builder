@@ -86,7 +86,6 @@ const AppComponent = () => {
           />
           <GuardRoute
             isAuth={isAuth}
-            // TODO: нужно проверить настройки webpack
             path="/contact-data"
             component={ContactData}
           />
@@ -99,5 +98,4 @@ const AppComponent = () => {
   );
 };
 
-// TODO: разобраться с типом
-export const App: any = hot(AppComponent);
+export const App = hot(AppComponent);

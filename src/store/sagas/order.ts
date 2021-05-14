@@ -1,4 +1,5 @@
 import { put } from 'redux-saga/effects';
+import { Ingredient } from 'src/components/Burger/BurgerIngredient';
 import { orderService } from 'src/services';
 
 import { history } from 'src/utils';
@@ -16,11 +17,26 @@ import {
   purchaseBurgerStart,
 } from '../slices/orderSlice';
 
-export function* purchaseBurgerSaga(action: PurchaseBurgerActionType) {
+export type Order = {
+  id: string;
+  ingreditens: Ingredient[];
+  orderData: {
+    country: string;
+    deliveryMethod: string;
+    email: string;
+    index: string;
+    name: string;
+    street: string;
+  };
+  price: number;
+  userId: string;
+};
+
+export function* purchaseBurgerSaga(action: PurchaseBurgerActionType): any {
   yield put(purchaseBurgerStart());
 
   try {
-    const response: any = yield orderService.order(
+    const response = yield orderService.order(
       `/orders.json?auth=${action.payload.token}`,
       action.payload.orderData,
     );
@@ -36,12 +52,12 @@ export function* purchaseBurgerSaga(action: PurchaseBurgerActionType) {
   }
 }
 
-export function* fetchOrderSaga(action: FetchOrdersActionType) {
+export function* fetchOrderSaga(action: FetchOrdersActionType): any {
   yield put(fetchOrdersStart());
   const queryParams = `?auth=${action.payload.token}&orderBy="userId"&equalTo="${action.payload.userId}"`;
   try {
     const response = yield orderService.getOrders(`/orders.json${queryParams}`);
-    const fetchOrders = [];
+    const fetchOrders: Order[] = [];
     Object.keys(response.data).forEach((key) => {
       fetchOrders.push({ ...response.data[key], id: key });
     });

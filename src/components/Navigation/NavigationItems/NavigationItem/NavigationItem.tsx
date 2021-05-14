@@ -50,7 +50,7 @@ const Link = styled(NavLink).attrs({
 `;
 
 type Props = {
-  children: any;
+  children: React.ReactNode;
   link: string;
   exact?: boolean;
 };
